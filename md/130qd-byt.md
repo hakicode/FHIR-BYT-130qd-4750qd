@@ -1,4 +1,4 @@
-# QUYẾT ĐỊNH
+# QUYẾT ĐỊNH 130/QĐ-BYT
 ## Quy định chuẩn và định dạng dữ liệu đầu ra phục vụ việc quản lý, giám định, thanh toán chi phí khám bệnh, chữa bệnh và giải quyết các chế độ liên quan
 
 **BỘ Y TẾ** — **CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM**  
@@ -119,7 +119,7 @@ Các Ông, Bà Chánh Văn phòng Bộ Y tế, Vụ trưởng Vụ Bảo hiểm 
 
 ---
 
-## PHỤ LỤC: BẢNG CHỈ TIÊU DỮ LIỆU
+## PHỤ LỤC: BẢNG CHỈ TIÊU DỮ LIỆU (QĐ 130/QĐ-BYT)
 
 *(Ban hành kèm theo Quyết định số 130/QĐ-BYT ngày 18/01/2023 của Bộ trưởng Bộ Y tế)*
 

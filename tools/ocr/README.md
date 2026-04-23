@@ -23,11 +23,16 @@ cd tools/ocr
 1. Creates an output directory named `[pdf_name]_ocr` alongside the original PDF.
 2. Converts every page of the PDF to a high-resolution PNG image, regardless of whether the PDF already has a text layer.
 3. Uses the `swift_ocr.swift` script to perform OCR on each image using macOS's Vision API (specifically configured for Vietnamese `vi-VN`).
-4. Appends the extracted text into `[pdf_name]_ocr/extracted_text.txt`.
+4. Appends the raw OCR text into `[pdf_name]_ocr/extracted_text.txt`.
 5. Cleans up the temporary PNG images automatically to save space.
+
+### Watermark cleanup rule
+
+Watermark removal is no longer part of the main wrapper script. If you want to compare or apply that rule separately, use [watermark_cleanup_rule.py](watermark_cleanup_rule.py) as the standalone reference copy.
 
 ## Files
 
 - `run_ocr.sh`: The main bash wrapper script to execute the pipeline.
 - `swift_ocr.swift`: The Swift script that invokes the Vision API for OCR on a single image.
+- `watermark_cleanup_rule.py`: Standalone reference copy of the post-OCR watermark cleanup rule.
 - `pdf_to_img.py`: (Deprecated/Backup) A simple script to convert PDF to images manually. The wrapper script now does this internally with higher resolution.
