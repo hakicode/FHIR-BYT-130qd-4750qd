@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CHITIEU_CHITIET_DICHVUCANLAMSANG>
+  <DSACH_CHI_TIET_CLS>
+    <CHI_TIET_CLS>
+      <MA_LK></MA_LK>
+      <STT></STT>
+      <MA_DICH_VU></MA_DICH_VU>
+      <MA_CHI_SO></MA_CHI_SO>
+      <TEN_CHI_SO></TEN_CHI_SO>
+      <GIA_TRI></GIA_TRI>
+      <DON_VI_DO></DON_VI_DO>
+      <MO_TA></MO_TA>
+      <KET_LUAN></KET_LUAN>
+      <NGAY_KQ></NGAY_KQ>
+      <MA_BS_DOC_KQ></MA_BS_DOC_KQ>
+      <DU_PHONG/>
+    </CHI_TIET_CLS>
+  </DSACH_CHI_TIET_CLS>
+</CHITIEU_CHITIET_DICHVUCANLAMSANG>

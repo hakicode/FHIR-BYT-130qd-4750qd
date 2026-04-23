@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CHI_TIEU_TRANG_THAI_KCB>
+  <DSACH_TRANG_THAI_KCB>
+    <TRANG_THAI_KCB>
+      <MA_LK></MA_LK>
+      <STT></STT>
+      <MA_BN></MA_BN>
+      <HO_TEN></HO_TEN>
+      <SO_CCCD></SO_CCCD>
+      <NGAY_SINH></NGAY_SINH>
+      <GIOI_TINH></GIOI_TINH>
+      <MA_THE_BHYT></MA_THE_BHYT>
+      <MA_DKBD></MA_DKBD>
+      <GT_THE_TU></GT_THE_TU>
+      <GT_THE_DEN></GT_THE_DEN>
+      <MA_DOITUONG_KCB></MA_DOITUONG_KCB>
+      <NGAY_VAO></NGAY_VAO>
+      <NGAY_VAO_NOI_TRU></NGAY_VAO_NOI_TRU>
+      <LY_DO_VNT></LY_DO_VNT>
+      <MA_LY_DO_VNT></MA_LY_DO_VNT>
+      <MA_LOAI_KCB></MA_LOAI_KCB>
+      <MA_CSKCB></MA_CSKCB>
+      <MA_DICH_VU></MA_DICH_VU>
+      <TEN_DICH_VU></TEN_DICH_VU>
+      <MA_THUOC></MA_THUOC>
+      <TEN_THUOC></TEN_THUOC>
+      <MA_VAT_TU></MA_VAT_TU>
+      <TEN_VAT_TU></TEN_VAT_TU>
+      <NGAY_YL></NGAY_YL>
+      <DU_PHONG></DU_PHONG>
+    </TRANG_THAI_KCB>
+  </DSACH_TRANG_THAI_KCB>
+  <CHUKYDONVI/>
+</CHI_TIEU_TRANG_THAI_KCB>

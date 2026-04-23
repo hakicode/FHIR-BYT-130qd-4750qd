@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FHIR R4B — 23 Báo cáo Power BI Y Tế</title>
+<style>
+:root{--bg:#0f1117;--bg2:#161b27;--bg3:#1e2535;--bd:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.15);--tx:#e8eaf0;--tx2:#8b92a8;--tx3:#5a6178;--blue:#4a9eff;--bl2:rgba(74,158,255,0.12);--teal:#2dd4bf;--tl2:rgba(45,212,191,0.12);--purp:#a78bfa;--pu2:rgba(167,139,250,0.12);--amb:#fbbf24;--am2:rgba(251,191,36,0.12);--cor:#fb7185;--co2:rgba(251,113,133,0.12);--grn:#4ade80;--gr2:rgba(74,222,128,0.12);--gry:#64748b;--gy2:rgba(100,116,139,0.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;font-size:14px;line-height:1.6}
+.hdr{background:var(--bg2);border-bottom:1px solid var(--bd);padding:18px 28px;position:sticky;top:0;z-index:100}
+.hdr h1{font-size:19px;font-weight:600;letter-spacing:-0.3px}.hdr p{color:var(--tx2);font-size:12px;margin-top:3px}
+.lay{display:flex;height:calc(100vh - 65px)}
+.sb{width:268px;min-width:268px;background:var(--bg2);border-right:1px solid var(--bd);overflow-y:auto;padding:12px 0}
+.sbl{font-size:10px;font-weight:600;letter-spacing:1px;color:var(--tx3);text-transform:uppercase;padding:8px 20px 3px}
+.ni{display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:8px;cursor:pointer;transition:background .15s;border:none;background:none;width:calc(100% - 16px);margin:1px 8px;text-align:left;color:var(--tx2);font-size:12.5px}
+.ni:hover{background:var(--bg3);color:var(--tx)}.ni.act{background:var(--bl2);color:var(--blue)}
+.nn{min-width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;background:var(--bg3);color:var(--tx3)}
+.ni.act .nn{background:var(--bl2);color:var(--blue)}
+.ct{flex:1;overflow-y:auto;padding:28px 32px}
+.rs{display:none}.rs.act{display:block}
+.sh{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--bd)}
+.sh h2{font-size:21px;font-weight:600;letter-spacing:-0.4px}
+.br{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
+.b{display:inline-flex;align-items:center;padding:3px 9px;border-radius:5px;font-size:11.5px;font-weight:500}
+.bb{background:var(--bl2);color:var(--blue);border:1px solid rgba(74,158,255,0.2)}
+.bt{background:var(--tl2);color:var(--teal);border:1px solid rgba(45,212,191,0.2)}
+.bp{background:var(--pu2);color:var(--purp);border:1px solid rgba(167,139,250,0.2)}
+.ba{background:var(--am2);color:var(--amb);border:1px solid rgba(251,191,36,0.2)}
+.bc{background:var(--co2);color:var(--cor);border:1px solid rgba(251,113,133,0.2)}
+.bg{background:var(--gr2);color:var(--grn);border:1px solid rgba(74,222,128,0.2)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.cd{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:18px;margin-bottom:16px}
+.ct2{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--tx3);margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{background:var(--bg3);color:var(--tx2);font-weight:500;padding:7px 11px;text-align:left;border-bottom:1px solid var(--bd)}
+td{padding:7px 11px;border-bottom:1px solid rgba(255,255,255,0.03);vertical-align:top;color:var(--tx)}
+tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,0.02)}
+code{background:var(--bg3);border:1px solid var(--bd);border-radius:3px;padding:1px 5px;font-family:'SF Mono','Fira Code',monospace;font-size:11.5px;color:var(--teal)}
+.rq{color:var(--cor);font-weight:600}.op{color:var(--tx3)}
+.api{background:var(--bg3);border:1px solid var(--bd);border-left:3px solid var(--blue);border-radius:7px;padding:10px 14px;margin-bottom:16px;font-family:'SF Mono',monospace;font-size:11.5px;color:var(--blue);word-break:break-all}
+.api .m{color:var(--grn);font-weight:700;margin-right:7px}
+.dw{background:var(--bg3);border:1px solid var(--bd);border-radius:10px;padding:20px;margin-bottom:16px}
+.dt{font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:12px}
+.nb{background:var(--am2);border:1px solid rgba(251,191,36,0.2);border-left:3px solid var(--amb);border-radius:7px;padding:10px 14px;font-size:12.5px;margin-bottom:14px}
+.nb strong{color:var(--amb)}
+.fb{background:var(--bg3);border:1px solid var(--bd);border-radius:7px;padding:12px 14px;font-family:'SF Mono',monospace;font-size:11.5px;color:var(--grn);line-height:1.9;margin-bottom:14px}
+svg text{font-family:-apple-system,'Segoe UI',sans-serif}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <h1>HL7 FHIR R4B — 23 Báo cáo Power BI Y Tế</h1>
+  <p>Tài liệu kỹ thuật chi tiết: Resource chính · Trường dữ liệu · Quan hệ · Sơ đồ SVG · Gợi ý Power BI DAX</p>
+</div>
+<div class="lay">
+  <nav class="sb"><div style="padding:0 8px 4px"><div class="sbl">Danh mục</div><button class="ni act" onclick="show('r0')"><span class="nn">01</span>Bệnh viện</button><button class="ni" onclick="show('r1')"><span class="nn">02</span>Khoa</button><button class="ni" onclick="show('r2')"><span class="nn">03</span>Bệnh ICD</button><button class="ni" onclick="show('r3')"><span class="nn">04</span>Nhà thuốc</button></div><div style="padding:0 8px 4px"><div class="sbl">Tổng quan</div><button class="ni" onclick="show('r4')"><span class="nn">05</span>Số giường</button><button class="ni" onclick="show('r5')"><span class="nn">06</span>Ngày ĐT</button><button class="ni" onclick="show('r6')"><span class="nn">07</span>Chi phí</button><button class="ni" onclick="show('r7')"><span class="nn">08</span>Lượt BN vào ra</button><button class="ni" onclick="show('r8')"><span class="nn">09</span>Loại hình KCB</button></div><div style="padding:0 8px 4px"><div class="sbl">Chuyên sâu</div><button class="ni" onclick="show('r9')"><span class="nn">10</span>Cấp cứu TV</button><button class="ni" onclick="show('r10')"><span class="nn">11</span>Hồ sơ KCB</button><button class="ni" onclick="show('r11')"><span class="nn">12</span>Tai nạn</button><button class="ni" onclick="show('r12')"><span class="nn">13</span>Tuổi</button><button class="ni" onclick="show('r13')"><span class="nn">14</span>Theo khoa</button><button class="ni" onclick="show('r14')"><span class="nn">15</span>DVKT</button><button class="ni" onclick="show('r15')"><span class="nn">16</span>Ca mắc ICD</button><button class="ni" onclick="show('r16')"><span class="nn">17</span>Đơn thuốc</button><button class="ni" onclick="show('r17')"><span class="nn">18</span>Top 20 ICD</button></div><div style="padding:0 8px 4px"><div class="sbl">Theo ngày</div><button class="ni" onclick="show('r18')"><span class="nn">19</span>Nội trú</button><button class="ni" onclick="show('r19')"><span class="nn">20</span>Ngày ĐT/ngày</button><button class="ni" onclick="show('r20')"><span class="nn">21</span>Chi phí/ngày</button><button class="ni" onclick="show('r21')"><span class="nn">22</span>Nội trú/ngày</button><button class="ni" onclick="show('r22')"><span class="nn">23</span>Ra viện/ngày</button></div></nav>
+  <main class="ct" id="main"><div class="rs act" id="r0">
+<div class="sh"><h2>01 — Danh mục Bệnh viện</h2><div class="br"><span class="b bb">Resource chính: Organization</span><span class="b bt">type = prov</span><span class="b bp">Healthcare Provider</span></div></div>
+<div class="api"><span class="m">GET</span>/Organization?type=prov&_include=Organization:partof&_revinclude=Location:organization</div>
+<div class="g2">
+<div>
+<div class="cd"><div class="ct2">Trường dữ liệu — Organization</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả / Ví dụ</th></tr>
+<tr><td><code>Organization.id</code></td><td>id</td><td><span class="rq">✅</span></td><td>ID FHIR nội bộ — <em>org-bvbachmai-001</em></td></tr>
+<tr><td><code>Organization.identifier</code></td><td>Identifier[]</td><td><span class="rq">✅</span></td><td>Mã BV theo Bộ Y tế — system: <em>https://moh.gov.vn/org</em>, value: <em>01023</em></td></tr>
+<tr><td><code>Organization.active</code></td><td>boolean</td><td><span class="rq">✅</span></td><td>Trạng thái hoạt động — <em>true</em></td></tr>
+<tr><td><code>Organization.type</code></td><td>CodeableConcept[]</td><td><span class="rq">✅</span></td><td>Loại tổ chức — code: <em>prov</em> (Healthcare Provider)</td></tr>
+<tr><td><code>Organization.name</code></td><td>string</td><td><span class="rq">✅</span></td><td>Tên bệnh viện — <em>Bệnh viện Bạch Mai</em></td></tr>
+<tr><td><code>Organization.alias</code></td><td>string[]</td><td><span class="op">⚪</span></td><td>Tên viết tắt — <em>BVBM</em></td></tr>
+<tr><td><code>Organization.telecom</code></td><td>ContactPoint[]</td><td><span class="op">⚪</span></td><td>SĐT, email, website</td></tr>
+<tr><td><code>Organization.address</code></td><td>Address[]</td><td><span class="op">⚪</span></td><td>Địa chỉ đầy đủ — <em>78 Giải Phóng, Đống Đa, Hà Nội</em></td></tr>
+<tr><td><code>Organization.partOf</code></td><td>Reference(Organization)</td><td><span class="op">⚪</span></td><td>Tổ chức cha (chi nhánh, BV vệ tinh)</td></tr>
+<tr><td><code>Organization.contact</code></td><td>BackboneElement[]</td><td><span class="op">⚪</span></td><td>Người liên hệ đầu mối — name, telecom, address</td></tr>
+<tr><td><code>Organization.endpoint</code></td><td>Reference(Endpoint)[]</td><td><span class="op">⚪</span></td><td>URL kết nối HIS/API</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Location</code></td><td><code>Location.managingOrganization → Org.id</code></td><td>1:N</td><td>Địa chỉ vật lý, tòa nhà, khu vực</td></tr>
+<tr><td><code>OrganizationAffiliation</code></td><td><code>OrgAff.organization → Org.id</code></td><td>N:M</td><td>Liên kết BV vệ tinh, chuyển viện</td></tr>
+<tr><td><code>HealthcareService</code></td><td><code>HealthSvc.providedBy → Org.id</code></td><td>1:N</td><td>Danh sách dịch vụ y tế cung cấp</td></tr>
+<tr><td><code>PractitionerRole</code></td><td><code>PractRole.organization → Org.id</code></td><td>N:1</td><td>Nhân sự thuộc bệnh viện</td></tr>
+<tr><td><code>Endpoint</code></td><td><code>Organization.endpoint → Endpoint.id</code></td><td>1:N</td><td>Thông tin kết nối hệ thống HIS</td></tr>
+<tr><td><code>Encounter</code></td><td><code>Encounter.serviceProvider → Org.id</code></td><td>N:1 (reverse)</td><td>Lượt khám tại BV</td></tr>
+</table></div>
+<div class="nb"><strong>Power BI:</strong> Dùng <code>identifier.value</code> (mã BYT) làm Surrogate Key join với HIS. Xây cây BV→Khoa→Phòng qua <code>partOf</code> đệ quy.</div>
+</div>
+<div>
+<div class="dw"><div class="dt">Sơ đồ quan hệ Resource</div>
+<svg width="100%" viewBox="0 0 360 420">
+<defs><marker id="ara" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="ard" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+<rect x="100" y="165" width="160" height="54" rx="9" fill="rgba(74,158,255,0.15)" stroke="#4a9eff" stroke-width="1.5"/>
+<text x="180" y="188" text-anchor="middle" fill="#4a9eff" font-size="13" font-weight="600">Organization</text>
+<text x="180" y="207" text-anchor="middle" fill="#4a9eff" font-size="11">type=prov · BV chính</text>
+<rect x="5" y="30" width="130" height="42" rx="7" fill="rgba(45,212,191,0.1)" stroke="#2dd4bf" stroke-width="1"/>
+<text x="70" y="50" text-anchor="middle" fill="#2dd4bf" font-size="12" font-weight="500">Location</text>
+<text x="70" y="64" text-anchor="middle" fill="#2dd4bf" font-size="10">managingOrg</text>
+<rect x="220" y="30" width="130" height="42" rx="7" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="1"/>
+<text x="285" y="50" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="500">OrgAffiliation</text>
+<text x="285" y="64" text-anchor="middle" fill="#a78bfa" font-size="10">BV vệ tinh N:M</text>
+<rect x="5" y="108" width="130" height="42" rx="7" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1"/>
+<text x="70" y="128" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="500">HealthcareSvc</text>
+<text x="70" y="142" text-anchor="middle" fill="#fbbf24" font-size="10">providedBy →</text>
+<rect x="220" y="108" width="130" height="42" rx="7" fill="rgba(74,222,128,0.1)" stroke="#4ade80" stroke-width="1"/>
+<text x="285" y="128" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="500">PractitionerRole</text>
+<text x="285" y="142" text-anchor="middle" fill="#4ade80" font-size="10">organization →</text>
+<rect x="90" y="275" width="180" height="42" rx="7" fill="rgba(100,116,139,0.1)" stroke="#64748b" stroke-width="1"/>
+<text x="180" y="295" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">Endpoint</text>
+<text x="180" y="309" text-anchor="middle" fill="#64748b" font-size="10">URL kết nối HIS</text>
+<rect x="90" y="355" width="180" height="42" rx="7" fill="rgba(74,158,255,0.08)" stroke="#4a9eff" stroke-width="1" stroke-dasharray="4 2"/>
+<text x="180" y="375" text-anchor="middle" fill="#4a9eff" font-size="12" font-weight="500">Encounter</text>
+<text x="180" y="389" text-anchor="middle" fill="#4a9eff" font-size="10">serviceProvider (reverse)</text>
+<line x1="135" y1="180" x2="70" y2="72" stroke="#2dd4bf" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arb)"/>
+<line x1="225" y1="180" x2="285" y2="72" stroke="#a78bfa" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arc)"/>
+<line x1="135" y1="188" x2="70" y2="150" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ard)"/>
+<line x1="225" y1="188" x2="285" y2="150" stroke="#4ade80" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arf)"/>
+<line x1="180" y1="219" x2="180" y2="275" stroke="#64748b" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arg)"/>
+<line x1="180" y1="317" x2="180" y2="355" stroke="#4a9eff" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ara)"/>
+<text x="104" y="134" fill="#64748b" font-size="10" transform="rotate(-55,104,134)">1:N</text>
+<text x="238" y="116" fill="#64748b" font-size="10" transform="rotate(55,238,116)">N:M</text>
+<text x="192" y="250" fill="#64748b" font-size="10">endpoint</text>
+<text x="192" y="338" fill="#64748b" font-size="10">N (reverse)</text>
+</svg>
+</div>
+</div>
+</div>
+</div><div class="rs" id="r1">
+<div class="sh"><h2>02 — Danh mục Khoa</h2><div class="br"><span class="b bb">Organization (type=dept)</span><span class="b bt">Location (ward/room)</span></div></div>
+<div class="api"><span class="m">GET</span>/Organization?type=dept&_include=Organization:partof&_revinclude=Location:organization&_revinclude=Encounter:service-provider</div>
+<div class="g2">
+<div>
+<div class="cd"><div class="ct2">Trường — Organization (Khoa)</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Organization.id</code></td><td>id</td><td><span class="rq">✅</span></td><td>ID khoa — <em>org-khoa-noitim-001</em></td></tr>
+<tr><td><code>Organization.identifier</code></td><td>Identifier[]</td><td><span class="rq">✅</span></td><td>Mã khoa BYT — value: <em>K001</em></td></tr>
+<tr><td><code>Organization.active</code></td><td>boolean</td><td><span class="rq">✅</span></td><td>Khoa đang hoạt động — <em>true</em></td></tr>
+<tr><td><code>Organization.type</code></td><td>CodeableConcept[]</td><td><span class="rq">✅</span></td><td>code: <em>dept</em></td></tr>
+<tr><td><code>Organization.name</code></td><td>string</td><td><span class="rq">✅</span></td><td>Tên khoa — <em>Khoa Nội Tim mạch</em></td></tr>
+<tr><td><code>Organization.partOf</code></td><td>Reference(Organization)</td><td><span class="rq">✅</span></td><td>→ BV chủ quản — <em>Organization/org-bvbachmai</em></td></tr>
+<tr><td><code>Organization.telecom</code></td><td>ContactPoint[]</td><td><span class="op">⚪</span></td><td>SĐT nội bộ khoa</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Trường — Location (Phòng/Khu vực)</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Location.id</code></td><td>id</td><td><span class="rq">✅</span></td><td>ID phòng — <em>loc-phong-201</em></td></tr>
+<tr><td><code>Location.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>active / suspended / inactive</td></tr>
+<tr><td><code>Location.name</code></td><td>string</td><td><span class="rq">✅</span></td><td>Tên phòng — <em>Phòng 201 Nội Tim</em></td></tr>
+<tr><td><code>Location.physicalType</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>code: <em>ro</em> (room) | <em>wa</em> (ward) | <em>bd</em> (bed)</td></tr>
+<tr><td><code>Location.managingOrganization</code></td><td>Reference(Org)</td><td><span class="rq">✅</span></td><td>→ Khoa quản lý — <em>Organization/org-khoa</em></td></tr>
+<tr><td><code>Location.partOf</code></td><td>Reference(Location)</td><td><span class="op">⚪</span></td><td>→ Tầng/khu trên — phân cấp đa tầng</td></tr>
+<tr><td><code>Location.operationalStatus</code></td><td>Coding</td><td><span class="op">⚪</span></td><td><em>O</em>=Occupied, <em>U</em>=Unoccupied, <em>C</em>=Contaminated</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Organization</code> (BV cha)</td><td><code>Organization.partOf → Org.id</code></td><td>N:1</td><td>Phân cấp BV→Khoa</td></tr>
+<tr><td><code>Location</code> (phòng/giường)</td><td><code>Location.managingOrganization → Org.id</code></td><td>1:N</td><td>Phòng, giường thuộc khoa</td></tr>
+<tr><td><code>PractitionerRole</code></td><td><code>PractRole.organization → Org.id</code></td><td>N:1</td><td>Nhân sự trong khoa</td></tr>
+<tr><td><code>Encounter</code></td><td><code>Encounter.serviceProvider → Org.id</code></td><td>N:1</td><td>Lượt khám tại khoa</td></tr>
+<tr><td><code>HealthcareService</code></td><td><code>HealthSvc.providedBy → Org.id</code></td><td>1:N</td><td>Dịch vụ của khoa</td></tr>
+</table></div>
+</div>
+<div>
+<div class="dw"><div class="dt">Phân cấp địa lý BV→Khoa→Phòng→Giường</div>
+<svg width="100%" viewBox="0 0 360 400">
+<defs><marker id="ara" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="ard" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+<rect x="90" y="14" width="180" height="46" rx="9" fill="rgba(74,158,255,0.15)" stroke="#4a9eff" stroke-width="1.5"/>
+<text x="180" y="34" text-anchor="middle" fill="#4a9eff" font-size="13" font-weight="600">Organization (BV)</text>
+<text x="180" y="50" text-anchor="middle" fill="#4a9eff" font-size="11">type=prov</text>
+<line x1="140" y1="60" x2="90" y2="98" stroke="#2dd4bf" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="220" y1="60" x2="270" y2="98" stroke="#2dd4bf" stroke-width="1" stroke-dasharray="4 3"/>
+<rect x="5" y="98" width="160" height="44" rx="8" fill="rgba(45,212,191,0.12)" stroke="#2dd4bf" stroke-width="1.5"/>
+<text x="85" y="117" text-anchor="middle" fill="#2dd4bf" font-size="12" font-weight="600">Organization (Khoa)</text>
+<text x="85" y="132" text-anchor="middle" fill="#2dd4bf" font-size="10">type=dept · partOf→BV</text>
+<rect x="195" y="98" width="160" height="44" rx="8" fill="rgba(45,212,191,0.12)" stroke="#2dd4bf" stroke-width="1.5"/>
+<text x="275" y="117" text-anchor="middle" fill="#2dd4bf" font-size="12" font-weight="600">Organization (Khoa)</text>
+<text x="275" y="132" text-anchor="middle" fill="#2dd4bf" font-size="10">type=dept · partOf→BV</text>
+<line x1="85" y1="142" x2="85" y2="180" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arc)"/>
+<rect x="15" y="180" width="140" height="42" rx="8" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="1"/>
+<text x="85" y="199" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="500">Location</text>
+<text x="85" y="213" text-anchor="middle" fill="#a78bfa" font-size="10">physicalType=ro (phòng)</text>
+<line x1="60" y1="222" x2="40" y2="262" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#ard)"/>
+<line x1="110" y1="222" x2="130" y2="262" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#ard)"/>
+<rect x="5" y="262" width="75" height="40" rx="7" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="42" y="280" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="600">Location</text>
+<text x="42" y="294" text-anchor="middle" fill="#fbbf24" font-size="10">type=bd</text>
+<rect x="92" y="262" width="75" height="40" rx="7" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="129" y="280" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="600">Location</text>
+<text x="129" y="294" text-anchor="middle" fill="#fbbf24" font-size="10">type=bd</text>
+<rect x="200" y="180" width="150" height="42" rx="8" fill="rgba(74,222,128,0.1)" stroke="#4ade80" stroke-width="1"/>
+<text x="275" y="199" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="500">Encounter</text>
+<text x="275" y="213" text-anchor="middle" fill="#4ade80" font-size="10">serviceProvider → Khoa</text>
+<line x1="235" y1="142" x2="275" y2="180" stroke="#4ade80" stroke-width="1" stroke-dasharray="4 3"/>
+<rect x="195" y="262" width="150" height="40" rx="7" fill="rgba(100,116,139,0.1)" stroke="#64748b" stroke-width="1"/>
+<text x="270" y="280" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">PractitionerRole</text>
+<text x="270" y="294" text-anchor="middle" fill="#64748b" font-size="10">organization → Khoa</text>
+<line x1="275" y1="222" x2="270" y2="262" stroke="#64748b" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="93" y="165" fill="#a78bfa" font-size="10">1:N</text>
+<text x="45" y="250" fill="#fbbf24" font-size="10">giường</text>
+</svg>
+</div>
+</div>
+</div>
+</div><div class="rs" id="r10">
+<div class="sh"><h2>11 — Số Hồ Sơ KCB</h2><div class="br"><span class="b bp">EpisodeOfCare</span></div></div>
+<div class="api"><span class="m">GET</span>/EpisodeOfCare?_include=EpisodeOfCare:patient&_include=EpisodeOfCare:organization</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>EpisodeOfCare.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>planned / active / finished</td></tr>
+<tr><td><code>EpisodeOfCare.patient</code></td><td>Reference(Patient)</td><td><span class="rq">✅</span></td><td>→ Bệnh nhân</td></tr>
+<tr><td><code>EpisodeOfCare.managingOrganization</code></td><td>Reference(Org)</td><td><span class="rq">✅</span></td><td>→ BV/đơn vị quản lý hồ sơ</td></tr>
+<tr><td><code>EpisodeOfCare.period.start</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày mở hồ sơ</td></tr>
+<tr><td><code>EpisodeOfCare.period.end</code></td><td>dateTime</td><td><span class="op">⚪</span></td><td>Ngày đóng hồ sơ</td></tr>
+<tr><td><code>EpisodeOfCare.diagnosis[].condition</code></td><td>Reference(Condition)</td><td><span class="op">⚪</span></td><td>→ Chẩn đoán chính của hồ sơ</td></tr>
+<tr><td><code>EpisodeOfCare.diagnosis[].role</code></td><td>CodeableConcept</td><td><span class="op">⚪</span></td><td>chief-complaint / CC</td></tr>
+<tr><td><code>EpisodeOfCare.careManager</code></td><td>Reference(Practitioner)</td><td><span class="op">⚪</span></td><td>→ Bác sĩ phụ trách hồ sơ</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Patient</code></td><td><code>EpisodeOfCare.patient</code></td><td>N:1</td><td>Bệnh nhân có hồ sơ</td></tr>
+<tr><td><code>Organization</code></td><td><code>EpisodeOfCare.managingOrganization</code></td><td>N:1</td><td>Đơn vị quản lý</td></tr>
+<tr><td><code>Encounter</code></td><td><code>Encounter.episodeOfCare (reverse)</code></td><td>1:N</td><td>Các lượt khám trong hồ sơ</td></tr>
+<tr><td><code>Condition</code></td><td><code>EpisodeOfCare.diagnosis[].condition</code></td><td>N:N</td><td>Bệnh lý trong hồ sơ</td></tr>
+<tr><td><code>Practitioner</code></td><td><code>EpisodeOfCare.careManager</code></td><td>N:1</td><td>Bác sĩ quản lý</td></tr>
+</table></div>
+</div><div class="rs" id="r11">
+<div class="sh"><h2>12 — Thống Kê Tai Nạn</h2><div class="br"><span class="b ba">Condition (ICD S/T/V-Y) + Encounter</span></div></div>
+<div class="api"><span class="m">GET</span>/Condition?category=encounter-diagnosis&_include=Condition:encounter&_include=Condition:subject</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Condition.code</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>ICD S00-S99/T00-T98/V01-V99/W00-W99/X00-X99/Y35-Y84</td></tr>
+<tr><td><code>Condition.bodySite</code></td><td>CodeableConcept[]</td><td><span class="op">⚪</span></td><td>Vị trí tổn thương (xương đùi phải)</td></tr>
+<tr><td><code>Condition.severity</code></td><td>CodeableConcept</td><td><span class="op">⚪</span></td><td>mild / moderate / severe</td></tr>
+<tr><td><code>Condition.onsetDateTime</code></td><td>dateTime</td><td><span class="op">⚪</span></td><td>Thời điểm xảy ra tai nạn</td></tr>
+<tr><td><code>Encounter.reasonCode</code></td><td>CodeableConcept[]</td><td><span class="rq">✅</span></td><td>Lý do vào viện — tai nạn giao thông</td></tr>
+<tr><td><code>Encounter.hospitalization.admitSource</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>Cấp cứu / tự đến</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Encounter</code></td><td><code>Condition.encounter</code></td><td>N:1</td><td>Lượt điều trị tai nạn</td></tr>
+<tr><td><code>Patient</code></td><td><code>Condition.subject</code></td><td>N:1</td><td>Nạn nhân tai nạn</td></tr>
+<tr><td><code>Procedure</code></td><td><code>Procedure.encounter (reverse)</code></td><td>N:1</td><td>Xử lý chấn thương</td></tr>
+<tr><td><code>ImagingStudy</code></td><td><code>ImagingStudy.encounter (reverse)</code></td><td>N:1</td><td>X-Quang CT chấn thương</td></tr>
+<tr><td><code>Organization</code></td><td><code>Encounter.serviceProvider</code></td><td>N:1</td><td>Cơ sở tiếp nhận</td></tr>
+</table></div>
+</div><div class="rs" id="r12">
+<div class="sh"><h2>13 — Thống Kê theo Tuổi</h2><div class="br"><span class="b bb">Patient · Encounter</span></div></div>
+<div class="api"><span class="m">GET</span>/Patient?_revinclude=Encounter:subject</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Patient.id</code></td><td>id</td><td><span class="rq">✅</span></td><td>ID bệnh nhân</td></tr>
+<tr><td><code>Patient.identifier</code></td><td>Identifier[]</td><td><span class="rq">✅</span></td><td>CCCD, số bệnh nhân — system: moh.gov.vn/pid</td></tr>
+<tr><td><code>Patient.name</code></td><td>HumanName[]</td><td><span class="rq">✅</span></td><td>Họ tên — family: Nguyễn, given: Văn A</td></tr>
+<tr><td><code>Patient.gender</code></td><td>code</td><td><span class="rq">✅</span></td><td>male / female / other / unknown</td></tr>
+<tr><td><code>Patient.birthDate</code></td><td>date</td><td><span class="rq">✅</span></td><td>Ngày sinh — dùng tính tuổi tại thời điểm khám</td></tr>
+<tr><td><code>Patient.address</code></td><td>Address[]</td><td><span class="op">⚪</span></td><td>Địa chỉ thường trú — phân tích theo vùng</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Encounter</code></td><td><code>Encounter.subject (reverse)</code></td><td>1:N</td><td>Lượt khám của BN</td></tr>
+<tr><td><code>Condition</code></td><td><code>Condition.subject (reverse)</code></td><td>1:N</td><td>Bệnh lý theo nhóm tuổi</td></tr>
+<tr><td><code>MedicationRequest</code></td><td><code>MR.subject (reverse)</code></td><td>1:N</td><td>Thuốc theo nhóm tuổi</td></tr>
+<tr><td><code>Procedure</code></td><td><code>Procedure.subject (reverse)</code></td><td>1:N</td><td>Dịch vụ kỹ thuật theo tuổi</td></tr>
+</table></div>
+</div><div class="rs" id="r13">
+<div class="sh"><h2>14 — Thống Kê theo Khoa</h2><div class="br"><span class="b bb">Encounter GROUP BY serviceProvider</span></div></div>
+<div class="api"><span class="m">GET</span>/Encounter?_include=Encounter:service-provider&_include=Encounter:diagnosis&date=ge[start]&date=le[end]</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Encounter.serviceProvider</code></td><td>Reference(Org)</td><td><span class="rq">✅</span></td><td>→ Organization (khoa) — chiều GROUP BY</td></tr>
+<tr><td><code>Encounter.class</code></td><td>Coding</td><td><span class="rq">✅</span></td><td>AMB / IMP / EMER — loại hình tại khoa</td></tr>
+<tr><td><code>Encounter.period</code></td><td>Period</td><td><span class="rq">✅</span></td><td>Tính ngày điều trị</td></tr>
+<tr><td><code>Encounter.diagnosis[].condition</code></td><td>Reference(Condition)</td><td><span class="rq">✅</span></td><td>Top bệnh tại khoa</td></tr>
+<tr><td><code>Organization.identifier</code></td><td>Identifier[]</td><td><span class="rq">✅</span></td><td>Mã khoa — join key</td></tr>
+<tr><td><code>Organization.partOf</code></td><td>Reference(Org)</td><td><span class="rq">✅</span></td><td>BV cha — phân cấp báo cáo</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Organization</code></td><td><code>Encounter.serviceProvider</code></td><td>N:1</td><td>Nhóm theo khoa</td></tr>
+<tr><td><code>Patient</code></td><td><code>Encounter.subject</code></td><td>N:1</td><td>Số BN/khoa</td></tr>
+<tr><td><code>Condition</code></td><td><code>Encounter.diagnosis</code></td><td>1:N</td><td>Bệnh lý tại khoa</td></tr>
+<tr><td><code>Claim</code></td><td><code>Claim.encounter (reverse)</code></td><td>1:1</td><td>Chi phí/khoa</td></tr>
+<tr><td><code>MedicationRequest</code></td><td><code>MR.encounter (reverse)</code></td><td>1:N</td><td>Đơn thuốc/khoa</td></tr>
+<tr><td><code>Procedure</code></td><td><code>Procedure.encounter (reverse)</code></td><td>1:N</td><td>DVKT/khoa</td></tr>
+</table></div>
+</div><div class="rs" id="r14">
+<div class="sh"><h2>15 — Dịch Vụ Kỹ Thuật</h2><div class="br"><span class="b bb">ServiceRequest</span><span class="b bt">Procedure</span><span class="b bp">DiagnosticReport</span><span class="b ba">Observation</span></div></div>
+<div class="api"><span class="m">GET</span>/ServiceRequest?status=completed&_include=ServiceRequest:encounter&_include=ServiceRequest:subject&_include=ServiceRequest:performer</div>
+<div class="g2">
+<div>
+<div class="cd"><div class="ct2">Trường — ServiceRequest</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>ServiceRequest.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>draft / active / completed / revoked</td></tr>
+<tr><td><code>ServiceRequest.intent</code></td><td>code</td><td><span class="rq">✅</span></td><td>order / plan / proposal</td></tr>
+<tr><td><code>ServiceRequest.category</code></td><td>CodeableConcept[]</td><td><span class="rq">✅</span></td><td>Laboratory / Imaging / Procedure / Consultation</td></tr>
+<tr><td><code>ServiceRequest.code</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>Mã dịch vụ LOINC/SNOMED</td></tr>
+<tr><td><code>ServiceRequest.subject</code></td><td>Reference(Patient)</td><td><span class="rq">✅</span></td><td>→ Bệnh nhân</td></tr>
+<tr><td><code>ServiceRequest.encounter</code></td><td>Reference(Encounter)</td><td><span class="rq">✅</span></td><td>→ Lượt khám chỉ định</td></tr>
+<tr><td><code>ServiceRequest.requester</code></td><td>Reference(Practitioner)</td><td><span class="rq">✅</span></td><td>→ Bác sĩ chỉ định</td></tr>
+<tr><td><code>ServiceRequest.performer</code></td><td>Reference(Org)[]</td><td><span class="op">⚪</span></td><td>→ Khoa/phòng thực hiện</td></tr>
+<tr><td><code>ServiceRequest.authoredOn</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Thời điểm chỉ định</td></tr>
+<tr><td><code>ServiceRequest.priority</code></td><td>code</td><td><span class="op">⚪</span></td><td>routine / urgent / asap / stat</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Phân loại Category (SNOMED)</div><table>
+<tr><th>Category</th><th>SNOMED Code</th><th>Ví dụ</th></tr>
+<tr><td>Laboratory</td><td><code>108252007</code></td><td>Máu, nước tiểu, vi sinh</td></tr>
+<tr><td>Imaging</td><td><code>363679005</code></td><td>X-Quang, CT, MRI, Siêu âm</td></tr>
+<tr><td>Procedure</td><td><code>387713003</code></td><td>Nội soi, sinh thiết, thủ thuật</td></tr>
+<tr><td>Consultation</td><td><code>11429006</code></td><td>Hội chẩn chuyên khoa</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Encounter</code></td><td><code>ServiceRequest.encounter</code></td><td>N:1</td><td>Lượt khám chỉ định</td></tr>
+<tr><td><code>Patient</code></td><td><code>ServiceRequest.subject</code></td><td>N:1</td><td>Bệnh nhân</td></tr>
+<tr><td><code>Procedure</code></td><td><code>Procedure.basedOn → SR.id</code></td><td>1:1</td><td>Thực hiện dịch vụ</td></tr>
+<tr><td><code>DiagnosticReport</code></td><td><code>DR.basedOn → SR.id</code></td><td>1:1</td><td>Kết quả trả về</td></tr>
+<tr><td><code>Observation</code></td><td><code>DR.result → Observation.id</code></td><td>1:N</td><td>Kết quả chi tiết xét nghiệm</td></tr>
+<tr><td><code>ImagingStudy</code></td><td><code>DR.imagingStudy → IS.id</code></td><td>1:N</td><td>Hình ảnh học</td></tr>
+<tr><td><code>Practitioner</code></td><td><code>SR.requester → Prac.id</code></td><td>N:1</td><td>Bác sĩ chỉ định</td></tr>
+<tr><td><code>ChargeItem</code></td><td><code>ChargeItem.service → SR.id</code></td><td>1:1</td><td>Chi phí dịch vụ</td></tr>
+</table></div>
+</div>
+<div>
+<div class="dw"><div class="dt">Luồng từ chỉ định đến kết quả</div>
+<svg width="100%" viewBox="0 0 360 450">
+<defs><marker id="ara" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="ard" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="are" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#fb7185" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+<rect x="5" y="14" width="120" height="42" rx="7" fill="rgba(74,222,128,0.1)" stroke="#4ade80" stroke-width="1"/>
+<text x="65" y="33" text-anchor="middle" fill="#4ade80" font-size="11" font-weight="500">Practitioner</text>
+<text x="65" y="47" text-anchor="middle" fill="#4ade80" font-size="10">requester</text>
+<rect x="235" y="14" width="120" height="42" rx="7" fill="rgba(45,212,191,0.1)" stroke="#2dd4bf" stroke-width="1"/>
+<text x="295" y="33" text-anchor="middle" fill="#2dd4bf" font-size="11" font-weight="500">Encounter</text>
+<text x="295" y="47" text-anchor="middle" fill="#2dd4bf" font-size="10">lượt khám</text>
+<line x1="125" y1="35" x2="148" y2="88" stroke="#4a9eff" stroke-width="1" marker-end="url(#ara)"/>
+<line x1="235" y1="35" x2="212" y2="88" stroke="#4a9eff" stroke-width="1" marker-end="url(#ara)"/>
+<rect x="70" y="88" width="220" height="56" rx="10" fill="rgba(74,158,255,0.18)" stroke="#4a9eff" stroke-width="2"/>
+<text x="180" y="112" text-anchor="middle" fill="#4a9eff" font-size="14" font-weight="700">ServiceRequest</text>
+<text x="180" y="130" text-anchor="middle" fill="#4a9eff" font-size="11">status · category · code</text>
+<text x="180" y="140" text-anchor="middle" fill="#4a9eff" font-size="10">authoredOn · priority</text>
+<line x1="120" y1="144" x2="70" y2="200" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#ara)"/>
+<line x1="240" y1="144" x2="290" y2="200" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#ara)"/>
+<rect x="5" y="200" width="130" height="44" rx="8" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="1.5"/>
+<text x="70" y="220" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="500">Procedure</text>
+<text x="70" y="234" text-anchor="middle" fill="#a78bfa" font-size="10">basedOn → SR</text>
+<rect x="225" y="200" width="130" height="44" rx="8" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="290" y="220" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="500">DiagnosticReport</text>
+<text x="290" y="234" text-anchor="middle" fill="#fbbf24" font-size="10">basedOn → SR</text>
+<line x1="70" y1="244" x2="70" y2="300" stroke="#a78bfa" stroke-width="1" marker-end="url(#arc)"/>
+<line x1="290" y1="244" x2="290" y2="300" stroke="#fbbf24" stroke-width="1" marker-end="url(#ard)"/>
+<rect x="5" y="300" width="130" height="44" rx="7" fill="rgba(251,113,133,0.1)" stroke="#fb7185" stroke-width="1"/>
+<text x="70" y="320" text-anchor="middle" fill="#fb7185" font-size="12" font-weight="500">ImagingStudy</text>
+<text x="70" y="334" text-anchor="middle" fill="#fb7185" font-size="10">X-Quang · CT · MRI</text>
+<rect x="225" y="300" width="130" height="44" rx="7" fill="rgba(100,116,139,0.1)" stroke="#64748b" stroke-width="1"/>
+<text x="290" y="320" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">Observation</text>
+<text x="290" y="334" text-anchor="middle" fill="#64748b" font-size="10">Kết quả XN chi tiết</text>
+<rect x="100" y="395" width="160" height="42" rx="7" fill="rgba(74,222,128,0.08)" stroke="#4ade80" stroke-width="1"/>
+<text x="180" y="415" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="500">ChargeItem</text>
+<text x="180" y="430" text-anchor="middle" fill="#4ade80" font-size="10">service → SR</text>
+<line x1="180" y1="144" x2="180" y2="395" stroke="#4ade80" stroke-width="1" stroke-dasharray="5 3" marker-end="url(#arf)"/>
+</svg>
+</div>
+</div>
+</div>
+</div><div class="rs" id="r15">
+<div class="sh"><h2>16 — Ca Mắc theo ICD</h2><div class="br"><span class="b ba">Condition (verificationStatus=confirmed)</span></div></div>
+<div class="api"><span class="m">GET</span>/Condition?verification-status=confirmed&_include=Condition:subject&_include=Condition:encounter</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Condition.clinicalStatus</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>active / resolved / inactive / recurrence</td></tr>
+<tr><td><code>Condition.verificationStatus</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>confirmed (filter chính)</td></tr>
+<tr><td><code>Condition.category</code></td><td>CodeableConcept[]</td><td><span class="rq">✅</span></td><td>encounter-diagnosis / problem-list-item</td></tr>
+<tr><td><code>Condition.severity</code></td><td>CodeableConcept</td><td><span class="op">⚪</span></td><td>mild / moderate / severe</td></tr>
+<tr><td><code>Condition.code</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>Mã ICD-10 — I21.0</td></tr>
+<tr><td><code>Condition.subject</code></td><td>Reference(Patient)</td><td><span class="rq">✅</span></td><td>→ Bệnh nhân</td></tr>
+<tr><td><code>Condition.encounter</code></td><td>Reference(Encounter)</td><td><span class="op">⚪</span></td><td>→ Lượt khám ghi nhận</td></tr>
+<tr><td><code>Condition.onsetDateTime</code></td><td>dateTime</td><td><span class="op">⚪</span></td><td>Thời điểm khởi phát</td></tr>
+<tr><td><code>Condition.recordedDate</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày ghi nhận — dùng để lọc kỳ báo cáo</td></tr>
+<tr><td><code>Condition.asserter</code></td><td>Reference(Practitioner)</td><td><span class="op">⚪</span></td><td>→ Bác sĩ chẩn đoán</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Patient</code></td><td><code>Condition.subject</code></td><td>N:1</td><td>Bệnh nhân mắc bệnh</td></tr>
+<tr><td><code>Encounter</code></td><td><code>Condition.encounter</code></td><td>N:1</td><td>Lượt khám ghi nhận chẩn đoán</td></tr>
+<tr><td><code>Practitioner</code></td><td><code>Condition.asserter</code></td><td>N:1</td><td>Bác sĩ chẩn đoán</td></tr>
+<tr><td><code>CodeSystem</code></td><td><code>Condition.code.coding.system</code></td><td>N:1</td><td>Hệ thống mã ICD</td></tr>
+<tr><td><code>Organization</code></td><td><code>Qua Encounter.serviceProvider</code></td><td>N:1</td><td>Nơi ghi nhận chẩn đoán</td></tr>
+</table></div>
+</div><div class="rs" id="r16">
+<div class="sh"><h2>17 — Số Đơn Thuốc</h2><div class="br"><span class="b bt">MedicationRequest</span><span class="b bb">Medication</span><span class="b bp">MedicationDispense</span></div></div>
+<div class="api"><span class="m">GET</span>/MedicationRequest?status=active,completed&intent=order&_include=MedicationRequest:subject&_include=MedicationRequest:medication&_include=MedicationRequest:encounter</div>
+<div class="g2">
+<div>
+<div class="cd"><div class="ct2">Trường — MedicationRequest</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>MedicationRequest.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>active / completed / cancelled / on-hold</td></tr>
+<tr><td><code>MedicationRequest.intent</code></td><td>code</td><td><span class="rq">✅</span></td><td>order / proposal / plan / instance-order</td></tr>
+<tr><td><code>MedicationRequest.medication[x]</code></td><td>Ref / CodeableConcept</td><td><span class="rq">✅</span></td><td>→ Medication hoặc inline code ATC</td></tr>
+<tr><td><code>MedicationRequest.subject</code></td><td>Reference(Patient)</td><td><span class="rq">✅</span></td><td>→ Bệnh nhân</td></tr>
+<tr><td><code>MedicationRequest.encounter</code></td><td>Reference(Encounter)</td><td><span class="rq">✅</span></td><td>→ Lượt khám kê đơn</td></tr>
+<tr><td><code>MedicationRequest.authoredOn</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày kê đơn</td></tr>
+<tr><td><code>MedicationRequest.requester</code></td><td>Reference(Practitioner)</td><td><span class="rq">✅</span></td><td>→ Bác sĩ kê đơn</td></tr>
+<tr><td><code>MedicationRequest.groupIdentifier</code></td><td>Identifier</td><td><span class="op">⚪</span></td><td>Mã đơn thuốc — N dòng cùng 1 đơn = 1 groupIdentifier</td></tr>
+<tr><td><code>dosageInstruction[].text</code></td><td>string</td><td><span class="rq">✅</span></td><td>Hướng dẫn dùng thuốc (ngày 3 lần, sau ăn)</td></tr>
+<tr><td><code>dosageInstruction[].doseAndRate</code></td><td>BackboneElement[]</td><td><span class="op">⚪</span></td><td>Liều lượng chính xác (500mg × 2)</td></tr>
+<tr><td><code>dispenseRequest.quantity</code></td><td>Quantity</td><td><span class="op">⚪</span></td><td>Số lượng cấp phát</td></tr>
+<tr><td><code>dispenseRequest.performer</code></td><td>Reference(Org)</td><td><span class="op">⚪</span></td><td>→ Nhà thuốc cấp phát</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Trường — Medication</div><table>
+<tr><th>Trường FHIR</th><th>Mô tả</th></tr>
+<tr><td><code>Medication.code</code></td><td>Mã ATC — <em>N02BE01</em> (Paracetamol)</td></tr>
+<tr><td><code>Medication.status</code></td><td>active / inactive</td></tr>
+<tr><td><code>Medication.form</code></td><td>tablet / capsule / solution / injection</td></tr>
+<tr><td><code>ingredient[].item[x]</code></td><td>Hoạt chất — Paracetamol</td></tr>
+<tr><td><code>ingredient[].strength</code></td><td>Hàm lượng — 500mg/tablet</td></tr>
+</table></div>
+<div class="nb"><strong>Đếm đơn thuốc:</strong> Dùng <code>groupIdentifier</code> DISTINCT = số đơn (1 đơn gồm N dòng). Dùng <code>COUNT(MedicationRequest.id)</code> = số dòng thuốc (> số đơn).</div>
+<div class="fb">SoDon = DISTINCTCOUNT(MedicationRequest[groupIdentifier])<br>SoDong = COUNTROWS(MedicationRequest)<br>TBDongMoiDon = DIVIDE([SoDong],[SoDon],0)</div>
+</div>
+<div>
+<div class="dw"><div class="dt">Luồng kê đơn và cấp phát</div>
+<svg width="100%" viewBox="0 0 360 430">
+<defs><marker id="ara" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="ard" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+<rect x="5" y="14" width="110" height="42" rx="7" fill="rgba(74,222,128,0.1)" stroke="#4ade80" stroke-width="1"/>
+<text x="60" y="33" text-anchor="middle" fill="#4ade80" font-size="11" font-weight="500">Practitioner</text>
+<text x="60" y="47" text-anchor="middle" fill="#4ade80" font-size="10">requester</text>
+<rect x="245" y="14" width="110" height="42" rx="7" fill="rgba(74,222,128,0.1)" stroke="#4ade80" stroke-width="1"/>
+<text x="300" y="33" text-anchor="middle" fill="#4ade80" font-size="11" font-weight="500">Encounter</text>
+<text x="300" y="47" text-anchor="middle" fill="#4ade80" font-size="10">lượt khám</text>
+<line x1="115" y1="35" x2="140" y2="88" stroke="#2dd4bf" stroke-width="1" marker-end="url(#arb)"/>
+<line x1="245" y1="35" x2="220" y2="88" stroke="#2dd4bf" stroke-width="1" marker-end="url(#arb)"/>
+<rect x="70" y="88" width="220" height="62" rx="10" fill="rgba(45,212,191,0.18)" stroke="#2dd4bf" stroke-width="2"/>
+<text x="180" y="112" text-anchor="middle" fill="#2dd4bf" font-size="14" font-weight="700">MedicationRequest</text>
+<text x="180" y="130" text-anchor="middle" fill="#2dd4bf" font-size="11">groupIdentifier (mã đơn)</text>
+<text x="180" y="143" text-anchor="middle" fill="#2dd4bf" font-size="10">dosageInstruction</text>
+<line x1="115" y1="152" x2="70" y2="208" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#arb)"/>
+<line x1="245" y1="152" x2="290" y2="208" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#arb)"/>
+<rect x="5" y="208" width="140" height="54" rx="8" fill="rgba(74,158,255,0.1)" stroke="#4a9eff" stroke-width="1.5"/>
+<text x="75" y="230" text-anchor="middle" fill="#4a9eff" font-size="12" font-weight="500">Medication</text>
+<text x="75" y="245" text-anchor="middle" fill="#4a9eff" font-size="10">code ATC · form</text>
+<text x="75" y="257" text-anchor="middle" fill="#4a9eff" font-size="10">ingredient · strength</text>
+<rect x="215" y="208" width="140" height="54" rx="8" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="1.5"/>
+<text x="285" y="230" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="500">MedicationDispense</text>
+<text x="285" y="245" text-anchor="middle" fill="#a78bfa" font-size="10">authorizingPrescription</text>
+<text x="285" y="257" text-anchor="middle" fill="#a78bfa" font-size="10">→ MedicationRequest</text>
+<rect x="5" y="325" width="140" height="42" rx="7" fill="rgba(100,116,139,0.1)" stroke="#64748b" stroke-width="1"/>
+<text x="75" y="345" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">Patient</text>
+<text x="75" y="359" text-anchor="middle" fill="#64748b" font-size="10">subject</text>
+<line x1="75" y1="262" x2="75" y2="325" stroke="#64748b" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arg)"/>
+<rect x="215" y="325" width="140" height="42" rx="7" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1"/>
+<text x="285" y="345" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="500">Organization</text>
+<text x="285" y="359" text-anchor="middle" fill="#fbbf24" font-size="10">Nhà thuốc cấp phát</text>
+<line x1="285" y1="262" x2="285" y2="325" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ard)"/>
+<rect x="100" y="410" width="160" height="14" rx="4" fill="rgba(74,222,128,0.1)" stroke="rgba(74,222,128,0.2)" stroke-width="1"/>
+<text x="180" y="421" text-anchor="middle" fill="#4ade80" font-size="10">MedicationAdministration (nội trú)</text>
+</svg>
+</div>
+</div>
+</div>
+</div><div class="rs" id="r17">
+<div class="sh"><h2>18 — Top 20 Bệnh theo ICD</h2><div class="br"><span class="b ba">Condition (TOPN 20)</span></div></div>
+<div class="api"><span class="m">GET</span>/Condition?verification-status=confirmed&recordedDate=ge[start]&recordedDate=le[end]</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Condition.code</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>Mã ICD — chiều GROUP BY</td></tr>
+<tr><td><code>Condition.verificationStatus</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>confirmed</td></tr>
+<tr><td><code>Condition.recordedDate</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày ghi nhận — lọc kỳ</td></tr>
+<tr><td><code>Condition.subject</code></td><td>Reference(Patient)</td><td><span class="rq">✅</span></td><td>→ Bệnh nhân — COUNTDISTINCT</td></tr>
+<tr><td><code>CodeSystem.concept[].display</code></td><td>string</td><td><span class="rq">✅</span></td><td>Tên đầy đủ của mã ICD (JOIN)</td></tr>
+<tr><td><code>Encounter.serviceProvider</code></td><td>Reference(Org)</td><td><span class="op">⚪</span></td><td>Breakdown top bệnh theo khoa</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Condition</code></td><td><code>Nguồn chính</code></td><td></td><td>GROUP BY code · COUNT</td></tr>
+<tr><td><code>CodeSystem (ICD)</code></td><td><code>code.coding.system</code></td><td>N:1</td><td>Lấy tên đầy đủ mã bệnh</td></tr>
+<tr><td><code>Encounter</code></td><td><code>Condition.encounter</code></td><td>N:1</td><td>Lọc theo khoa/BV/loại hình</td></tr>
+<tr><td><code>Patient</code></td><td><code>Condition.subject</code></td><td>N:1</td><td>Demographic top bệnh</td></tr>
+<tr><td><code>Organization</code></td><td><code>Qua Encounter</code></td><td>N:1</td><td>Breakdown theo đơn vị</td></tr>
+</table></div>
+</div><div class="rs" id="r18">
+<div class="sh"><h2>19 — Điều Trị Nội Trú</h2><div class="br"><span class="b bb">Encounter class=IMP</span><span class="b bt">Fact Table trung tâm</span><span class="b bp">11+ Resource liên quan</span></div></div>
+<div class="api"><span class="m">GET</span>/Encounter?class=IMP&_include=Encounter:subject&_include=Encounter:diagnosis&_include=Encounter:service-provider&_include=Encounter:location</div>
+<div class="g2">
+<div>
+<div class="cd"><div class="ct2">Trường hospitalization (đặc thù nội trú)</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả / Ví dụ</th></tr>
+<tr><td><code>preAdmissionIdentifier</code></td><td>Identifier</td><td><span class="op">⚪</span></td><td>Mã tiền nhập viện (hẹn trước)</td></tr>
+<tr><td><code>origin</code></td><td>Reference(Location)</td><td><span class="op">⚪</span></td><td>→ Đến từ phòng khám/cấp cứu nào</td></tr>
+<tr><td><code>admitSource</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>emd=cấp cứu / outp=ngoại trú / born / gp / hosp</td></tr>
+<tr><td><code>reAdmission</code></td><td>CodeableConcept</td><td><span class="op">⚪</span></td><td>Tái nhập viện — R (readmission)</td></tr>
+<tr><td><code>dietPreference</code></td><td>CodeableConcept[]</td><td><span class="op">⚪</span></td><td>Chế độ ăn — diabetic / low-fat / vegetarian</td></tr>
+<tr><td><code>specialArrangement</code></td><td>CodeableConcept[]</td><td><span class="op">⚪</span></td><td>wheelchair / AT (người phiên dịch) / int</td></tr>
+<tr><td><code>destination</code></td><td>Reference(Location)</td><td><span class="op">⚪</span></td><td>→ Nơi bệnh nhân chuyển đến khi ra</td></tr>
+<tr><td><code>dischargeDisposition</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>home / hosp / other-hcf / exp / aadvice / oth</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Trường Encounter.diagnosis (nội trú)</div><table>
+<tr><th>Trường</th><th>Mô tả</th></tr>
+<tr><td><code>diagnosis[].condition</code></td><td>→ Condition (ICD chẩn đoán)</td></tr>
+<tr><td><code>diagnosis[].use</code></td><td>AD=nhập viện / DD=ra viện / CC=chính / billing</td></tr>
+<tr><td><code>diagnosis[].rank</code></td><td>1 = chẩn đoán chính, 2, 3 = phụ</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">11 Resource liên quan đầy đủ</div><table>
+<tr><th>Resource</th><th>Tham chiếu</th><th>Quan hệ</th><th>Metric / Mục đích</th></tr>
+<tr><td><code>Patient</code></td><td><code>Encounter.subject</code></td><td>N:1</td><td>Nhân khẩu học, tuổi, giới</td></tr>
+<tr><td><code>Organization</code></td><td><code>Encounter.serviceProvider</code></td><td>N:1</td><td>Khoa/BV điều trị</td></tr>
+<tr><td><code>Location</code></td><td><code>Encounter.location[].location</code></td><td>N:N</td><td>Giường/phòng sử dụng</td></tr>
+<tr><td><code>Condition</code></td><td><code>Encounter.diagnosis[].condition</code></td><td>1:N</td><td>Chẩn đoán vào/ra viện</td></tr>
+<tr><td><code>Procedure</code></td><td><code>Procedure.encounter (reverse)</code></td><td>1:N</td><td>Phẫu thuật/thủ thuật</td></tr>
+<tr><td><code>MedicationRequest</code></td><td><code>MR.encounter (reverse)</code></td><td>1:N</td><td>Thuốc kê trong đợt</td></tr>
+<tr><td><code>Claim / Invoice</code></td><td><code>Claim.encounter (reverse)</code></td><td>1:1</td><td>Chi phí nội trú</td></tr>
+<tr><td><code>Observation</code></td><td><code>Obs.encounter (reverse)</code></td><td>1:N</td><td>Dấu hiệu sinh tồn, theo dõi</td></tr>
+<tr><td><code>DiagnosticReport</code></td><td><code>DR.encounter (reverse)</code></td><td>1:N</td><td>Kết quả xét nghiệm/CĐHA</td></tr>
+<tr><td><code>ServiceRequest</code></td><td><code>SR.encounter (reverse)</code></td><td>1:N</td><td>Dịch vụ kỹ thuật chỉ định</td></tr>
+<tr><td><code>EpisodeOfCare</code></td><td><code>Encounter.episodeOfCare</code></td><td>N:1</td><td>Hồ sơ bệnh án tổng thể</td></tr>
+</table></div>
+</div>
+<div>
+<div class="dw"><div class="dt">Star Schema — Encounter (IMP) = Fact Table</div>
+<svg width="100%" viewBox="0 0 360 390">
+<defs><marker id="ara" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="ard" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="are" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#fb7185" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+<rect x="110" y="152" width="140" height="58" rx="11" fill="rgba(74,158,255,0.22)" stroke="#4a9eff" stroke-width="2"/>
+<text x="180" y="177" text-anchor="middle" fill="#4a9eff" font-size="13" font-weight="700">Encounter</text>
+<text x="180" y="194" text-anchor="middle" fill="#4a9eff" font-size="11">class = IMP</text>
+<text x="180" y="206" text-anchor="middle" fill="#4a9eff" font-size="10">Fact Table</text>
+<rect x="110" y="16" width="140" height="36" rx="7" fill="rgba(100,116,139,0.12)" stroke="#64748b" stroke-width="1"/>
+<text x="180" y="39" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">Patient</text>
+<line x1="180" y1="52" x2="180" y2="152" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="5" y="70" width="95" height="34" rx="7" fill="rgba(45,212,191,0.1)" stroke="#2dd4bf" stroke-width="1"/>
+<text x="52" y="92" text-anchor="middle" fill="#2dd4bf" font-size="11" font-weight="500">Organization</text>
+<line x1="110" y1="170" x2="100" y2="87" stroke="#2dd4bf" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="5" y="163" width="95" height="34" rx="7" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1"/>
+<text x="52" y="185" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="500">Location</text>
+<line x1="110" y1="183" x2="100" y2="180" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="260" y="70" width="95" height="34" rx="7" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1"/>
+<text x="307" y="92" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="500">Condition</text>
+<line x1="250" y1="170" x2="260" y2="87" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="260" y="153" width="95" height="34" rx="7" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="1"/>
+<text x="307" y="175" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="500">Procedure</text>
+<line x1="250" y1="175" x2="260" y2="170" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="260" y="228" width="95" height="34" rx="7" fill="rgba(251,113,133,0.1)" stroke="#fb7185" stroke-width="1"/>
+<text x="307" y="250" text-anchor="middle" fill="#fb7185" font-size="11" font-weight="500">Claim</text>
+<line x1="250" y1="195" x2="260" y2="235" stroke="#fb7185" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="5" y="228" width="95" height="34" rx="7" fill="rgba(74,158,255,0.1)" stroke="#4a9eff" stroke-width="1"/>
+<text x="52" y="250" text-anchor="middle" fill="#4a9eff" font-size="11" font-weight="500">Observation</text>
+<line x1="110" y1="195" x2="100" y2="235" stroke="#4a9eff" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="65" y="300" width="110" height="34" rx="7" fill="rgba(74,222,128,0.1)" stroke="#4ade80" stroke-width="1"/>
+<text x="120" y="322" text-anchor="middle" fill="#4ade80" font-size="11" font-weight="500">MedicationRequest</text>
+<line x1="155" y1="210" x2="120" y2="300" stroke="#4ade80" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="185" y="300" width="110" height="34" rx="7" fill="rgba(45,212,191,0.1)" stroke="#2dd4bf" stroke-width="1"/>
+<text x="240" y="322" text-anchor="middle" fill="#2dd4bf" font-size="11" font-weight="500">ServiceRequest</text>
+<line x1="205" y1="210" x2="240" y2="300" stroke="#2dd4bf" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="85" y="355" width="190" height="30" rx="7" fill="rgba(167,139,250,0.08)" stroke="#a78bfa" stroke-width="1" stroke-dasharray="4 2"/>
+<text x="180" y="374" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="500">EpisodeOfCare</text>
+<line x1="180" y1="210" x2="180" y2="355" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3 3"/>
+</svg>
+</div>
+</div>
+</div>
+</div><div class="rs" id="r19">
+<div class="sh"><h2>20 — Ngày ĐT theo Ngày</h2><div class="br"><span class="b bb">Encounter + DimDate</span></div></div>
+<div class="api"><span class="m">GET</span>/Encounter?class=IMP&date=ge[start]&date=le[end]&_include=Encounter:service-provider</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Encounter.period.start</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày vào — tính Census từ ngày này</td></tr>
+<tr><td><code>Encounter.period.end</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày ra — tính Census đến ngày này</td></tr>
+<tr><td><code>Encounter.class</code></td><td>Coding</td><td><span class="rq">✅</span></td><td>IMP — nội trú</td></tr>
+<tr><td><code>Encounter.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>in-progress / finished</td></tr>
+<tr><td><code>Encounter.serviceProvider</code></td><td>Reference(Org)</td><td><span class="rq">✅</span></td><td>Breakdown Census theo khoa</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Encounter</code></td><td><code>Nguồn chính</code></td><td></td><td>Tính Census từng ngày</td></tr>
+<tr><td><code>Organization</code></td><td><code>serviceProvider</code></td><td>N:1</td><td>Breakdown theo khoa</td></tr>
+<tr><td><code>Location</code></td><td><code>Encounter.location[]</code></td><td>N:N</td><td>Census theo phòng/giường</td></tr>
+<tr><td><code>DimDate (PBI)</code></td><td><code>Calendar table</code></td><td></td><td>Trục X biểu đồ</td></tr>
+</table></div>
+</div><div class="rs" id="r2">
+<div class="sh"><h2>03 — Danh mục Bệnh theo ICD</h2><div class="br"><span class="b bp">CodeSystem</span><span class="b bb">ValueSet</span><span class="b bt">ConceptMap (ICD10↔ICD11)</span></div></div>
+<div class="api"><span class="m">GET</span>/CodeSystem?url=http://hl7.org/fhir/sid/icd-10<br><span class="m">POST</span>/ValueSet/$expand (body: ValueSet resource)</div>
+<div class="g2">
+<div>
+<div class="cd"><div class="ct2">Trường — CodeSystem</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả / Ví dụ</th></tr>
+<tr><td><code>CodeSystem.url</code></td><td>uri</td><td><span class="rq">✅</span></td><td>Canonical URL — <em>http://hl7.org/fhir/sid/icd-10</em></td></tr>
+<tr><td><code>CodeSystem.version</code></td><td>string</td><td><span class="rq">✅</span></td><td>Phiên bản — <em>2023</em></td></tr>
+<tr><td><code>CodeSystem.name</code></td><td>string</td><td><span class="rq">✅</span></td><td>ICD-10-CM</td></tr>
+<tr><td><code>CodeSystem.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>active / draft / retired</td></tr>
+<tr><td><code>CodeSystem.content</code></td><td>code</td><td><span class="rq">✅</span></td><td>complete / fragment / not-present</td></tr>
+<tr><td><code>concept[].code</code></td><td>code</td><td><span class="rq">✅</span></td><td>Mã bệnh — <em>I21</em></td></tr>
+<tr><td><code>concept[].display</code></td><td>string</td><td><span class="rq">✅</span></td><td>Tên bệnh (EN) — <em>Acute myocardial infarction</em></td></tr>
+<tr><td><code>concept[].designation[]</code></td><td>BackboneElement[]</td><td><span class="op">⚪</span></td><td>Tên bệnh dịch thuật (vi: Nhồi máu cơ tim cấp)</td></tr>
+<tr><td><code>concept[].property[]</code></td><td>BackboneElement[]</td><td><span class="op">⚪</span></td><td>Chương, nhóm ICD, is-a</td></tr>
+<tr><td><code>concept[].concept[]</code></td><td>BackboneElement[]</td><td><span class="op">⚪</span></td><td>Mã con — <em>I21.0, I21.1, I21.2</em></td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Mục đích</th></tr>
+<tr><td><code>ValueSet</code></td><td><code>compose.include.system → CodeSystem.url</code></td><td>Tập con ICD cho chuyên khoa</td></tr>
+<tr><td><code>ConceptMap</code></td><td><code>group.source/target → CodeSystem.url</code></td><td>Ánh xạ ICD-10 ↔ ICD-11</td></tr>
+<tr><td><code>Condition</code></td><td><code>code.coding.system → CodeSystem.url</code></td><td>Chẩn đoán lâm sàng tham chiếu mã</td></tr>
+<tr><td><code>Encounter</code></td><td><code>reasonCode.coding.system → CodeSystem.url</code></td><td>Lý do vào viện theo ICD</td></tr>
+<tr><td><code>DiagnosticReport</code></td><td><code>code.coding.system → CodeSystem.url</code></td><td>Mã kết quả xét nghiệm</td></tr>
+</table></div>
+<div class="nb"><strong>Power BI:</strong> Gọi <code>POST /ValueSet/$expand?count=50000</code> để tải toàn bộ ICD phẳng làm DimICD. Dùng <code>designation</code> lấy tên tiếng Việt nếu có.</div>
+<div class="fb">// Lấy ICD phẳng đa ngôn ngữ<br>POST /ValueSet/$expand<br>?url=http://hl7.org/fhir/sid/icd-10<br>&count=50000<br>&includeDesignations=true<br>&designation=vi</div>
+</div>
+<div>
+<div class="dw"><div class="dt">Sơ đồ Terminology Resources</div>
+<svg width="100%" viewBox="0 0 360 370">
+<defs><marker id="ara" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="ard" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+<rect x="100" y="16" width="160" height="54" rx="9" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1.5"/>
+<text x="180" y="38" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="600">CodeSystem</text>
+<text x="180" y="53" text-anchor="middle" fill="#a78bfa" font-size="11">url · concept[].code</text>
+<text x="180" y="65" text-anchor="middle" fill="#a78bfa" font-size="11">concept[].display</text>
+<rect x="5" y="126" width="150" height="46" rx="8" fill="rgba(74,158,255,0.1)" stroke="#4a9eff" stroke-width="1.5"/>
+<text x="80" y="147" text-anchor="middle" fill="#4a9eff" font-size="12" font-weight="500">ValueSet</text>
+<text x="80" y="162" text-anchor="middle" fill="#4a9eff" font-size="10">compose.include.system</text>
+<rect x="205" y="126" width="150" height="46" rx="8" fill="rgba(45,212,191,0.1)" stroke="#2dd4bf" stroke-width="1.5"/>
+<text x="280" y="147" text-anchor="middle" fill="#2dd4bf" font-size="12" font-weight="500">ConceptMap</text>
+<text x="280" y="162" text-anchor="middle" fill="#2dd4bf" font-size="10">ICD-10 ↔ ICD-11</text>
+<line x1="150" y1="70" x2="90" y2="126" stroke="#4a9eff" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ara)"/>
+<line x1="210" y1="70" x2="265" y2="126" stroke="#2dd4bf" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arb)"/>
+<rect x="5" y="248" width="150" height="46" rx="8" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="80" y="268" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="500">Condition</text>
+<text x="80" y="283" text-anchor="middle" fill="#fbbf24" font-size="10">code.coding.system →</text>
+<rect x="205" y="248" width="150" height="46" rx="8" fill="rgba(74,222,128,0.1)" stroke="#4ade80" stroke-width="1.5"/>
+<text x="280" y="268" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="500">Encounter</text>
+<text x="280" y="283" text-anchor="middle" fill="#4ade80" font-size="10">reasonCode.coding →</text>
+<line x1="80" y1="172" x2="80" y2="248" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ard)"/>
+<line x1="280" y1="172" x2="280" y2="248" stroke="#4ade80" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arf)"/>
+<rect x="100" y="202" width="160" height="30" rx="6" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.25)" stroke-width="1" stroke-dasharray="4 2"/>
+<text x="180" y="221" text-anchor="middle" fill="#a78bfa" font-size="11">$expand → bảng phẳng</text>
+<text x="30" y="215" fill="#4a9eff" font-size="10">expand</text>
+<text x="272" y="215" fill="#4ade80" font-size="10">tham chiếu</text>
+</svg>
+</div>
+</div>
+</div>
+</div><div class="rs" id="r20">
+<div class="sh"><h2>21 — Chi Phí theo Ngày</h2><div class="br"><span class="b bc">Claim + Invoice + ChargeItem</span></div></div>
+<div class="api"><span class="m">GET</span>/Claim?created=ge[start]&created=le[end]&_include=Claim:patient&_include=Claim:insurance</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Claim.created</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày lập claim — trục X</td></tr>
+<tr><td><code>ChargeItem.occurrenceDateTime</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày phát sinh từng khoản phí</td></tr>
+<tr><td><code>ChargeItem.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>planned / billable / billed</td></tr>
+<tr><td><code>ChargeItem.code</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>Mã dịch vụ tính phí</td></tr>
+<tr><td><code>ChargeItem.context</code></td><td>Reference(Encounter)</td><td><span class="rq">✅</span></td><td>→ Lượt khám</td></tr>
+<tr><td><code>ChargeItem.totalPriceComponent</code></td><td>MoneyQuantity</td><td><span class="op">⚪</span></td><td>Thành tiền dòng phí</td></tr>
+<tr><td><code>Coverage.type</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>BHYT / dịch vụ / miễn phí</td></tr>
+<tr><td><code>ClaimResponse.payment.amount</code></td><td>Money</td><td><span class="rq">✅</span></td><td>Số tiền thực chi (sau xét duyệt)</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Encounter</code></td><td><code>Claim.encounter</code></td><td>N:1</td><td>Ngày phát sinh chi phí</td></tr>
+<tr><td><code>Patient</code></td><td><code>Claim.patient</code></td><td>N:1</td><td>Phân tích chi phí theo BN</td></tr>
+<tr><td><code>Coverage</code></td><td><code>Claim.insurance[].coverage</code></td><td>N:1</td><td>BHYT/tự trả theo ngày</td></tr>
+<tr><td><code>ClaimResponse</code></td><td><code>ClaimResponse.request</code></td><td>1:1</td><td>Số tiền thực chi</td></tr>
+<tr><td><code>ChargeItem</code></td><td><code>Invoice.lineItem.chargeItem</code></td><td>1:N</td><td>Chi tiết dòng phí</td></tr>
+<tr><td><code>Organization</code></td><td><code>Claim.provider</code></td><td>N:1</td><td>Chi phí theo đơn vị</td></tr>
+</table></div>
+</div><div class="rs" id="r21">
+<div class="sh"><h2>22 — Nội Trú theo Ngày</h2><div class="br"><span class="b bb">Encounter class=IMP</span><span class="b ba">3 Metric: Nhập · Ra · Census</span></div></div>
+<div class="api"><span class="m">GET</span>/Encounter?class=IMP&period=ge[month_start]&_include=Encounter:subject&_include=Encounter:service-provider</div>
+<div class="g2">
+<div>
+<div class="cd"><div class="ct2">3 Metric và định nghĩa FHIR</div><table>
+<tr><th>Metric</th><th>Điều kiện FHIR chính xác</th></tr>
+<tr><td><strong>Nhập viện (D)</strong></td><td><code>class=IMP AND DATE(period.start)=D</code></td></tr>
+<tr><td><strong>Ra viện (D)</strong></td><td><code>class=IMP AND status=finished AND DATE(period.end)=D</code></td></tr>
+<tr><td><strong>Census (D)</strong></td><td><code>class=IMP AND period.start≤D AND (period.end IS NULL OR period.end&gt;D)</code></td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Trường dữ liệu bổ sung</div><table>
+<tr><th>Trường FHIR</th><th>Mô tả</th><th>Dùng cho</th></tr>
+<tr><td><code>hospitalization.admitSource</code></td><td>Nguồn nhập hôm nay</td><td>Phân tích luồng nhập</td></tr>
+<tr><td><code>hospitalization.dischargeDisposition</code></td><td>Lý do ra hôm nay</td><td>Phân tích luồng ra</td></tr>
+<tr><td><code>Encounter.serviceProvider</code></td><td>Khoa tiếp nhận</td><td>Breakdown theo khoa</td></tr>
+<tr><td><code>Encounter.diagnosis[{rank=1}]</code></td><td>Chẩn đoán chính</td><td>Top bệnh theo ngày</td></tr>
+</table></div>
+<div class="fb">// DAX — Census mỗi ngày<br>Census = CALCULATE(<br>&nbsp;&nbsp;COUNTROWS(FactEncounter),<br>&nbsp;&nbsp;FactEncounter[class]="IMP",<br>&nbsp;&nbsp;FactEncounter[period_start]&lt;=MAX(DimDate[Date]),<br>&nbsp;&nbsp;OR(ISBLANK(FactEncounter[period_end]),<br>&nbsp;&nbsp;&nbsp;&nbsp;FactEncounter[period_end]&gt;MAX(DimDate[Date]))<br>)</div>
+</div>
+<div>
+<div class="dw"><div class="dt">Minh họa tính 3 metric tại ngày D</div>
+<svg width="100%" viewBox="0 0 360 360">
+<line x1="35" y1="95" x2="330" y2="95" stroke="#64748b" stroke-width="1.5"/>
+<text x="35" y="113" text-anchor="middle" fill="#64748b" font-size="10">T1</text>
+<text x="110" y="113" text-anchor="middle" fill="#64748b" font-size="10">T2</text>
+<text x="195" y="113" text-anchor="middle" fill="#4a9eff" font-size="11" font-weight="600">D (hôm nay)</text>
+<text x="275" y="113" text-anchor="middle" fill="#64748b" font-size="10">T3</text>
+<line x1="195" y1="44" x2="195" y2="320" stroke="#4a9eff" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="205" y="56" fill="#4a9eff" font-size="10">ngày D</text>
+<rect x="10" y="130" width="55" height="20" rx="3" fill="rgba(74,222,128,0.15)" stroke="rgba(74,222,128,0.4)" stroke-width="1"/>
+<text x="37" y="144" text-anchor="middle" fill="#4ade80" font-size="10">Census</text>
+<rect x="10" y="155" width="55" height="20" rx="3" fill="rgba(251,191,36,0.15)" stroke="rgba(251,191,36,0.4)" stroke-width="1"/>
+<text x="37" y="169" text-anchor="middle" fill="#fbbf24" font-size="10">Nhập</text>
+<rect x="10" y="180" width="55" height="20" rx="3" fill="rgba(251,113,133,0.15)" stroke="rgba(251,113,133,0.4)" stroke-width="1"/>
+<text x="37" y="194" text-anchor="middle" fill="#fb7185" font-size="10">Ra</text>
+<rect x="10" y="205" width="55" height="20" rx="3" fill="rgba(100,116,139,0.1)" stroke="rgba(100,116,139,0.3)" stroke-width="1"/>
+<text x="37" y="219" text-anchor="middle" fill="#64748b" font-size="10">Không tính</text>
+<line x1="75" y1="240" x2="285" y2="240" stroke="#4ade80" stroke-width="9" stroke-linecap="round" opacity="0.65"/>
+<text x="175" y="237" text-anchor="middle" fill="#4ade80" font-size="10" font-weight="600">BN A — Census ✓</text>
+<circle cx="75" cy="240" r="5" fill="#4ade80"/>
+<circle cx="285" cy="240" r="5" fill="#4ade80"/>
+<line x1="195" y1="263" x2="330" y2="263" stroke="#fbbf24" stroke-width="9" stroke-linecap="round" opacity="0.65"/>
+<text x="262" y="260" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600">BN B — Nhập + Census</text>
+<circle cx="195" cy="263" r="5" fill="#fbbf24"/>
+<line x1="95" y1="285" x2="195" y2="285" stroke="#fb7185" stroke-width="9" stroke-linecap="round" opacity="0.65"/>
+<text x="138" y="282" text-anchor="middle" fill="#fb7185" font-size="10" font-weight="600">BN C — Ra viện</text>
+<circle cx="95" cy="285" r="5" fill="#fb7185"/>
+<circle cx="195" cy="285" r="5" fill="#fb7185"/>
+<line x1="55" y1="307" x2="160" y2="307" stroke="#64748b" stroke-width="9" stroke-linecap="round" opacity="0.3"/>
+<text x="105" y="304" text-anchor="middle" fill="#64748b" font-size="10">BN D — đã ra, không tính</text>
+<circle cx="55" cy="307" r="5" fill="#64748b" opacity="0.5"/>
+<circle cx="160" cy="307" r="5" fill="#64748b" opacity="0.5"/>
+</svg>
+</div>
+</div>
+</div>
+</div><div class="rs" id="r22">
+<div class="sh"><h2>23 — Hồ Sơ KCB theo Ngày Ra Viện</h2><div class="br"><span class="b bb">Encounter (status=finished) + EpisodeOfCare</span></div></div>
+<div class="api"><span class="m">GET</span>/Encounter?status=finished&date=ge[start]&date=le[end]&_include=Encounter:subject&_include=Encounter:diagnosis</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Encounter.period.end</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày ra viện — trục X, GROUP BY chính</td></tr>
+<tr><td><code>Encounter.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>finished</td></tr>
+<tr><td><code>Encounter.class</code></td><td>Coding</td><td><span class="rq">✅</span></td><td>IMP / AMB / EMER</td></tr>
+<tr><td><code>hospitalization.dischargeDisposition</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>home / hosp / other-hcf / exp / aadvice</td></tr>
+<tr><td><code>diagnosis[{rank=1}].condition</code></td><td>Reference(Condition)</td><td><span class="rq">✅</span></td><td>Chẩn đoán chính ra viện</td></tr>
+<tr><td><code>EpisodeOfCare.period.end</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày đóng hồ sơ</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Patient</code></td><td><code>Encounter.subject</code></td><td>N:1</td><td>Nhân khẩu học BN ra viện</td></tr>
+<tr><td><code>Condition</code></td><td><code>Encounter.diagnosis</code></td><td>1:N</td><td>Chẩn đoán ICD ra viện</td></tr>
+<tr><td><code>Organization</code></td><td><code>Encounter.serviceProvider</code></td><td>N:1</td><td>Thống kê theo đơn vị</td></tr>
+<tr><td><code>Claim</code></td><td><code>Claim.encounter (reverse)</code></td><td>1:1</td><td>Thanh toán khi ra viện</td></tr>
+<tr><td><code>DocumentReference</code></td><td><code>Qua Encounter</code></td><td>N:1</td><td>Giấy ra viện, tóm tắt BA</td></tr>
+<tr><td><code>MedicationRequest</code></td><td><code>MR.encounter (reverse)</code></td><td>1:N</td><td>Đơn thuốc mang về</td></tr>
+<tr><td><code>EpisodeOfCare</code></td><td><code>Encounter.episodeOfCare</code></td><td>N:1</td><td>Hồ sơ tổng thể</td></tr>
+</table></div>
+</div><div class="rs" id="r3">
+<div class="sh"><h2>04 — Danh mục Nhà Thuốc</h2><div class="br"><span class="b bc">Organization (type=pharm)</span></div></div>
+<div class="api"><span class="m">GET</span>/Organization?type=pharm&_revinclude=MedicationDispense:performer&_include=Location:organization</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Organization.type</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>code: pharm</td></tr>
+<tr><td><code>Organization.identifier</code></td><td>Identifier[]</td><td><span class="rq">✅</span></td><td>Số GP kinh doanh dược — GP-0123/BYT</td></tr>
+<tr><td><code>Organization.name</code></td><td>string</td><td><span class="rq">✅</span></td><td>Tên nhà thuốc</td></tr>
+<tr><td><code>Organization.address</code></td><td>Address[]</td><td><span class="rq">✅</span></td><td>Địa chỉ chi tiết</td></tr>
+<tr><td><code>Organization.partOf</code></td><td>Reference(Org)</td><td><span class="op">⚪</span></td><td>→ Khoa dược chủ quản</td></tr>
+<tr><td><code>Organization.telecom</code></td><td>ContactPoint[]</td><td><span class="op">⚪</span></td><td>SĐT, giờ mở cửa</td></tr>
+<tr><td><code>Location.hoursOfOperation</code></td><td>BackboneElement[]</td><td><span class="op">⚪</span></td><td>Giờ mở cửa chi tiết Mon-Fri 7:00-20:00</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Location</code></td><td><code>managingOrganization</code></td><td>1:1</td><td>Vị trí vật lý, giờ hoạt động</td></tr>
+<tr><td><code>MedicationDispense</code></td><td><code>performer.actor</code></td><td>N:1</td><td>Lịch sử cấp phát thuốc</td></tr>
+<tr><td><code>MedicationRequest</code></td><td><code>dispenseRequest.performer</code></td><td>N:1</td><td>Đơn thuốc gửi nhà thuốc</td></tr>
+<tr><td><code>PractitionerRole</code></td><td><code>organization</code></td><td>N:1</td><td>Dược sĩ làm việc</td></tr>
+</table></div>
+</div><div class="rs" id="r4">
+<div class="sh"><h2>05 — Số Giường</h2><div class="br"><span class="b ba">Location · physicalType=bd</span><span class="b bt">operationalStatus O/U/C</span></div></div>
+<div class="api"><span class="m">GET</span>/Location?physicalType=bd&status=active&_include=Location:partof&_include=Location:organization&_revinclude=Encounter:location</div>
+<div class="g2">
+<div>
+<div class="cd"><div class="ct2">Trường — Location (Giường)</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả / Ví dụ</th></tr>
+<tr><td><code>Location.id</code></td><td>id</td><td><span class="rq">✅</span></td><td>ID giường — <em>bed-201a</em></td></tr>
+<tr><td><code>Location.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>active / suspended / inactive</td></tr>
+<tr><td><code>Location.operationalStatus</code></td><td>Coding</td><td><span class="rq">✅</span></td><td><em>O</em>=Occupied, <em>U</em>=Unoccupied, <em>C</em>=Contaminated, <em>K</em>=Housekeeping</td></tr>
+<tr><td><code>Location.name</code></td><td>string</td><td><span class="rq">✅</span></td><td>Số giường — <em>Giường 201A</em></td></tr>
+<tr><td><code>Location.physicalType</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>code: <em>bd</em> · system: <em>.../location-physical-type</em></td></tr>
+<tr><td><code>Location.managingOrganization</code></td><td>Reference(Org)</td><td><span class="rq">✅</span></td><td>→ Khoa quản lý — <em>Organization/khoa-noitim</em></td></tr>
+<tr><td><code>Location.partOf</code></td><td>Reference(Location)</td><td><span class="rq">✅</span></td><td>→ Phòng chứa giường — <em>Location/phong-201</em></td></tr>
+<tr><td><code>Location.alias</code></td><td>string[]</td><td><span class="op">⚪</span></td><td>Tên rút gọn — <em>201A</em></td></tr>
+<tr><td><code>Location.type</code></td><td>CodeableConcept[]</td><td><span class="op">⚪</span></td><td>ICU, thường, cách ly...</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Metric</th></tr>
+<tr><td><code>Location</code> (phòng)</td><td><code>Location.partOf → Location.id</code></td><td>N:1</td><td>Giường thuộc phòng nào</td></tr>
+<tr><td><code>Location</code> (khoa)</td><td><code>partOf.partOf (đệ quy)</code></td><td>N:1</td><td>Phân cấp đến khoa</td></tr>
+<tr><td><code>Organization</code></td><td><code>Location.managingOrganization</code></td><td>N:1</td><td>Khoa/BV quản lý</td></tr>
+<tr><td><code>Encounter</code></td><td><code>Encounter.location[].location → Location.id</code></td><td>N:1</td><td>BN đang chiếm giường (operationalStatus=O)</td></tr>
+<tr><td><code>Schedule</code></td><td><code>Schedule.actor → Location.id</code></td><td>1:1</td><td>Lịch đặt giường trước</td></tr>
+</table></div>
+<div class="fb">// Power BI DAX<br>TongGiuong = COUNTROWS(FILTER(Location,<br>&nbsp;&nbsp;Location[status]="active" &amp;&amp; Location[physicalType]="bd"))<br>GiuongDangDung = COUNTROWS(FILTER(Encounter,<br>&nbsp;&nbsp;Encounter[status]="in-progress"))<br>TyLeSuDung = DIVIDE([GiuongDangDung],[TongGiuong],0)</div>
+</div>
+<div>
+<div class="dw"><div class="dt">Sơ đồ phân cấp Location và tình trạng giường</div>
+<svg width="100%" viewBox="0 0 360 420">
+<defs><marker id="ara" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="ard" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+<rect x="90" y="14" width="180" height="44" rx="9" fill="rgba(45,212,191,0.12)" stroke="#2dd4bf" stroke-width="1.5"/>
+<text x="180" y="33" text-anchor="middle" fill="#2dd4bf" font-size="13" font-weight="600">Organization (Khoa)</text>
+<text x="180" y="48" text-anchor="middle" fill="#2dd4bf" font-size="10">managingOrganization ↑</text>
+<line x1="180" y1="58" x2="180" y2="94" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#ard)"/>
+<rect x="70" y="94" width="220" height="44" rx="9" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="180" y="113" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="600">Location (Phòng)</text>
+<text x="180" y="128" text-anchor="middle" fill="#fbbf24" font-size="10">physicalType=ro · partOf ↑</text>
+<line x1="120" y1="138" x2="70" y2="178" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#ard)"/>
+<line x1="240" y1="138" x2="290" y2="178" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#ard)"/>
+<rect x="5" y="178" width="130" height="56" rx="8" fill="rgba(251,191,36,0.18)" stroke="#fbbf24" stroke-width="2"/>
+<text x="70" y="198" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="600">Location (Giường)</text>
+<text x="70" y="213" text-anchor="middle" fill="#fbbf24" font-size="10">physicalType=bd</text>
+<text x="70" y="227" text-anchor="middle" fill="#fbbf24" font-size="10">operationalStatus=U 🟢</text>
+<rect x="225" y="178" width="130" height="56" rx="8" fill="rgba(251,113,133,0.15)" stroke="#fb7185" stroke-width="2"/>
+<text x="290" y="198" text-anchor="middle" fill="#fb7185" font-size="12" font-weight="600">Location (Giường)</text>
+<text x="290" y="213" text-anchor="middle" fill="#fb7185" font-size="10">physicalType=bd</text>
+<text x="290" y="227" text-anchor="middle" fill="#fb7185" font-size="10">operationalStatus=O 🔴</text>
+<rect x="185" y="284" width="160" height="44" rx="8" fill="rgba(74,222,128,0.1)" stroke="#4ade80" stroke-width="1.5"/>
+<text x="265" y="304" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="500">Encounter</text>
+<text x="265" y="318" text-anchor="middle" fill="#4ade80" font-size="10">status=in-progress</text>
+<line x1="290" y1="234" x2="290" y2="284" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arf)"/>
+<text x="300" y="261" fill="#4ade80" font-size="10">location[]</text>
+<rect x="5" y="290" width="165" height="44" rx="7" fill="rgba(100,116,139,0.1)" stroke="#64748b" stroke-width="1"/>
+<text x="87" y="310" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">Schedule</text>
+<text x="87" y="325" text-anchor="middle" fill="#64748b" font-size="10">actor → Location (đặt trước)</text>
+<line x1="70" y1="234" x2="87" y2="290" stroke="#64748b" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="188" y="84" fill="#fbbf24" font-size="10">1:N partOf</text>
+<text x="100" y="166" fill="#fbbf24" font-size="10">1:N</text>
+<text x="260" y="166" fill="#fbbf24" font-size="10">1:N</text>
+</svg>
+</div>
+</div>
+</div>
+</div><div class="rs" id="r5">
+<div class="sh"><h2>06 — Tổng Số Ngày Điều Trị</h2><div class="br"><span class="b bb">Encounter (class=IMP · status=finished)</span></div></div>
+<div class="api"><span class="m">GET</span>/Encounter?class=IMP&status=finished&date=ge[start]&date=le[end]&_include=Encounter:subject&_include=Encounter:service-provider</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Encounter.period.start</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày giờ vào viện</td></tr>
+<tr><td><code>Encounter.period.end</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày giờ ra viện</td></tr>
+<tr><td><code>Encounter.class</code></td><td>Coding</td><td><span class="rq">✅</span></td><td>IMP — nội trú</td></tr>
+<tr><td><code>Encounter.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>finished</td></tr>
+<tr><td><code>Encounter.serviceProvider</code></td><td>Reference(Org)</td><td><span class="rq">✅</span></td><td>→ Khoa/BV điều trị</td></tr>
+<tr><td><code>Encounter.subject</code></td><td>Reference(Patient)</td><td><span class="rq">✅</span></td><td>→ Bệnh nhân</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Patient</code></td><td><code>Encounter.subject</code></td><td>N:1</td><td>Nhân khẩu học</td></tr>
+<tr><td><code>Organization</code></td><td><code>Encounter.serviceProvider</code></td><td>N:1</td><td>GROUP BY khoa/BV</td></tr>
+<tr><td><code>Location</code></td><td><code>Encounter.location[].location</code></td><td>N:N</td><td>Giường sử dụng</td></tr>
+<tr><td><code>EpisodeOfCare</code></td><td><code>Encounter.episodeOfCare</code></td><td>N:1</td><td>Hồ sơ tổng thể</td></tr>
+</table></div>
+</div><div class="rs" id="r6">
+<div class="sh"><h2>07 — Thống Kê Chi Phí</h2><div class="br"><span class="b bc">Claim</span><span class="b bb">ClaimResponse</span><span class="b bp">Invoice · ChargeItem</span></div></div>
+<div class="api"><span class="m">GET</span>/Claim?_include=Claim:patient&_include=Claim:encounter&_include=Claim:insurance&created=ge[start]&created=le[end]</div>
+<div class="g2">
+<div>
+<div class="cd"><div class="ct2">Trường — Claim</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả / Ví dụ</th></tr>
+<tr><td><code>Claim.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>active / cancelled / draft / entered-in-error</td></tr>
+<tr><td><code>Claim.type</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>institutional / professional / pharmacy</td></tr>
+<tr><td><code>Claim.use</code></td><td>code</td><td><span class="rq">✅</span></td><td>claim / preauthorization / predetermination</td></tr>
+<tr><td><code>Claim.patient</code></td><td>Reference(Patient)</td><td><span class="rq">✅</span></td><td>→ Bệnh nhân — <em>Patient/pt-001</em></td></tr>
+<tr><td><code>Claim.created</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày tạo claim — trục X biểu đồ</td></tr>
+<tr><td><code>Claim.provider</code></td><td>Reference(Org)</td><td><span class="rq">✅</span></td><td>→ Đơn vị lập hóa đơn</td></tr>
+<tr><td><code>Claim.encounter</code></td><td>Reference(Encounter)[]</td><td><span class="rq">✅</span></td><td>→ Lượt khám — <em>Encounter/enc-001</em></td></tr>
+<tr><td><code>Claim.insurance[].coverage</code></td><td>Reference(Coverage)</td><td><span class="rq">✅</span></td><td>→ Thẻ BHYT</td></tr>
+<tr><td><code>Claim.insurance[].focal</code></td><td>boolean</td><td><span class="rq">✅</span></td><td>BHYT chính (true) hay phụ (false)</td></tr>
+<tr><td><code>Claim.total</code></td><td>Money</td><td><span class="rq">✅</span></td><td>Tổng yêu cầu — value: <em>5000000</em>, currency: <em>VND</em></td></tr>
+<tr><td><code>Claim.item[].productOrService</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>Dịch vụ/thuốc từng dòng</td></tr>
+<tr><td><code>Claim.item[].quantity</code></td><td>Quantity</td><td><span class="op">⚪</span></td><td>Số lượng dịch vụ</td></tr>
+<tr><td><code>Claim.item[].unitPrice</code></td><td>Money</td><td><span class="op">⚪</span></td><td>Đơn giá</td></tr>
+<tr><td><code>Claim.item[].net</code></td><td>Money</td><td><span class="rq">✅</span></td><td>Thành tiền = quantity × unitPrice</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Trường — ClaimResponse</div><table>
+<tr><th>Trường FHIR</th><th>Mô tả</th></tr>
+<tr><td><code>ClaimResponse.request</code></td><td>→ Claim gốc</td></tr>
+<tr><td><code>ClaimResponse.outcome</code></td><td>queued / complete / error / partial</td></tr>
+<tr><td><code>ClaimResponse.payment.amount</code></td><td>Số tiền BHYT chi trả thực tế</td></tr>
+<tr><td><code>ClaimResponse.total[].category</code></td><td>submitted / eligible / copay / benefit</td></tr>
+<tr><td><code>ClaimResponse.total[].amount</code></td><td>Giá trị từng loại tổng</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Tham chiếu</th><th>Quan hệ</th><th>Vai trò</th></tr>
+<tr><td><code>Encounter</code></td><td><code>Claim.encounter → Encounter.id</code></td><td>N:1</td><td>Lượt khám phát sinh chi phí</td></tr>
+<tr><td><code>Patient</code></td><td><code>Claim.patient → Patient.id</code></td><td>N:1</td><td>Bệnh nhân chi trả</td></tr>
+<tr><td><code>Coverage</code></td><td><code>Claim.insurance[].coverage</code></td><td>N:1</td><td>Phân loại BHYT / tự trả</td></tr>
+<tr><td><code>ClaimResponse</code></td><td><code>ClaimResponse.request → Claim.id</code></td><td>1:1</td><td>Kết quả xét duyệt, số tiền thực chi</td></tr>
+<tr><td><code>ChargeItem</code></td><td><code>Invoice.lineItem.chargeItem → ChargeItem.id</code></td><td>1:N</td><td>Chi tiết từng khoản phí</td></tr>
+<tr><td><code>Procedure</code></td><td><code>Claim.procedure[].procedure[x]</code></td><td>N:N</td><td>Chi phí thủ thuật</td></tr>
+<tr><td><code>MedicationRequest</code></td><td>Qua <code>Claim.item</code></td><td>N:N</td><td>Chi phí thuốc trong claim</td></tr>
+<tr><td><code>Organization</code></td><td><code>Claim.provider → Org.id</code></td><td>N:1</td><td>Đơn vị lập hóa đơn</td></tr>
+</table></div>
+</div>
+<div>
+<div class="dw"><div class="dt">Luồng thanh toán FHIR</div>
+<svg width="100%" viewBox="0 0 360 450">
+<defs><marker id="ara" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="ard" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="are" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#fb7185" stroke-width="1.5" stroke-linecap="round"/></marker><marker id="arf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+<rect x="80" y="14" width="200" height="44" rx="9" fill="rgba(74,222,128,0.1)" stroke="#4ade80" stroke-width="1.5"/>
+<text x="180" y="33" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="600">Encounter</text>
+<text x="180" y="48" text-anchor="middle" fill="#4ade80" font-size="10">Lượt khám · phát sinh phí</text>
+<line x1="130" y1="58" x2="80" y2="110" stroke="#fb7185" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="230" y1="58" x2="300" y2="110" stroke="#a78bfa" stroke-width="1" stroke-dasharray="4 3"/>
+<rect x="5" y="110" width="140" height="44" rx="8" fill="rgba(251,113,133,0.1)" stroke="#fb7185" stroke-width="1.5"/>
+<text x="75" y="130" text-anchor="middle" fill="#fb7185" font-size="12" font-weight="500">ChargeItem</text>
+<text x="75" y="145" text-anchor="middle" fill="#fb7185" font-size="10">Chi tiết khoản phí</text>
+<rect x="215" y="110" width="140" height="44" rx="8" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="1.5"/>
+<text x="285" y="130" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="500">Invoice</text>
+<text x="285" y="145" text-anchor="middle" fill="#a78bfa" font-size="10">Hóa đơn tổng hợp</text>
+<line x1="180" y1="58" x2="180" y2="202" stroke="#fb7185" stroke-width="2" marker-end="url(#are)"/>
+<rect x="70" y="202" width="220" height="58" rx="10" fill="rgba(251,113,133,0.18)" stroke="#fb7185" stroke-width="2"/>
+<text x="180" y="225" text-anchor="middle" fill="#fb7185" font-size="14" font-weight="700">Claim</text>
+<text x="180" y="243" text-anchor="middle" fill="#fb7185" font-size="11">total · item[].net · insurance</text>
+<text x="180" y="256" text-anchor="middle" fill="#fb7185" font-size="10">created (ngày lập)</text>
+<rect x="5" y="318" width="140" height="44" rx="8" fill="rgba(74,158,255,0.1)" stroke="#4a9eff" stroke-width="1.5"/>
+<text x="75" y="338" text-anchor="middle" fill="#4a9eff" font-size="12" font-weight="500">Coverage</text>
+<text x="75" y="353" text-anchor="middle" fill="#4a9eff" font-size="10">BHYT / tự trả</text>
+<line x1="120" y1="246" x2="75" y2="318" stroke="#4a9eff" stroke-width="1" stroke-dasharray="4 3"/>
+<rect x="215" y="318" width="140" height="44" rx="8" fill="rgba(74,222,128,0.1)" stroke="#4ade80" stroke-width="1.5"/>
+<text x="285" y="338" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="500">ClaimResponse</text>
+<text x="285" y="353" text-anchor="middle" fill="#4ade80" font-size="10">payment.amount</text>
+<line x1="260" y1="260" x2="285" y2="318" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arf)"/>
+<rect x="90" y="400" width="180" height="40" rx="7" fill="rgba(100,116,139,0.08)" stroke="#64748b" stroke-width="1"/>
+<text x="180" y="425" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">Patient</text>
+<line x1="180" y1="260" x2="180" y2="400" stroke="#64748b" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="188" y="190" fill="#fb7185" font-size="10">→ Claim</text>
+<text x="275" y="310" fill="#4ade80" font-size="10">xét duyệt</text>
+</svg>
+</div>
+</div>
+</div>
+</div><div class="rs" id="r7">
+<div class="sh"><h2>08 — Lượt BN Vào Ra</h2><div class="br"><span class="b bb">Encounter · period.start · period.end</span></div></div>
+<div class="api"><span class="m">GET</span>/Encounter?date=ge[start]&date=le[end]&_include=Encounter:subject</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Encounter.period.start</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày vào — Metric NHẬP</td></tr>
+<tr><td><code>Encounter.period.end</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Ngày ra — Metric RA</td></tr>
+<tr><td><code>Encounter.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>in-progress=đang / finished=đã ra</td></tr>
+<tr><td><code>Encounter.class</code></td><td>Coding</td><td><span class="rq">✅</span></td><td>AMB / IMP / EMER</td></tr>
+<tr><td><code>hospitalization.admitSource</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>emd / outp / born / gp</td></tr>
+<tr><td><code>hospitalization.dischargeDisposition</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>home / hosp / exp / aadvice</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Patient</code></td><td><code>Encounter.subject</code></td><td>N:1</td><td>Thông tin BN</td></tr>
+<tr><td><code>Organization</code></td><td><code>Encounter.serviceProvider</code></td><td>N:1</td><td>Thống kê theo đơn vị</td></tr>
+<tr><td><code>EpisodeOfCare</code></td><td><code>Encounter.episodeOfCare</code></td><td>N:1</td><td>Theo dõi đợt bệnh liên tục</td></tr>
+</table></div>
+</div><div class="rs" id="r8">
+<div class="sh"><h2>09 — BN theo Loại Hình KCB</h2><div class="br"><span class="b bb">Encounter.class · Coverage</span></div></div>
+<div class="api"><span class="m">GET</span>/Encounter?date=ge[start]&date=le[end]&_include=Encounter:subject</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Encounter.class</code></td><td>Coding</td><td><span class="rq">✅</span></td><td>AMB/IMP/EMER/HH/SS/OBSENC</td></tr>
+<tr><td><code>Encounter.type</code></td><td>CodeableConcept[]</td><td><span class="op">⚪</span></td><td>Khám lần đầu / tái khám / chuyên khoa</td></tr>
+<tr><td><code>Encounter.serviceType</code></td><td>CodeableConcept</td><td><span class="op">⚪</span></td><td>Nội soi / siêu âm / xét nghiệm</td></tr>
+<tr><td><code>Encounter.priority</code></td><td>code</td><td><span class="op">⚪</span></td><td>routine / urgent / stat</td></tr>
+<tr><td><code>Coverage.type</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>BHYT / dịch vụ / miễn phí</td></tr>
+<tr><td><code>Coverage.subscriberId</code></td><td>string</td><td><span class="rq">✅</span></td><td>Số thẻ BHYT</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Patient</code></td><td><code>Encounter.subject</code></td><td>N:1</td><td>Thông tin BN</td></tr>
+<tr><td><code>Coverage</code></td><td><code>Encounter.account → Account.coverage</code></td><td>N:N</td><td>Nguồn tài chính BHYT/tự trả</td></tr>
+<tr><td><code>Organization</code></td><td><code>Encounter.serviceProvider</code></td><td>N:1</td><td>Đơn vị thực hiện</td></tr>
+<tr><td><code>Practitioner</code></td><td><code>Encounter.participant[].individual</code></td><td>N:N</td><td>Bác sĩ tiếp nhận</td></tr>
+</table></div>
+</div><div class="rs" id="r9">
+<div class="sh"><h2>10 — Cấp Cứu Tử Vong</h2><div class="br"><span class="b bc">Encounter class=EMER · dischargeDisposition=exp</span></div></div>
+<div class="api"><span class="m">GET</span>/Encounter?class=EMER&status=finished&_include=Encounter:diagnosis&_include=Encounter:subject</div>
+<div class="cd"><div class="ct2">Trường dữ liệu chính</div><table>
+<tr><th>Trường FHIR</th><th>Kiểu</th><th>BB</th><th>Mô tả</th></tr>
+<tr><td><code>Encounter.class</code></td><td>Coding</td><td><span class="rq">✅</span></td><td>EMER</td></tr>
+<tr><td><code>Encounter.status</code></td><td>code</td><td><span class="rq">✅</span></td><td>finished</td></tr>
+<tr><td><code>hospitalization.dischargeDisposition</code></td><td>CodeableConcept</td><td><span class="rq">✅</span></td><td>code: exp (Expired = tử vong)</td></tr>
+<tr><td><code>Encounter.period.end</code></td><td>dateTime</td><td><span class="rq">✅</span></td><td>Thời điểm tử vong</td></tr>
+<tr><td><code>Encounter.serviceProvider</code></td><td>Reference(Org)</td><td><span class="rq">✅</span></td><td>→ Khoa cấp cứu</td></tr>
+<tr><td><code>Encounter.subject</code></td><td>Reference(Patient)</td><td><span class="rq">✅</span></td><td>→ Bệnh nhân</td></tr>
+</table></div>
+<div class="cd"><div class="ct2">Resource liên quan</div><table>
+<tr><th>Resource</th><th>Trường tham chiếu</th><th>Quan hệ</th><th>Mục đích</th></tr>
+<tr><td><code>Condition</code></td><td><code>Encounter.diagnosis[].condition</code></td><td>1:N</td><td>Nguyên nhân tử vong ICD</td></tr>
+<tr><td><code>Patient</code></td><td><code>Encounter.subject</code></td><td>N:1</td><td>Nhân khẩu học người tử vong</td></tr>
+<tr><td><code>Procedure</code></td><td><code>Procedure.encounter (reverse)</code></td><td>1:N</td><td>CPR, thở máy, sốc điện</td></tr>
+<tr><td><code>Observation</code></td><td><code>Observation.encounter (reverse)</code></td><td>1:N</td><td>Dấu hiệu sinh tồn cuối</td></tr>
+<tr><td><code>Practitioner</code></td><td><code>Encounter.participant[].individual</code></td><td>N:N</td><td>Êkip cấp cứu</td></tr>
+</table></div>
+</div></main>
+</div>
+<script>
+function show(id){
+  document.querySelectorAll('.rs').forEach(s=>s.classList.remove('act'));
+  document.querySelectorAll('.ni').forEach(b=>b.classList.remove('act'));
+  document.getElementById(id).classList.add('act');
+  document.querySelector(`[onclick="show('${id}')"]`).classList.add('act');
+  document.getElementById('main').scrollTop=0;
+}
+</script>
+</body>
+</html>
