@@ -35,4 +35,3 @@ Watermark removal is no longer part of the main wrapper script. If you want to c
 - `run_ocr.sh`: The main bash wrapper script to execute the pipeline.
 - `swift_ocr.swift`: The Swift script that invokes the Vision API for OCR on a single image.
 - `watermark_cleanup_rule.py`: Standalone reference copy of the post-OCR watermark cleanup rule.
-- `pdf_to_img.py`: (Deprecated/Backup) A simple script to convert PDF to images manually. The wrapper script now does this internally with higher resolution.
