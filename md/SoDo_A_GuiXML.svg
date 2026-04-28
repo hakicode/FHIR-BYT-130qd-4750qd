@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="900" height="1080" viewBox="0 0 900 1080" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#4A6FA5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#2E7D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#C62828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="1080" fill="#F8F9FA" rx="0"/>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="900" height="56" fill="#1A3A5C"/>
+  <text x="450" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="white">QUY TRÌNH A — GỬI DỮ LIỆU XML KCB LÊN HỆ THỐNG</text>
+  <text x="450" y="42" text-anchor="middle" font-size="11" fill="#B0C4DE">Theo QĐ 130/QĐ-BYT (hợp nhất QĐ 4750/QĐ-BYT) · JWT Bearer Token</text>
+
+  <!-- ==================== LANE HEADERS ==================== -->
+  <!-- Lane: Client -->
+  <rect x="20" y="68" width="200" height="990" fill="#EEF2F7" rx="8" stroke="#C5D3E8" stroke-width="0.5"/>
+  <rect x="20" y="68" width="200" height="28" fill="#4A6FA5" rx="8"/>
+  <rect x="20" y="84" width="200" height="12" fill="#4A6FA5"/>
+  <text x="120" y="87" text-anchor="middle" font-size="12" font-weight="700" fill="white">CLIENT / HIS</text>
+
+  <!-- Lane: Server -->
+  <rect x="240" y="68" width="200" height="990" fill="#F0F7EE" rx="8" stroke="#B8D8B0" stroke-width="0.5"/>
+  <rect x="240" y="68" width="200" height="28" fill="#2E7D32" rx="8"/>
+  <rect x="240" y="84" width="200" height="12" fill="#2E7D32"/>
+  <text x="340" y="87" text-anchor="middle" font-size="12" font-weight="700" fill="white">API SERVER</text>
+
+  <!-- Lane: FHIR -->
+  <rect x="460" y="68" width="200" height="990" fill="#FFF8E1" rx="8" stroke="#F0D080" stroke-width="0.5"/>
+  <rect x="460" y="68" width="200" height="28" fill="#F57F17" rx="8"/>
+  <rect x="460" y="84" width="200" height="12" fill="#F57F17"/>
+  <text x="560" y="87" text-anchor="middle" font-size="12" font-weight="700" fill="white">HAPI FHIR / LOG</text>
+
+  <!-- Lane: Error handling -->
+  <rect x="680" y="68" width="200" height="990" fill="#FFF0F0" rx="8" stroke="#FFCDD2" stroke-width="0.5"/>
+  <rect x="680" y="68" width="200" height="28" fill="#C62828" rx="8"/>
+  <rect x="680" y="84" width="200" height="12" fill="#C62828"/>
+  <text x="780" y="87" text-anchor="middle" font-size="12" font-weight="700" fill="white">XỬ LÝ LỖI</text>
+
+  <!-- ==================== STEP 1 ==================== -->
+  <!-- Step label -->
+  <text x="450" y="118" text-anchor="middle" font-size="10" fill="#666" font-style="italic">① Chuẩn bị tệp</text>
+
+  <!-- Box: Chọn tệp XML -->
+  <rect x="30" y="124" width="180" height="52" rx="6" fill="#DDEEFF" stroke="#4A6FA5" stroke-width="1"/>
+  <text x="120" y="143" text-anchor="middle" font-size="12" font-weight="600" fill="#1A3A5C">Chọn tệp XML</text>
+  <text x="120" y="158" text-anchor="middle" font-size="10" fill="#4A6FA5">XML0 hoặc XML1–XML11</text>
+  <text x="120" y="170" text-anchor="middle" font-size="9" fill="#888">Encoding: UTF-8</text>
+
+  <!-- ==================== STEP 2 ==================== -->
+  <text x="450" y="202" text-anchor="middle" font-size="10" fill="#666" font-style="italic">② Xác thực JWT</text>
+  <!-- Arrow down -->
+  <line x1="120" y1="176" x2="120" y2="194" stroke="#4A6FA5" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Box: Đăng nhập lấy token -->
+  <rect x="30" y="206" width="180" height="52" rx="6" fill="#DDEEFF" stroke="#4A6FA5" stroke-width="1"/>
+  <text x="120" y="225" text-anchor="middle" font-size="12" font-weight="600" fill="#1A3A5C">Đăng nhập</text>
+  <text x="120" y="240" text-anchor="middle" font-size="10" fill="#4A6FA5">POST /api/auth/login</text>
+  <text x="120" y="252" text-anchor="middle" font-size="9" fill="#888">MD5-Uppercase password</text>
+
+  <!-- Arrow to server -->
+  <line x1="210" y1="232" x2="250" y2="232" stroke="#4A6FA5" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Box: Xác thực credentials -->
+  <rect x="252" y="206" width="176" height="52" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="340" y="225" text-anchor="middle" font-size="12" font-weight="600" fill="#1B5E20">Xác thực credentials</text>
+  <text x="340" y="240" text-anchor="middle" font-size="10" fill="#2E7D32">Kiểm tra username/pass</text>
+  <text x="340" y="252" text-anchor="middle" font-size="9" fill="#888">Tạo JWT + refresh token</text>
+
+  <!-- Response arrow back -->
+  <line x1="252" y1="245" x2="212" y2="245" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="231" y="241" text-anchor="middle" font-size="9" fill="#2E7D32">token</text>
+
+  <!-- Error: 401 -->
+  <rect x="692" y="210" width="176" height="44" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="780" y="228" text-anchor="middle" font-size="11" font-weight="600" fill="#B71C1C">HTTP 401</text>
+  <text x="780" y="243" text-anchor="middle" font-size="10" fill="#C62828">Sai tài khoản / mật khẩu</text>
+  <line x1="428" y1="225" x2="690" y2="225" stroke="#C62828" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow-red)"/>
+
+  <!-- ==================== STEP 3: Ký số & Base64 ==================== -->
+  <text x="450" y="286" text-anchor="middle" font-size="10" fill="#666" font-style="italic">③ Ký số SHA256 + mã hóa Base64</text>
+  <line x1="120" y1="258" x2="120" y2="278" stroke="#4A6FA5" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="30" y="290" width="180" height="66" rx="6" fill="#DDEEFF" stroke="#4A6FA5" stroke-width="1"/>
+  <text x="120" y="308" text-anchor="middle" font-size="12" font-weight="600" fill="#1A3A5C">Ký số &amp; mã hóa</text>
+  <text x="120" y="322" text-anchor="middle" font-size="10" fill="#4A6FA5">① Ký SHA256 vùng nội dung</text>
+  <text x="120" y="335" text-anchor="middle" font-size="10" fill="#4A6FA5">② Điền vào &lt;CHUKYDONVI&gt;</text>
+  <text x="120" y="348" text-anchor="middle" font-size="10" fill="#4A6FA5">③ Mã hóa Base64 toàn bộ</text>
+
+  <!-- ==================== DECISION: Loại tệp? ==================== -->
+  <text x="450" y="386" text-anchor="middle" font-size="10" fill="#666" font-style="italic">④ Phân luồng</text>
+  <line x1="120" y1="356" x2="120" y2="378" stroke="#4A6FA5" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Diamond decision -->
+  <polygon points="120,390 170,418 120,446 70,418" fill="#FFF3CD" stroke="#F0A500" stroke-width="1.5"/>
+  <text x="120" y="414" text-anchor="middle" font-size="10" font-weight="600" fill="#7B5000">Loại</text>
+  <text x="120" y="428" text-anchor="middle" font-size="10" font-weight="600" fill="#7B5000">tệp?</text>
+
+  <!-- ==================== LUỒNG A: XML0 ==================== -->
+  <text x="48" y="465" text-anchor="middle" font-size="9" fill="#C62828">XML0</text>
+  <line x1="70" y1="418" x2="45" y2="468" stroke="#F0A500" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="30" y="472" width="180" height="52" rx="6" fill="#DDEEFF" stroke="#4A6FA5" stroke-width="1"/>
+  <text x="120" y="491" text-anchor="middle" font-size="11" font-weight="600" fill="#1A3A5C">POST checkIn</text>
+  <text x="120" y="505" text-anchor="middle" font-size="9" fill="#4A6FA5">/api/qd130/checkInKcbQd4750</text>
+  <text x="120" y="517" text-anchor="middle" font-size="9" fill="#888">fileHSBase64 = {base64}</text>
+
+  <!-- ==================== LUỒNG B: XML1-11 (wrapper) ==================== -->
+  <text x="194" y="465" text-anchor="middle" font-size="9" fill="#2E7D32">XML1-11</text>
+  <line x1="170" y1="418" x2="180" y2="468" stroke="#F0A500" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="30" y="560" width="180" height="66" rx="6" fill="#DDEEFF" stroke="#4A6FA5" stroke-width="1"/>
+  <text x="120" y="578" text-anchor="middle" font-size="11" font-weight="600" fill="#1A3A5C">Tạo wrapper GIAMDINHHS</text>
+  <text x="120" y="592" text-anchor="middle" font-size="9" fill="#4A6FA5">Base64 từng XML con</text>
+  <text x="120" y="605" text-anchor="middle" font-size="9" fill="#4A6FA5">→ điền NOIDUNGFILE</text>
+  <text x="120" y="618" text-anchor="middle" font-size="9" fill="#888">Ký SHA256 wrapper</text>
+
+  <line x1="190" y1="472" x2="190" y2="555" stroke="#4A6FA5" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="190" y1="555" x2="175" y2="558" stroke="#4A6FA5" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <line x1="120" y1="626" x2="120" y2="648" stroke="#4A6FA5" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="30" y="650" width="180" height="52" rx="6" fill="#DDEEFF" stroke="#4A6FA5" stroke-width="1"/>
+  <text x="120" y="669" text-anchor="middle" font-size="11" font-weight="600" fill="#1A3A5C">POST guiHoSo</text>
+  <text x="120" y="683" text-anchor="middle" font-size="9" fill="#4A6FA5">/api/qd130/guiHoSoXmlQD4750</text>
+  <text x="120" y="695" text-anchor="middle" font-size="9" fill="#888">fileHSBase64 = {base64}</text>
+
+  <!-- ==================== SERVER xử lý ==================== -->
+  <!-- Arrow from checkIn to server -->
+  <line x1="210" y1="498" x2="250" y2="498" stroke="#4A6FA5" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- Arrow from guiHoSo to server -->
+  <line x1="210" y1="676" x2="250" y2="676" stroke="#4A6FA5" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Server: Xác thực token -->
+  <rect x="252" y="472" width="176" height="44" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="340" y="490" text-anchor="middle" font-size="11" font-weight="600" fill="#1B5E20">Xác thực token</text>
+  <text x="340" y="506" text-anchor="middle" font-size="9" fill="#2E7D32">Kiểm tra Bearer JWT</text>
+
+  <!-- Server: Xử lý payload -->
+  <rect x="252" y="650" width="176" height="44" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="340" y="668" text-anchor="middle" font-size="11" font-weight="600" fill="#1B5E20">Xử lý payload</text>
+  <text x="340" y="683" text-anchor="middle" font-size="9" fill="#2E7D32">Decode Base64 → XML</text>
+
+  <line x1="340" y1="694" x2="340" y2="714" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- Server: Parse & validate -->
+  <rect x="252" y="716" width="176" height="44" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="340" y="734" text-anchor="middle" font-size="11" font-weight="600" fill="#1B5E20">Parse &amp; validate XML</text>
+  <text x="340" y="749" text-anchor="middle" font-size="9" fill="#2E7D32">Kiểm tra cấu trúc + chữ ký</text>
+
+  <line x1="340" y1="760" x2="340" y2="780" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- Server: Chuyển đổi + nạp FHIR -->
+  <rect x="252" y="782" width="176" height="52" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="340" y="800" text-anchor="middle" font-size="11" font-weight="600" fill="#1B5E20">Chuyển đổi + nạp</text>
+  <text x="340" y="814" text-anchor="middle" font-size="9" fill="#2E7D32">XML → FHIR Bundle</text>
+  <text x="340" y="826" text-anchor="middle" font-size="9" fill="#2E7D32">POST vào HAPI FHIR</text>
+
+  <!-- Arrow to HAPI FHIR -->
+  <line x1="428" y1="808" x2="468" y2="808" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- HAPI FHIR store -->
+  <rect x="470" y="782" width="176" height="52" rx="6" fill="#FFF8DC" stroke="#F57F17" stroke-width="1.5"/>
+  <text x="558" y="800" text-anchor="middle" font-size="11" font-weight="600" fill="#7B3F00">HAPI FHIR</text>
+  <text x="558" y="814" text-anchor="middle" font-size="9" fill="#F57F17">Commit transaction</text>
+  <text x="558" y="826" text-anchor="middle" font-size="9" fill="#F57F17">Patient, Encounter, Claim...</text>
+
+  <!-- Arrow: HAPI → Log -->
+  <line x1="558" y1="834" x2="558" y2="856" stroke="#F57F17" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Ghi log -->
+  <rect x="470" y="858" width="176" height="44" rx="6" fill="#FFF8DC" stroke="#F57F17" stroke-width="1"/>
+  <text x="558" y="876" text-anchor="middle" font-size="11" font-weight="600" fill="#7B3F00">Ghi log</text>
+  <text x="558" y="891" text-anchor="middle" font-size="9" fill="#F57F17">Tạo logId, lưu metadata</text>
+
+  <!-- logId response back to client -->
+  <line x1="340" y1="834" x2="340" y2="906" stroke="#2E7D32" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="340" y1="906" x2="212" y2="906" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="275" y="900" text-anchor="middle" font-size="9" fill="#2E7D32">logId + status</text>
+
+  <!-- ==================== BƯỚC 7: Kiểm tra kết quả ==================== -->
+  <rect x="30" y="888" width="180" height="52" rx="6" fill="#DDEEFF" stroke="#4A6FA5" stroke-width="1"/>
+  <text x="120" y="907" text-anchor="middle" font-size="11" font-weight="600" fill="#1A3A5C">Kiểm tra kết quả</text>
+  <text x="120" y="921" text-anchor="middle" font-size="9" fill="#4A6FA5">GET /api/logs?id={logId}</text>
+  <text x="120" y="933" text-anchor="middle" font-size="9" fill="#888">status: success / pending / error</text>
+
+  <!-- Final success -->
+  <rect x="30" y="966" width="180" height="44" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="120" y="985" text-anchor="middle" font-size="12" font-weight="700" fill="#1B5E20">✓ HOÀN THÀNH</text>
+  <text x="120" y="1000" text-anchor="middle" font-size="9" fill="#2E7D32">Dữ liệu đã vào HAPI FHIR</text>
+  <line x1="120" y1="940" x2="120" y2="964" stroke="#4A6FA5" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ==================== ERROR BOXES ==================== -->
+  <!-- 422 XML error -->
+  <rect x="692" y="716" width="176" height="44" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="780" y="734" text-anchor="middle" font-size="11" font-weight="600" fill="#B71C1C">HTTP 422</text>
+  <text x="780" y="749" text-anchor="middle" font-size="10" fill="#C62828">XML không hợp lệ</text>
+  <line x1="428" y1="738" x2="690" y2="738" stroke="#C62828" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow-red)"/>
+
+  <!-- 403 forbidden -->
+  <rect x="692" y="472" width="176" height="44" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="780" y="490" text-anchor="middle" font-size="11" font-weight="600" fill="#B71C1C">HTTP 403</text>
+  <text x="780" y="505" text-anchor="middle" font-size="10" fill="#C62828">Không có quyền</text>
+  <line x1="428" y1="490" x2="690" y2="490" stroke="#C62828" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow-red)"/>
+
+  <!-- 401 token expired -->
+  <rect x="692" y="650" width="176" height="44" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="780" y="668" text-anchor="middle" font-size="11" font-weight="600" fill="#B71C1C">HTTP 401</text>
+  <text x="780" y="683" text-anchor="middle" font-size="10" fill="#C62828">Token hết hạn → refresh</text>
+  <line x1="428" y1="668" x2="690" y2="668" stroke="#C62828" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow-red)"/>
+
+  <!-- Legend -->
+  <rect x="460" y="920" width="400" height="130" rx="6" fill="white" stroke="#CCC" stroke-width="0.5"/>
+  <text x="660" y="937" text-anchor="middle" font-size="11" font-weight="600" fill="#333">CHÚ THÍCH</text>
+  <rect x="476" y="946" width="14" height="10" rx="2" fill="#DDEEFF" stroke="#4A6FA5" stroke-width="1"/>
+  <text x="497" y="956" font-size="10" fill="#333">Client / HIS action</text>
+  <rect x="476" y="963" width="14" height="10" rx="2" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="497" y="973" font-size="10" fill="#333">Server processing</text>
+  <rect x="476" y="980" width="14" height="10" rx="2" fill="#FFF8DC" stroke="#F57F17" stroke-width="1.5"/>
+  <text x="497" y="990" font-size="10" fill="#333">HAPI FHIR / Log</text>
+  <rect x="476" y="997" width="14" height="10" rx="2" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="497" y="1007" font-size="10" fill="#333">Error response</text>
+  <line x1="600" y1="952" x2="624" y2="952" stroke="#4A6FA5" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="630" y="956" font-size="10" fill="#333">Request / luồng chính</text>
+  <line x1="600" y1="968" x2="624" y2="968" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="630" y="972" font-size="10" fill="#333">Response thành công</text>
+  <line x1="600" y1="984" x2="624" y2="984" stroke="#C62828" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow-red)"/>
+  <text x="630" y="988" font-size="10" fill="#333">Response lỗi</text>
+
+</svg>
