@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Cổng Dữ Liệu KCB · FHIR R4B Console</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e14; --bg-2:#0f141c; --bg-3:#161c27;
+    --line:#202836; --line-2:#2a3344;
+    --ink:#e6edf6; --ink-2:#9aa6b8; --ink-3:#5c6577;
+    --emerald:#34d399; --amber:#fbbf24; --rose:#fb7185; --sky:#7dd3fc; --violet:#c4b5fd;
+  }
+  html,body{background:var(--bg);color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui;}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;}
+  .serif{font-family:Inter,serif;}
+  .panel{background:var(--bg-2);border:1px solid var(--line);}
+  .panel-2{background:var(--bg-3);border:1px solid var(--line);}
+  .hairline{border-color:var(--line);}
+  .ink-2{color:var(--ink-2);} .ink-3{color:var(--ink-3);}
+  .chip{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border:1px solid var(--line-2);border-radius:3px;color:var(--ink-2);}
+  .chip-em{border-color:rgba(52,211,153,.4);color:var(--emerald);background:rgba(52,211,153,.06);}
+  .chip-am{border-color:rgba(251,191,36,.4);color:var(--amber);background:rgba(251,191,36,.06);}
+  .chip-rs{border-color:rgba(251,113,133,.4);color:var(--rose);background:rgba(251,113,133,.06);}
+  .chip-sky{border-color:rgba(125,211,252,.4);color:var(--sky);background:rgba(125,211,252,.06);}
+  .chip-vi{border-color:rgba(196,181,253,.4);color:var(--violet);background:rgba(196,181,253,.06);}
+  .btn{font-family:'Inter',sans-serif;font-weight:500;font-size:13px;padding:7px 13px;border:1px solid var(--line-2);border-radius:4px;color:var(--ink);background:var(--bg-3);transition:all .12s;}
+  .btn:hover:not(:disabled){border-color:#3a465c;background:#1c2433;}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .btn-primary{background:#e6edf6;color:#0a0e14;border-color:#e6edf6;}
+  .btn-primary:hover:not(:disabled){background:#fff;border-color:#fff;}
+  .btn-ghost{background:transparent;}
+  .step-dot{width:22px;height:22px;border-radius:50%;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);background:var(--bg);flex-shrink:0;}
+  .step-dot.done{border-color:var(--emerald);color:var(--emerald);background:rgba(52,211,153,.08);}
+  .step-dot.active{border-color:var(--ink);color:var(--ink);background:var(--bg-3);}
+  .step-dot.error{border-color:var(--rose);color:var(--rose);background:rgba(251,113,133,.08);}
+  .tab{font-size:13px;padding:10px 16px;color:var(--ink-2);border-bottom:1px solid transparent;cursor:pointer;}
+  .tab.active{color:var(--ink);border-color:var(--ink);}
+  .input,.textarea,select.input{background:var(--bg);border:1px solid var(--line-2);color:var(--ink);padding:7px 10px;border-radius:3px;font-size:12.5px;font-family:'JetBrains Mono',monospace;width:100%;}
+  .input:focus,.textarea:focus{outline:none;border-color:#4a5772;}
+  .textarea{resize:vertical;min-height:140px;line-height:1.55;}
+  .kbd{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-3);background:var(--bg);border:1px solid var(--line);padding:1px 5px;border-radius:3px;}
+  .scroll-y{overflow-y:auto;}
+  .scroll-y::-webkit-scrollbar{width:6px;height:6px;}
+  .scroll-y::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:3px;}
+  .scroll-y::-webkit-scrollbar-track{background:transparent;}
+  .pulse-ring{position:relative;}
+  .pulse-ring::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--ink);opacity:.5;animation:pr 1.6s ease-out infinite;}
+  @keyframes pr{0%{transform:scale(.8);opacity:.6;}100%{transform:scale(1.4);opacity:0;}}
+  .stage-row{display:grid;grid-template-columns:32px 1fr;gap:14px;padding:9px 0;border-bottom:1px solid var(--line);}
+  .stage-row:last-child{border-bottom:none;}
+  details>summary{list-style:none;cursor:pointer;}
+  details>summary::-webkit-details-marker{display:none;}
+  .grid-bg{background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:40px 40px;background-position:-1px -1px;}
+  .marquee-bar{height:2px;background:linear-gradient(90deg,transparent,var(--emerald),transparent);background-size:50% 100%;animation:mq 1.4s linear infinite;}
+  @keyframes mq{0%{background-position:-100% 0;}100%{background-position:200% 0;}}
+  .arrow-down{width:1px;height:18px;background:var(--line-2);margin-left:15px;}
+  .res-pill{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:10.5px;border:1px solid var(--line-2);background:var(--bg);color:var(--ink-2);}
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- ==================== TOP BAR ==================== -->
+<header class="border-b hairline px-6 py-3 flex items-center justify-between" style="background:var(--bg-2);">
+  <div class="flex items-center gap-5">
+    <div class="flex items-center gap-2.5">
+      <div class="w-7 h-7 rounded-sm border hairline flex items-center justify-center" style="background:linear-gradient(135deg,#1a2333,#0f141c);">
+        <span class="serif text-base" style="color:var(--emerald);">F</span>
+      </div>
+      <div class="leading-tight">
+        <div class="text-[13px] font-semibold tracking-tight">Cổng Dữ Liệu KCB</div>
+        <div class="text-[10.5px] mono ink-3 uppercase tracking-wider">FHIR R4B · QĐ 130/4750</div>
+      </div>
+    </div>
+    <div class="h-7 w-px" style="background:var(--line);"></div>
+    <nav class="flex items-center gap-1 text-[12.5px]">
+      <button data-view="workflow" class="topnav px-3 py-1.5 rounded-sm text-white" style="background:var(--bg-3);">Quy trình A · Gửi XML</button>
+      <button data-view="pipeline" class="topnav px-3 py-1.5 rounded-sm ink-2">Quy trình B · Pipeline</button>
+      <button data-view="logs" class="topnav px-3 py-1.5 rounded-sm ink-2">Logs Cổng</button>
+      <button data-view="fhir" class="topnav px-3 py-1.5 rounded-sm ink-2">FHIR PATCH</button>
+    </nav>
+  </div>
+  <div class="flex items-center gap-3">
+    <div id="auth-pill" class="res-pill">
+      <span class="w-1.5 h-1.5 rounded-full" style="background:var(--rose);"></span>
+      <span>chưa đăng nhập</span>
+    </div>
+    <span class="kbd">fhir.{domain}</span>
+    <span class="chip">v4.3.0</span>
+  </div>
+</header>
+
+<!-- ==================== MAIN ==================== -->
+<div class="grid grid-cols-[300px_1fr] min-h-[calc(100vh-58px)]">
+
+  <!-- ===== SIDEBAR: Steps ===== -->
+  <aside class="border-r hairline px-5 py-6 scroll-y" style="background:var(--bg-2);max-height:calc(100vh - 58px);">
+    <div class="mb-5">
+      <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-1">Trình tự thực thi</div>
+      <div class="serif text-[22px] leading-tight">Luồng gửi dữ liệu KCB lên HAPI FHIR.</div>
+    </div>
+
+    <ol id="step-list" class="space-y-0.5"></ol>
+
+    <div class="mt-7 pt-5 border-t hairline">
+      <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-3">Trạng thái hồ sơ</div>
+      <div id="hsm-summary" class="space-y-2 text-[12px]"></div>
+    </div>
+
+    <div class="mt-7 pt-5 border-t hairline space-y-2">
+      <button id="btn-reset" class="btn btn-ghost w-full text-left">↺ Reset toàn bộ</button>
+      <button id="btn-demo" class="btn w-full text-left">▸ Chạy auto-demo</button>
+    </div>
+  </aside>
+
+  <!-- ===== CONTENT ===== -->
+  <main class="overflow-hidden">
+
+    <!-- ============== VIEW: WORKFLOW ============== -->
+    <section data-view-pane="workflow" class="block">
+
+      <!-- ===== STEP 1 — Login ===== -->
+      <div data-step="1" class="step-pane hidden">
+        <div class="px-8 pt-6 pb-3 border-b hairline">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-[10.5px] mono uppercase tracking-wider ink-3">Bước 1 / 7 · Xác thực</div>
+              <h1 class="serif text-[34px] leading-tight mt-1">Đăng nhập & lấy JWT token.</h1>
+              <p class="ink-2 text-[13.5px] mt-1.5 max-w-2xl">Mọi request (trừ <span class="mono ink-2">POST /api/auth/login</span>) đều yêu cầu header <span class="mono">Authorization: Bearer {access_token}</span>. Mật khẩu phải mã hóa <span class="chip chip-am inline-block ml-1">MD5 UPPERCASE</span> trước khi gửi.</p>
+            </div>
+            <span class="chip chip-sky">POST /api/auth/login</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-0">
+          <div class="px-8 py-6 border-r hairline">
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-3">Form đăng nhập</div>
+            <label class="block mb-3">
+              <span class="text-[11.5px] ink-2 mono uppercase tracking-wider">username</span>
+              <input id="f-user" class="input mt-1" value="bv_da_khoa_x" />
+            </label>
+            <label class="block mb-3">
+              <span class="text-[11.5px] ink-2 mono uppercase tracking-wider">password (plain)</span>
+              <input id="f-pass" type="password" class="input mt-1" value="ChangeMe123" />
+            </label>
+            <label class="block mb-4">
+              <span class="text-[11.5px] ink-2 mono uppercase tracking-wider">domain</span>
+              <input id="f-domain" class="input mt-1" value="bvdaknongx.health.gov.vn" />
+            </label>
+            <div class="flex items-center gap-2">
+              <button id="btn-login" class="btn btn-primary">Đăng nhập</button>
+              <button id="btn-refresh" class="btn" disabled>↻ Refresh token</button>
+              <button id="btn-revoke" class="btn" disabled>Đăng xuất</button>
+            </div>
+          </div>
+          <div class="px-8 py-6">
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-3">Request preview</div>
+            <pre id="login-req" class="mono text-[11.5px] ink-2 panel-2 p-3 rounded-sm whitespace-pre-wrap leading-relaxed"></pre>
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-3 mt-5">Response</div>
+            <pre id="login-res" class="mono text-[11.5px] ink-2 panel-2 p-3 rounded-sm whitespace-pre-wrap leading-relaxed min-h-[120px]">— chưa có response —</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== STEP 2 — XML0 builder ===== -->
+      <div data-step="2" class="step-pane hidden">
+        <div class="px-8 pt-6 pb-3 border-b hairline">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-[10.5px] mono uppercase tracking-wider ink-3">Bước 2 / 7 · Luồng A — Check-in</div>
+              <h1 class="serif text-[34px] leading-tight mt-1">Soạn tệp XML0 — trạng thái KCB.</h1>
+              <p class="ink-2 text-[13.5px] mt-1.5 max-w-2xl">Tạo nội dung <span class="mono">CHI_TIEU_TRANG_THAI_KCB</span>, ký số SHA256 vùng từ thẻ mở <span class="mono">&lt;CHI_TIEU_TRANG_THAI_KCB&gt;</span> đến hết <span class="mono">&lt;/DSACH_TRANG_THAI_KCB&gt;</span>, chèn vào <span class="mono">&lt;CHUKYDONVI&gt;</span>, rồi mã hóa Base64.</p>
+            </div>
+            <span class="chip chip-vi">XML0 · checkInKcbQd4750</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-[420px_1fr] gap-0">
+          <div class="px-8 py-6 border-r hairline">
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-3">Trường nhập</div>
+            <div class="grid grid-cols-2 gap-3">
+              <label><span class="text-[11px] ink-2 mono uppercase">MA_CSKCB</span><input id="x0-cskcb" class="input mt-1" value="01234"/></label>
+              <label><span class="text-[11px] ink-2 mono uppercase">MA_LK</span><input id="x0-malk" class="input mt-1" value="01234.20260501.0007821"/></label>
+              <label><span class="text-[11px] ink-2 mono uppercase">MA_BN</span><input id="x0-mabn" class="input mt-1" value="BN-2026-007821"/></label>
+              <label><span class="text-[11px] ink-2 mono uppercase">HO_TEN</span><input id="x0-hoten" class="input mt-1" value="NGUYỄN THỊ MAI"/></label>
+              <label><span class="text-[11px] ink-2 mono uppercase">SO_CCCD</span><input id="x0-cccd" class="input mt-1" value="048189000231"/></label>
+              <label><span class="text-[11px] ink-2 mono uppercase">NGAY_SINH</span><input id="x0-ns" class="input mt-1" value="19840716"/></label>
+              <label><span class="text-[11px] ink-2 mono uppercase">GIOI_TINH</span>
+                <select id="x0-gt" class="input mt-1"><option value="2">Nữ</option><option value="1">Nam</option></select></label>
+              <label><span class="text-[11px] ink-2 mono uppercase">MA_THE_BHYT</span><input id="x0-the" class="input mt-1" value="HC4014819000231"/></label>
+              <label><span class="text-[11px] ink-2 mono uppercase">NGAY_VAO</span><input id="x0-nv" class="input mt-1" value="202605010815"/></label>
+              <label><span class="text-[11px] ink-2 mono uppercase">MA_LOAI_KCB</span>
+                <select id="x0-lkcb" class="input mt-1"><option value="1">1 · Khám</option><option value="2">2 · Ngoại trú</option><option value="3" selected>3 · Nội trú</option></select></label>
+            </div>
+            <div class="mt-4 flex items-center gap-2">
+              <button id="x0-build" class="btn btn-primary" disabled>Sinh XML0</button>
+              <button id="x0-sign" class="btn" disabled>Ký SHA256</button>
+              <button id="x0-b64" class="btn" disabled>Base64</button>
+            </div>
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mt-5 mb-2">Tiến trình tệp</div>
+            <ol id="x0-steps" class="space-y-1.5 text-[12px] ink-2"></ol>
+          </div>
+
+          <div class="px-8 py-6 scroll-y" style="max-height:calc(100vh - 220px);">
+            <div class="flex items-center justify-between mb-2">
+              <div class="text-[10.5px] mono uppercase tracking-wider ink-3">XML0 source</div>
+              <div class="flex gap-2 text-[11px]">
+                <span id="x0-size" class="kbd">0 B</span>
+                <span id="x0-hash" class="kbd">sha256: —</span>
+              </div>
+            </div>
+            <pre id="x0-xml" class="mono text-[11.5px] ink-2 panel-2 p-4 rounded-sm whitespace-pre leading-relaxed">— bấm "Sinh XML0" để tạo nội dung —</pre>
+
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mt-5 mb-2">fileHSBase64 (rút gọn)</div>
+            <pre id="x0-b64-out" class="mono text-[11px] ink-3 panel-2 p-3 rounded-sm break-all leading-relaxed min-h-[60px]">—</pre>
+
+            <div class="mt-5 flex items-center justify-between border-t hairline pt-4">
+              <div class="text-[12.5px] ink-2">Sẵn sàng gửi tới <span class="mono">POST /api/qd130/checkInKcbQd4750</span>?</div>
+              <button id="x0-send" class="btn btn-primary" disabled>Gửi check-in →</button>
+            </div>
+            <pre id="x0-resp" class="mono text-[11.5px] ink-2 panel-2 p-3 rounded-sm whitespace-pre-wrap mt-3 min-h-[80px]">— chưa gửi —</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== STEP 3 — Select XML1..11 ===== -->
+      <div data-step="3" class="step-pane hidden">
+        <div class="px-8 pt-6 pb-3 border-b hairline">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-[10.5px] mono uppercase tracking-wider ink-3">Bước 3 / 7 · Luồng B — Chọn tệp con</div>
+              <h1 class="serif text-[34px] leading-tight mt-1">Chọn các bảng XML cần đóng gói.</h1>
+              <p class="ink-2 text-[13.5px] mt-1.5 max-w-2xl">Bệnh án này có thể bao gồm Bảng 1 (tổng hợp, bắt buộc) và các bảng chi tiết tùy theo loại hồ sơ. Mỗi tệp được mã hóa <span class="chip">Base64</span> rồi nhúng vào <span class="mono">&lt;NOIDUNGFILE&gt;</span> trong wrapper.</p>
+            </div>
+            <span class="chip chip-vi">XML1 — XML11</span>
+          </div>
+        </div>
+
+        <div class="px-8 py-6">
+          <div id="xml-grid" class="grid grid-cols-3 gap-2.5"></div>
+
+          <div class="mt-6 flex items-center gap-3">
+            <button id="x-encode" class="btn btn-primary" disabled>Mã hóa Base64 các tệp đã chọn →</button>
+            <span id="x-count" class="text-[12.5px] ink-2 mono">0 tệp được chọn</span>
+          </div>
+
+          <div id="x-encode-list" class="mt-5 hidden">
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-2">Kết quả Base64</div>
+            <div id="x-encode-rows" class="space-y-1.5"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== STEP 4 — Build wrapper GIAMDINHHS ===== -->
+      <div data-step="4" class="step-pane hidden">
+        <div class="px-8 pt-6 pb-3 border-b hairline">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-[10.5px] mono uppercase tracking-wider ink-3">Bước 4 / 7 · Luồng B</div>
+              <h1 class="serif text-[34px] leading-tight mt-1">Đóng gói wrapper GIAMDINHHS.</h1>
+              <p class="ink-2 text-[13.5px] mt-1.5 max-w-2xl">Ghép các tệp XML con đã Base64 vào wrapper. Ký SHA256 vùng từ <span class="mono">&lt;THONGTINDONVI&gt;</span> đến <span class="mono">&lt;/THONGTINHOSO&gt;</span>, đặt vào <span class="mono">&lt;CHUKYDONVI&gt;</span>, sau đó Base64 toàn bộ wrapper.</p>
+            </div>
+            <span class="chip chip-vi">GIAMDINHHS</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-[360px_1fr] gap-0">
+          <div class="px-8 py-6 border-r hairline">
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-3">THONGTINDONVI</div>
+            <label class="block mb-3"><span class="text-[11px] ink-2 mono uppercase">MACSKCB</span><input id="w-cskcb" class="input mt-1" value="01234"/></label>
+            <label class="block mb-3"><span class="text-[11px] ink-2 mono uppercase">NGAYLAP</span><input id="w-ngay" class="input mt-1" value="20260501"/></label>
+            <label class="block mb-4"><span class="text-[11px] ink-2 mono uppercase">SOLUONGHOSO</span><input id="w-soluong" class="input mt-1" value="1"/></label>
+            <button id="w-build" class="btn btn-primary w-full" disabled>① Build wrapper</button>
+            <button id="w-sign" class="btn w-full mt-2" disabled>② Ký SHA256</button>
+            <button id="w-b64" class="btn w-full mt-2" disabled>③ Base64 wrapper</button>
+
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mt-6 mb-2">Tiến trình tệp</div>
+            <ol id="w-steps" class="space-y-1.5 text-[12px] ink-2"></ol>
+          </div>
+          <div class="px-8 py-6 scroll-y" style="max-height:calc(100vh - 220px);">
+            <div class="flex items-center justify-between mb-2">
+              <div class="text-[10.5px] mono uppercase tracking-wider ink-3">Wrapper source</div>
+              <div class="flex gap-2 text-[11px]">
+                <span id="w-size" class="kbd">0 B</span>
+                <span id="w-hash" class="kbd">sha256: —</span>
+              </div>
+            </div>
+            <pre id="w-xml" class="mono text-[11.5px] ink-2 panel-2 p-4 rounded-sm whitespace-pre leading-relaxed">— bấm "Build wrapper" để tạo —</pre>
+
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mt-5 mb-2">fileHSBase64 (rút gọn)</div>
+            <pre id="w-b64-out" class="mono text-[11px] ink-3 panel-2 p-3 rounded-sm break-all leading-relaxed min-h-[60px]">—</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== STEP 5 — Submit ===== -->
+      <div data-step="5" class="step-pane hidden">
+        <div class="px-8 pt-6 pb-3 border-b hairline">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-[10.5px] mono uppercase tracking-wider ink-3">Bước 5 / 7 · Luồng B</div>
+              <h1 class="serif text-[34px] leading-tight mt-1">Gửi hồ sơ KCB.</h1>
+              <p class="ink-2 text-[13.5px] mt-1.5 max-w-2xl">POST <span class="mono">/api/qd130/guiHoSoXmlQD4750</span> với <span class="mono">fileHSBase64</span> dưới dạng <span class="chip">x-www-form-urlencoded</span>. Server trả <span class="mono">logId</span> + <span class="mono">metadata.status</span> ∈ {success, pending, error}.</p>
+            </div>
+            <span class="chip chip-sky">guiHoSoXmlQD4750</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-0">
+          <div class="px-8 py-6 border-r hairline">
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-2">Request</div>
+            <pre id="sub-req" class="mono text-[11.5px] ink-2 panel-2 p-3 rounded-sm whitespace-pre-wrap leading-relaxed">— chưa có wrapper —</pre>
+            <div class="mt-5 flex items-center gap-3">
+              <button id="sub-send" class="btn btn-primary" disabled>Gửi hồ sơ KCB →</button>
+              <label class="text-[12px] ink-2 flex items-center gap-2">
+                <input type="checkbox" id="sub-pending" class="accent-emerald-400"> Mô phỏng status = pending
+              </label>
+            </div>
+          </div>
+          <div class="px-8 py-6">
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-2">Response</div>
+            <pre id="sub-res" class="mono text-[11.5px] ink-2 panel-2 p-3 rounded-sm whitespace-pre-wrap leading-relaxed min-h-[180px]">— chưa gửi —</pre>
+            <div id="sub-status" class="mt-3 hidden">
+              <div class="flex items-center gap-2 text-[12.5px]">
+                <span class="ink-2">Trạng thái:</span>
+                <span id="sub-status-pill" class="chip">—</span>
+                <span class="ink-2">·</span>
+                <span class="ink-2">logId:</span>
+                <span id="sub-logid" class="mono ink-2 text-[11.5px]">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== STEP 6 — Pipeline preview ===== -->
+      <div data-step="6" class="step-pane hidden">
+        <div class="px-8 pt-6 pb-3 border-b hairline">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-[10.5px] mono uppercase tracking-wider ink-3">Bước 6 / 7 · Quy trình B (server)</div>
+              <h1 class="serif text-[34px] leading-tight mt-1">Pipeline chuyển đổi nội bộ.</h1>
+              <p class="ink-2 text-[13.5px] mt-1.5 max-w-2xl">Theo dõi 7 giai đoạn server xử lý: giải mã Base64 → parse XML → tách tệp con → ánh xạ FHIR → làm giàu (CodeSystem, Organization, Practitioner) → đóng gói Bundle transaction → POST HAPI FHIR.</p>
+            </div>
+            <button id="pipe-run" class="btn btn-primary" disabled>▸ Bắt đầu pipeline</button>
+          </div>
+        </div>
+
+        <div class="px-8 py-6">
+          <div class="grid grid-cols-[1fr_440px] gap-6">
+            <div id="pipe-stages" class="panel rounded-sm px-5 py-3"></div>
+            <div>
+              <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-2">Bundle transaction sinh ra</div>
+              <pre id="pipe-bundle" class="mono text-[11px] ink-2 panel-2 p-3 rounded-sm scroll-y leading-relaxed" style="max-height:520px;">— chạy pipeline để xem Bundle —</pre>
+              <div id="pipe-stats" class="mt-3 grid grid-cols-3 gap-2 text-[11.5px]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== STEP 7 — Verify ===== -->
+      <div data-step="7" class="step-pane hidden">
+        <div class="px-8 pt-6 pb-3 border-b hairline">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-[10.5px] mono uppercase tracking-wider ink-3">Bước 7 / 7 · Kiểm tra</div>
+              <h1 class="serif text-[34px] leading-tight mt-1">Tra cứu & xác nhận log.</h1>
+              <p class="ink-2 text-[13.5px] mt-1.5 max-w-2xl">Dùng <span class="mono">GET /api/logs?id={logId}</span> để kiểm tra trạng thái cuối. Nếu <span class="chip chip-am inline-block">pending</span> — chờ vài phút, nếu <span class="chip chip-rs inline-block">error</span> — đọc message, sửa và gửi lại.</p>
+            </div>
+            <span class="chip chip-sky">GET /api/logs</span>
+          </div>
+        </div>
+
+        <div class="px-8 py-6 grid grid-cols-2 gap-0">
+          <div class="pr-6 border-r hairline">
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-2">Tra cứu logId</div>
+            <div class="flex gap-2">
+              <input id="vr-logid" class="input flex-1" placeholder="abc-123" />
+              <button id="vr-go" class="btn btn-primary">Tra cứu</button>
+            </div>
+            <div class="mt-4 text-[10.5px] mono uppercase tracking-wider ink-3 mb-2">logId gần đây</div>
+            <ul id="vr-recent" class="space-y-1.5 text-[12px]"></ul>
+          </div>
+          <div class="pl-6">
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-2">Kết quả</div>
+            <pre id="vr-out" class="mono text-[11.5px] ink-2 panel-2 p-3 rounded-sm whitespace-pre-wrap min-h-[200px]">— chưa tra cứu —</pre>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============== VIEW: PIPELINE (full diagram) ============== -->
+    <section data-view-pane="pipeline" class="hidden p-8 scroll-y" style="max-height:calc(100vh - 58px);">
+      <div class="max-w-[1100px]">
+        <div class="text-[10.5px] mono uppercase tracking-wider ink-3">Quy trình B</div>
+        <h1 class="serif text-[40px] leading-tight mt-1">Pipeline server: XML → FHIR Bundle → HAPI FHIR.</h1>
+        <p class="ink-2 text-[14px] mt-3 max-w-3xl">Sơ đồ tổng thể luồng xử lý nội bộ từ khi nhận payload Base64 đến khi commit transaction Bundle vào HAPI FHIR. Bấm vào từng giai đoạn để xem chi tiết các thao tác.</p>
+
+        <div class="mt-7 grid grid-cols-[1fr_320px] gap-7">
+          <div class="panel rounded-sm">
+            <div id="pipe-full" class="px-6 py-4"></div>
+          </div>
+          <div>
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mb-2">Ánh xạ XML → FHIR</div>
+            <div class="panel-2 rounded-sm">
+              <table class="w-full text-[12px]">
+                <thead><tr class="ink-3 text-[10.5px] mono uppercase tracking-wider"><th class="text-left p-2.5 border-b hairline">XML</th><th class="text-left p-2.5 border-b hairline">FHIR Resource</th></tr></thead>
+                <tbody id="map-table"></tbody>
+              </table>
+            </div>
+
+            <div class="text-[10.5px] mono uppercase tracking-wider ink-3 mt-6 mb-2">Quy tắc ánh xạ trường</div>
+            <ul class="space-y-2 text-[12.5px] ink-2">
+              <li>• <span class="mono">MA_LK, MA_BN, MA_CSKCB</span> → <span class="mono">Resource.identifier[]</span></li>
+              <li>• Mã danh mục → <span class="mono">CodeableConcept.coding[]</span></li>
+              <li>• <span class="mono">NGAY_VAO/RA</span> → FHIR <span class="mono">dateTime</span> ISO-8601</li>
+              <li>• <span class="mono">T_BHTT, T_BNTT</span> → <span class="mono">Money</span> · VND</li>
+              <li>• Reference nội bộ → <span class="mono">urn:uuid:</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== VIEW: LOGS ============== -->
+    <section data-view-pane="logs" class="hidden p-8 scroll-y" style="max-height:calc(100vh - 58px);">
+      <div class="flex items-end justify-between border-b hairline pb-4">
+        <div>
+          <div class="text-[10.5px] mono uppercase tracking-wider ink-3">IV · Kiểm soát hồ sơ trên Cổng</div>
+          <h1 class="serif text-[34px] leading-tight mt-1">Logs · GET /api/logs</h1>
+        </div>
+        <div class="flex items-end gap-2">
+          <label class="text-[11.5px] ink-2 mono uppercase tracking-wider">fromDate<input id="lg-from" class="input mt-1" value="20260401" style="width:140px;"/></label>
+          <label class="text-[11.5px] ink-2 mono uppercase tracking-wider">toDate<input id="lg-to" class="input mt-1" value="20260531" style="width:140px;"/></label>
+          <select id="lg-rt" class="input" style="width:120px;"><option value="">Tất cả</option><option value="xml">xml</option><option value="json">json</option></select>
+          <button id="lg-go" class="btn btn-primary">Tải logs</button>
+        </div>
+      </div>
+
+      <table class="w-full text-[12.5px] mt-4">
+        <thead>
+          <tr class="ink-3 text-[10.5px] mono uppercase tracking-wider">
+            <th class="text-left p-2.5 border-b hairline">logId</th>
+            <th class="text-left p-2.5 border-b hairline">action</th>
+            <th class="text-left p-2.5 border-b hairline">type</th>
+            <th class="text-left p-2.5 border-b hairline">timestamp</th>
+            <th class="text-left p-2.5 border-b hairline">status</th>
+            <th class="text-left p-2.5 border-b hairline">message</th>
+          </tr>
+        </thead>
+        <tbody id="lg-rows"></tbody>
+      </table>
+      <div id="lg-page" class="mt-3 flex items-center justify-between text-[12px] ink-2"></div>
+    </section>
+
+    <!-- ============== VIEW: FHIR PATCH ============== -->
+    <section data-view-pane="fhir" class="hidden p-8 scroll-y" style="max-height:calc(100vh - 58px);">
+      <div class="border-b hairline pb-4">
+        <div class="text-[10.5px] mono uppercase tracking-wider ink-3">Giai đoạn 7 · Bổ sung sau import</div>
+        <h1 class="serif text-[34px] leading-tight mt-1">FHIR PATCH · Coverage · Medication · ClaimResponse.</h1>
+        <p class="ink-2 text-[13.5px] mt-2 max-w-3xl">Sau khi import XML thành công, một số resource cần bổ sung dữ liệu từ nguồn ngoài (BHXH, Cục Quản lý Dược, WHO ATC). Sử dụng định dạng <span class="chip">application/json-patch+json</span>.</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 mt-5" id="patch-grid"></div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+/* =========================================================================
+   STATE
+   ========================================================================= */
+const STATE = {
+  view:'workflow',
+  step:1,
+  auth:null,           // {access_token, refresh_token, expires_in, username}
+  xml0:{xml:null,signed:null,b64:null,hash:null,logId:null,resp:null},
+  picked:new Set(),
+  encoded:{},          // {XML1: {b64, size}}
+  wrapper:{xml:null,signed:null,b64:null,hash:null},
+  submission:{logId:null,status:null,resp:null},
+  pipelineDone:false,
+  recentLogs:[],
+};
+
+/* =========================================================================
+   STEP CONFIG
+   ========================================================================= */
+const STEPS = [
+  {n:1,title:'Đăng nhập & lấy JWT',sub:'POST /api/auth/login'},
+  {n:2,title:'Soạn XML0 — Check-in',sub:'CHI_TIEU_TRANG_THAI_KCB'},
+  {n:3,title:'Chọn tệp XML1–XML11',sub:'Đóng gói hồ sơ KCB'},
+  {n:4,title:'Build wrapper GIAMDINHHS',sub:'Ký SHA256 + Base64'},
+  {n:5,title:'Gửi guiHoSoXmlQD4750',sub:'POST hồ sơ KCB'},
+  {n:6,title:'Pipeline server (XML→FHIR)',sub:'7 giai đoạn nội bộ'},
+  {n:7,title:'Tra cứu log & xác nhận',sub:'GET /api/logs'},
+];
+
+const XML_FILES = [
+  {code:'XML1',name:'Tổng hợp KCB',req:true,fhir:'Patient · Encounter · Claim · Coverage'},
+  {code:'XML2',name:'Chi tiết thuốc',fhir:'Medication · MedicationRequest'},
+  {code:'XML3',name:'DVKT & VTYT',fhir:'ServiceRequest · Procedure · Device'},
+  {code:'XML4',name:'Cận lâm sàng',fhir:'DiagnosticReport · Observation'},
+  {code:'XML5',name:'Diễn biến lâm sàng',fhir:'ClinicalImpression'},
+  {code:'XML6',name:'HIV/AIDS',fhir:'Condition · EpisodeOfCare'},
+  {code:'XML7',name:'Giấy ra viện',fhir:'Encounter (discharge) · Composition'},
+  {code:'XML8',name:'Tóm tắt HSBA',fhir:'Composition · DocumentReference'},
+  {code:'XML9',name:'Giấy chứng sinh',fhir:'Patient (newborn) · Observation'},
+  {code:'XML10',name:'Nghỉ dưỡng thai',fhir:'Condition · DocumentReference'},
+  {code:'XML11',name:'Nghỉ hưởng BHXH',fhir:'Condition · Claim'},
+];
+
+const PIPELINE = [
+  {phase:'1.1',title:'Nhận payload Base64',desc:'fileHSBase64 qua x-www-form-urlencoded'},
+  {phase:'1.2',title:'Decode Base64 → XML bytes',desc:'UTF-8 raw bytes'},
+  {phase:'1.3',title:'Parse XML → DOM',desc:'lỗi cú pháp → 422'},
+  {phase:'1.4',title:'Xác thực SHA256 / CHUKYDONVI',desc:'so khớp chữ ký đơn vị'},
+  {phase:'2.1',title:'Đọc THONGTINDONVI',desc:'MACSKCB · NGAYLAP · SOLUONGHOSO'},
+  {phase:'2.2',title:'Duyệt FILEHOSO[]',desc:'với mỗi entry: LOAIHOSO + Base64 NOIDUNGFILE'},
+  {phase:'2.3',title:'Parse XML con',desc:'theo schema bảng 1–11'},
+  {phase:'3',title:'Map XML → FHIR Resources',desc:'identifier · CodeableConcept · dateTime · Money'},
+  {phase:'4.1',title:'Tra cứu CodeSystem',desc:'icd-10-vn · dvkt-vn · thuoc-vn'},
+  {phase:'4.2',title:'Resolve Organization',desc:'MA_CSKCB · MA_KHOA → Organization/{id}'},
+  {phase:'4.3',title:'Resolve Practitioner',desc:'MA_BAC_SI · NGUOI_THUC_HIEN'},
+  {phase:'5.1',title:'Tạo Bundle transaction',desc:'entry[] với urn:uuid: cho ref nội bộ'},
+  {phase:'5.3',title:'Validate Bundle (FHIR R4B)',desc:'cardinality · required · profile'},
+  {phase:'6.1',title:'POST Bundle vào HAPI FHIR',desc:'all-or-nothing transaction'},
+  {phase:'6.2',title:'Nhận transaction-response',desc:'OperationOutcome cho từng entry'},
+  {phase:'6.3',title:'Ghi log + trả logId',desc:'response cuối cho client'},
+];
+
+/* =========================================================================
+   UTILS
+   ========================================================================= */
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+async function sha256(text){
+  const buf = new TextEncoder().encode(text);
+  const h = await crypto.subtle.digest('SHA-256', buf);
+  return [...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+async function md5upper(text){
+  // simple MD5 fallback (no native), just hash with djb2-like for demo, then upper.
+  // Real MD5 isn't in WebCrypto — show as visual MD5 placeholder using sha-256 truncated for demo.
+  const h = await sha256(text);
+  return h.slice(0,32).toUpperCase();
+}
+function b64encode(text){
+  return btoa(unescape(encodeURIComponent(text)));
+}
+function shorten(s, head=60, tail=20){
+  if(!s) return '—';
+  if(s.length <= head+tail+5) return s;
+  return s.slice(0,head)+' … '+s.slice(-tail)+`  [${s.length} chars]`;
+}
+function fmtBytes(n){
+  if(n<1024) return n+' B';
+  if(n<1024*1024) return (n/1024).toFixed(1)+' KB';
+  return (n/1048576).toFixed(2)+' MB';
+}
+function uuid(){
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{
+    const r=Math.random()*16|0, v=c=='x'?r:(r&0x3|0x8); return v.toString(16);
+  });
+}
+function nowIso(){ return new Date().toISOString().replace(/\.\d+Z$/,'Z'); }
+
+/* =========================================================================
+   SIDEBAR — STEPS
+   ========================================================================= */
+function renderSteps(){
+  const ul = $('#step-list'); ul.innerHTML='';
+  STEPS.forEach(s=>{
+    const li = document.createElement('li');
+    const status = stepStatus(s.n);
+    li.className = 'flex items-start gap-3 py-2.5 px-2 rounded-sm cursor-pointer hover:bg-white/5 ' + (s.n===STATE.step?'bg-white/5':'');
+    li.innerHTML = `
+      <div class="step-dot ${status}">${status==='done'?'✓':s.n}</div>
+      <div class="leading-tight pt-0.5">
+        <div class="text-[13px] ${s.n===STATE.step?'text-white':'ink-2'}">${s.title}</div>
+        <div class="text-[10.5px] mono ink-3 mt-0.5">${s.sub}</div>
+      </div>`;
+    li.addEventListener('click', ()=>{ STATE.step=s.n; renderSteps(); showStep(s.n); });
+    ul.appendChild(li);
+  });
+  renderHsmSummary();
+}
+function stepStatus(n){
+  if(n===1 && STATE.auth) return 'done';
+  if(n===2 && STATE.xml0.logId) return 'done';
+  if(n===3 && Object.keys(STATE.encoded).length>0) return 'done';
+  if(n===4 && STATE.wrapper.b64) return 'done';
+  if(n===5 && STATE.submission.logId) return 'done';
+  if(n===6 && STATE.pipelineDone) return 'done';
+  if(n===7 && STATE.recentLogs.some(l=>l.viewed)) return 'done';
+  if(n===STATE.step) return 'active';
+  return '';
+}
+function renderHsmSummary(){
+  const auth = STATE.auth;
+  const wrap = $('#hsm-summary');
+  wrap.innerHTML = `
+    <div class="flex items-center justify-between"><span class="ink-3 text-[11px] mono">JWT</span>
+      <span>${auth?`<span class="chip chip-em">active</span>`:'<span class="chip">none</span>'}</span></div>
+    <div class="flex items-center justify-between"><span class="ink-3 text-[11px] mono">XML0</span>
+      <span>${STATE.xml0.b64?`<span class="chip chip-em">${fmtBytes(STATE.xml0.b64.length)}</span>`:'<span class="chip">—</span>'}</span></div>
+    <div class="flex items-center justify-between"><span class="ink-3 text-[11px] mono">XML con đã chọn</span>
+      <span><span class="chip">${STATE.picked.size} / 11</span></span></div>
+    <div class="flex items-center justify-between"><span class="ink-3 text-[11px] mono">Wrapper</span>
+      <span>${STATE.wrapper.b64?`<span class="chip chip-em">${fmtBytes(STATE.wrapper.b64.length)}</span>`:'<span class="chip">—</span>'}</span></div>
+    <div class="flex items-center justify-between"><span class="ink-3 text-[11px] mono">Submission</span>
+      <span>${STATE.submission.status?`<span class="chip ${STATE.submission.status==='success'?'chip-em':STATE.submission.status==='pending'?'chip-am':'chip-rs'}">${STATE.submission.status}</span>`:'<span class="chip">—</span>'}</span></div>`;
+}
+
+/* =========================================================================
+   VIEW SWITCHER
+   ========================================================================= */
+function setView(v){
+  STATE.view = v;
+  $$('[data-view-pane]').forEach(el=>el.classList.toggle('hidden',el.dataset.viewPane!==v));
+  $$('.topnav').forEach(b=>{
+    const active = b.dataset.view===v;
+    b.classList.toggle('text-white',active);
+    b.classList.toggle('ink-2',!active);
+    b.style.background = active ? 'var(--bg-3)' : 'transparent';
+  });
+}
+$$('.topnav').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+
+function showStep(n){
+  $$('.step-pane').forEach(el=>el.classList.toggle('hidden',+el.dataset.step!==n));
+}
+
+/* =========================================================================
+   STEP 1 — LOGIN
+   ========================================================================= */
+async function refreshLoginPreview(){
+  const u = $('#f-user').value, p = $('#f-pass').value, d = $('#f-domain').value;
+  const md5 = await md5upper(p);
+  $('#login-req').textContent = `POST https://fhir.${d}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "${u}",
+  "password": "${md5}"   // MD5 UPPERCASE của "${p}"
+}`;
+}
+['f-user','f-pass','f-domain'].forEach(id=>$('#'+id).addEventListener('input',refreshLoginPreview));
+
+$('#btn-login').addEventListener('click', async ()=>{
+  await refreshLoginPreview();
+  const tok = 'eyJhbGciOiJIUzI1NiJ9.'+btoa(`{"sub":"${$('#f-user').value}","exp":${Math.floor(Date.now()/1000)+3600}}`)+'.'+(await sha256($('#f-user').value)).slice(0,32);
+  const exp = new Date(Date.now()+3600e3).toISOString();
+  STATE.auth = {
+    access_token: tok,
+    refresh_token: 'rfk_'+uuid(),
+    token_type:'Bearer',
+    expires_in: exp,
+    username: $('#f-user').value
+  };
+  $('#login-res').textContent = `HTTP 200 OK\n\n${JSON.stringify({...STATE.auth, access_token: shorten(STATE.auth.access_token,40,8)},null,2)}`;
+  $('#auth-pill').innerHTML = `<span class="w-1.5 h-1.5 rounded-full" style="background:var(--emerald);"></span><span>${STATE.auth.username} · token hợp lệ tới ${new Date(exp).toLocaleTimeString('vi-VN')}</span>`;
+  $('#btn-refresh').disabled = false;
+  $('#btn-revoke').disabled = false;
+  $('#x0-build').disabled = false;
+  renderSteps();
+});
+$('#btn-refresh').addEventListener('click', ()=>{
+  if(!STATE.auth) return;
+  STATE.auth.access_token = 'eyJhbGciOiJIUzI1NiJ9.'+btoa(`{"sub":"${STATE.auth.username}","iat":${Date.now()}}`)+'.'+uuid().replace(/-/g,'');
+  STATE.auth.refresh_token = 'rfk_'+uuid();
+  STATE.auth.expires_in = new Date(Date.now()+3600e3).toISOString();
+  $('#login-res').textContent = `HTTP 200 OK · token đã được rotate\n\n${JSON.stringify({...STATE.auth, access_token: shorten(STATE.auth.access_token,40,8)},null,2)}`;
+});
+$('#btn-revoke').addEventListener('click', ()=>{
+  STATE.auth = null;
+  $('#login-res').textContent = `HTTP 200 OK\n\n{ "status": 200, "message": "Token đã được thu hồi thành công" }`;
+  $('#auth-pill').innerHTML = `<span class="w-1.5 h-1.5 rounded-full" style="background:var(--rose);"></span><span>chưa đăng nhập</span>`;
+  $('#btn-refresh').disabled = true;
+  $('#btn-revoke').disabled = true;
+  $('#x0-build').disabled = true;
+  renderSteps();
+});
+
+/* =========================================================================
+   STEP 2 — XML0
+   ========================================================================= */
+function buildXml0(){
+  const v = id => $('#'+id).value;
+  return `<?xml version="1.0" encoding="utf-8"?>
+<CHI_TIEU_TRANG_THAI_KCB>
+  <DSACH_TRANG_THAI_KCB>
+    <TRANG_THAI_KCB>
+      <MA_LK>${v('x0-malk')}</MA_LK>
+      <STT>1</STT>
+      <MA_BN>${v('x0-mabn')}</MA_BN>
+      <HO_TEN>${v('x0-hoten')}</HO_TEN>
+      <SO_CCCD>${v('x0-cccd')}</SO_CCCD>
+      <NGAY_SINH>${v('x0-ns')}</NGAY_SINH>
+      <GIOI_TINH>${v('x0-gt')}</GIOI_TINH>
+      <MA_THE_BHYT>${v('x0-the')}</MA_THE_BHYT>
+      <NGAY_VAO>${v('x0-nv')}</NGAY_VAO>
+      <MA_LOAI_KCB>${v('x0-lkcb')}</MA_LOAI_KCB>
+      <MA_CSKCB>${v('x0-cskcb')}</MA_CSKCB>
+      <NGAY_YL>${v('x0-nv')}</NGAY_YL>
+    </TRANG_THAI_KCB>
+  </DSACH_TRANG_THAI_KCB>
+  <CHUKYDONVI/>
+</CHI_TIEU_TRANG_THAI_KCB>`;
+}
+function setXmlSteps(target, steps){
+  const wrap = $('#'+target); wrap.innerHTML='';
+  steps.forEach(s=>{
+    const li = document.createElement('li');
+    li.className = 'flex items-center gap-2';
+    li.innerHTML = `<span class="${s.done?'text-emerald-400':'ink-3'}">${s.done?'✓':'○'}</span><span class="${s.done?'':'ink-3'}">${s.label}</span>`;
+    wrap.appendChild(li);
+  });
+}
+function refreshX0Steps(){
+  setXmlSteps('x0-steps',[
+    {label:'Sinh nội dung XML0',done:!!STATE.xml0.xml},
+    {label:'Ký SHA256 vùng &lt;CHI_TIEU_TRANG_THAI_KCB&gt;…&lt;/DSACH&gt;',done:!!STATE.xml0.signed},
+    {label:'Mã hóa Base64 toàn bộ tệp',done:!!STATE.xml0.b64},
+    {label:'Gửi POST /checkInKcbQd4750',done:!!STATE.xml0.logId},
+  ]);
+}
+$('#x0-build').addEventListener('click', async ()=>{
+  STATE.xml0.xml = buildXml0();
+  $('#x0-xml').textContent = STATE.xml0.xml;
+  $('#x0-size').textContent = fmtBytes(STATE.xml0.xml.length);
+  $('#x0-sign').disabled = false;
+  refreshX0Steps();
+});
+$('#x0-sign').addEventListener('click', async ()=>{
+  const re = /<CHI_TIEU_TRANG_THAI_KCB>[\s\S]*?<\/DSACH_TRANG_THAI_KCB>/;
+  const region = STATE.xml0.xml.match(re)[0];
+  const hash = await sha256(region);
+  STATE.xml0.hash = hash;
+  STATE.xml0.signed = STATE.xml0.xml.replace('<CHUKYDONVI/>',`<CHUKYDONVI>${hash}</CHUKYDONVI>`);
+  $('#x0-xml').textContent = STATE.xml0.signed;
+  $('#x0-hash').textContent = 'sha256: '+hash.slice(0,12)+'…';
+  $('#x0-b64').disabled = false;
+  refreshX0Steps();
+});
+$('#x0-b64').addEventListener('click', ()=>{
+  STATE.xml0.b64 = b64encode(STATE.xml0.signed);
+  $('#x0-b64-out').textContent = shorten(STATE.xml0.b64, 90, 30);
+  $('#x0-send').disabled = false;
+  refreshX0Steps();
+  renderHsmSummary();
+});
+$('#x0-send').addEventListener('click', async ()=>{
+  if(!STATE.auth){ $('#x0-resp').textContent='HTTP 401 — chưa có token.'; return; }
+  const logId = uuid();
+  STATE.xml0.logId = logId;
+  $('#x0-resp').textContent = `HTTP 200 OK\n\n${JSON.stringify({logId, metadata:{status:'success',message:'Check-in thành công',code:'200'}},null,2)}`;
+  pushLog({id:logId, action:'checkIn', resourceType:'xml', metadata:{status:'success',message:'Check-in thành công',code:'200'}, resourceData:'fileHSBase64=...'});
+  refreshX0Steps();
+  renderSteps();
+});
+
+/* =========================================================================
+   STEP 3 — XML files
+   ========================================================================= */
+function renderXmlGrid(){
+  const g = $('#xml-grid'); g.innerHTML='';
+  XML_FILES.forEach(f=>{
+    const checked = STATE.picked.has(f.code);
+    const card = document.createElement('label');
+    card.className = `panel rounded-sm p-3.5 cursor-pointer block transition ${checked?'!border-emerald-500/40':''}`;
+    if(checked) card.style.background='rgba(52,211,153,.04)';
+    card.innerHTML = `
+      <div class="flex items-start justify-between mb-1.5">
+        <div class="flex items-center gap-2">
+          <input type="checkbox" class="accent-emerald-400" ${checked?'checked':''} ${f.req?'disabled':''}/>
+          <span class="mono text-[12px] font-medium">${f.code}</span>
+          ${f.req?'<span class="chip">bắt buộc</span>':''}
+        </div>
+      </div>
+      <div class="text-[13px] leading-tight">${f.name}</div>
+      <div class="text-[10.5px] mono ink-3 mt-1.5 leading-snug">→ ${f.fhir}</div>`;
+    card.querySelector('input').addEventListener('change', e=>{
+      if(e.target.checked) STATE.picked.add(f.code); else STATE.picked.delete(f.code);
+      renderXmlGrid(); updateXmlCount();
+    });
+    g.appendChild(card);
+  });
+}
+function updateXmlCount(){
+  $('#x-count').textContent = `${STATE.picked.size} tệp được chọn`;
+  $('#x-encode').disabled = STATE.picked.size===0;
+}
+function sampleXmlChild(code){
+  const samples = {
+    XML1:`<TONG_HOP><MA_LK>01234.20260501.0007821</MA_LK><MA_BENH_CHINH>I21.0</MA_BENH_CHINH><T_BHTT>4250000</T_BHTT><MA_KHOA>K01</MA_KHOA></TONG_HOP>`,
+    XML2:`<CHI_TIET_THUOC><MA_THUOC>VN-12345-09</MA_THUOC><TEN_THUOC>Ramipril 5mg</TEN_THUOC><SO_LUONG>14</SO_LUONG></CHI_TIET_THUOC>`,
+    XML3:`<CHI_TIET_DVKT><MA_DICH_VU>5012.0123</MA_DICH_VU><TEN_DICH_VU>Siêu âm tim</TEN_DICH_VU></CHI_TIET_DVKT>`,
+    XML4:`<CHI_TIET_CLS><MA_CHI_SO>HGB</MA_CHI_SO><GIA_TRI>13.4</GIA_TRI><DON_VI_DO>g/dL</DON_VI_DO></CHI_TIET_CLS>`,
+    XML5:`<CHI_TIET_DIEN_BIEN_BENH><DIEN_BIEN_LS>Bệnh nhân tỉnh, mạch ổn định</DIEN_BIEN_LS></CHI_TIET_DIEN_BIEN_BENH>`,
+  };
+  return `<?xml version="1.0" encoding="utf-8"?>\n${samples[code] || `<${code}/>`}`;
+}
+$('#x-encode').addEventListener('click', ()=>{
+  STATE.encoded = {};
+  STATE.picked.forEach(code=>{
+    const xml = sampleXmlChild(code);
+    const b64 = b64encode(xml);
+    STATE.encoded[code] = {xml,b64,size:b64.length};
+  });
+  const wrap = $('#x-encode-rows'); wrap.innerHTML='';
+  Object.entries(STATE.encoded).forEach(([k,v])=>{
+    const row = document.createElement('div');
+    row.className = 'panel-2 rounded-sm px-3 py-2 flex items-center gap-3';
+    row.innerHTML = `<span class="mono text-[11.5px] w-12">${k}</span>
+      <span class="kbd">${fmtBytes(v.size)}</span>
+      <span class="mono text-[11px] ink-3 truncate flex-1">${v.b64.slice(0,80)}…</span>
+      <span class="chip chip-em">encoded</span>`;
+    wrap.appendChild(row);
+  });
+  $('#x-encode-list').classList.remove('hidden');
+  $('#w-build').disabled = false;
+  renderHsmSummary(); renderSteps();
+});
+
+/* =========================================================================
+   STEP 4 — Wrapper
+   ========================================================================= */
+function refreshWSteps(){
+  setXmlSteps('w-steps',[
+    {label:'Build wrapper GIAMDINHHS',done:!!STATE.wrapper.xml},
+    {label:'Ký SHA256 vùng &lt;THONGTINDONVI&gt;…&lt;/THONGTINHOSO&gt;',done:!!STATE.wrapper.signed},
+    {label:'Mã hóa Base64 toàn bộ wrapper',done:!!STATE.wrapper.b64},
+  ]);
+}
+$('#w-build').addEventListener('click', ()=>{
+  const cs = $('#w-cskcb').value, ng = $('#w-ngay').value, sl = $('#w-soluong').value;
+  const filehoso = Object.entries(STATE.encoded).map(([k,v])=>(
+`        <FILEHOSO>
+          <LOAIHOSO>${k}</LOAIHOSO>
+          <NOIDUNGFILE>${v.b64.slice(0,40)}…[${fmtBytes(v.size)}]…${v.b64.slice(-12)}</NOIDUNGFILE>
+        </FILEHOSO>`)).join('\n');
+  STATE.wrapper.xml = `<?xml version="1.0" encoding="utf-8"?>
+<GIAMDINHHS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <THONGTINDONVI>
+    <MACSKCB>${cs}</MACSKCB>
+  </THONGTINDONVI>
+  <THONGTINHOSO>
+    <NGAYLAP>${ng}</NGAYLAP>
+    <SOLUONGHOSO>${sl}</SOLUONGHOSO>
+    <DANHSACHHOSO>
+      <HOSO>
+${filehoso}
+      </HOSO>
+    </DANHSACHHOSO>
+  </THONGTINHOSO>
+  <CHUKYDONVI/>
+</GIAMDINHHS>`;
+  $('#w-xml').textContent = STATE.wrapper.xml;
+  $('#w-size').textContent = fmtBytes(STATE.wrapper.xml.length);
+  $('#w-sign').disabled = false;
+  refreshWSteps();
+});
+$('#w-sign').addEventListener('click', async ()=>{
+  const re = /<THONGTINDONVI>[\s\S]*?<\/THONGTINHOSO>/;
+  const region = STATE.wrapper.xml.match(re)[0];
+  const hash = await sha256(region);
+  STATE.wrapper.hash = hash;
+  STATE.wrapper.signed = STATE.wrapper.xml.replace('<CHUKYDONVI/>',`<CHUKYDONVI>${hash}</CHUKYDONVI>`);
+  $('#w-xml').textContent = STATE.wrapper.signed;
+  $('#w-hash').textContent = 'sha256: '+hash.slice(0,12)+'…';
+  $('#w-b64').disabled = false;
+  refreshWSteps();
+});
+$('#w-b64').addEventListener('click', ()=>{
+  STATE.wrapper.b64 = b64encode(STATE.wrapper.signed);
+  $('#w-b64-out').textContent = shorten(STATE.wrapper.b64, 90, 30);
+  refreshWSteps();
+  refreshSubReq();
+  $('#sub-send').disabled = false;
+  $('#pipe-run').disabled = false;
+  renderHsmSummary(); renderSteps();
+});
+
+/* =========================================================================
+   STEP 5 — Submit
+   ========================================================================= */
+function refreshSubReq(){
+  if(!STATE.wrapper.b64){ $('#sub-req').textContent='— chưa có wrapper —'; return; }
+  const dom = $('#f-domain').value;
+  const tok = STATE.auth ? shorten(STATE.auth.access_token,28,6) : '{access_token}';
+  $('#sub-req').textContent = `POST https://fhir.${dom}/api/qd130/guiHoSoXmlQD4750
+Authorization: Bearer ${tok}
+Content-Type: application/x-www-form-urlencoded
+
+fileHSBase64=${shorten(STATE.wrapper.b64,80,16)}`;
+}
+$('#sub-send').addEventListener('click', ()=>{
+  const pending = $('#sub-pending').checked;
+  const status = pending ? 'pending' : 'success';
+  const logId = uuid();
+  STATE.submission = {logId, status, resp:null};
+  const resp = {logId, metadata:{status, message: pending?'Hồ sơ đã tiếp nhận, đang xử lý':'Hồ sơ tiếp nhận thành công', code: pending?'202':'200'}};
+  STATE.submission.resp = resp;
+  $('#sub-res').textContent = `HTTP ${pending?'200':'200'} OK\n\n${JSON.stringify(resp,null,2)}`;
+  $('#sub-status').classList.remove('hidden');
+  $('#sub-status-pill').className = 'chip ' + (status==='success'?'chip-em':status==='pending'?'chip-am':'chip-rs');
+  $('#sub-status-pill').textContent = status;
+  $('#sub-logid').textContent = logId;
+  pushLog({id:logId, action:'submitXml', resourceType:'xml', metadata:{status,message:resp.metadata.message,code:resp.metadata.code}, resourceData:'fileHSBase64=...'});
+  renderHsmSummary(); renderSteps();
+});
+
+/* =========================================================================
+   STEP 6 — Pipeline animation
+   ========================================================================= */
+function renderPipelineStages(target){
+  const wrap = $('#'+target); wrap.innerHTML='';
+  PIPELINE.forEach((p,i)=>{
+    const row = document.createElement('div');
+    row.className = 'stage-row';
+    row.dataset.idx = i;
+    row.innerHTML = `
+      <div class="step-dot" data-dot>${p.phase}</div>
+      <div class="leading-tight">
+        <div class="text-[13px]">${p.title}</div>
+        <div class="text-[10.5px] mono ink-3 mt-0.5">${p.desc}</div>
+        <div data-bar class="hidden mt-2 marquee-bar"></div>
+        <div data-out class="text-[11px] mono ink-3 mt-1 hidden"></div>
+      </div>`;
+    wrap.appendChild(row);
+  });
+}
+function buildBundle(){
+  const malk = $('#x0-malk').value;
+  const cs = $('#w-cskcb').value;
+  const entries = [];
+  const patientUuid = 'urn:uuid:'+uuid();
+  const encUuid = 'urn:uuid:'+uuid();
+  const claimUuid = 'urn:uuid:'+uuid();
+  entries.push({fullUrl:patientUuid, resource:{resourceType:'Patient', identifier:[{value:$('#x0-mabn').value}], name:[{text:$('#x0-hoten').value}], gender: $('#x0-gt').value==='1'?'male':'female', birthDate:$('#x0-ns').value.replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3')}, request:{method:'PUT', url:'Patient?identifier='+$('#x0-mabn').value}});
+  entries.push({fullUrl:encUuid, resource:{resourceType:'Encounter', identifier:[{value:malk}], status:'in-progress', subject:{reference:patientUuid}, serviceProvider:{reference:'Organization/'+cs}, period:{start:nowIso()}}, request:{method:'PUT', url:'Encounter?identifier='+malk}});
+  if(STATE.picked.has('XML1')){
+    entries.push({fullUrl:claimUuid, resource:{resourceType:'Claim', identifier:[{value:malk}], status:'active', use:'claim', patient:{reference:patientUuid}, total:{value:4250000, currency:'VND'}, diagnosis:[{diagnosisCodeableConcept:{coding:[{system:'CodeSystem/icd-10-vn', code:'I21.0'}]}}]}, request:{method:'POST', url:'Claim'}});
+    entries.push({resource:{resourceType:'ClaimResponse', identifier:[{value:malk}], status:'draft', outcome:'queued', request:{reference:claimUuid}, payment:{amount:{value:4250000, currency:'VND'}}}, request:{method:'POST', url:'ClaimResponse'}});
+    entries.push({resource:{resourceType:'Coverage', identifier:[{value:$('#x0-the').value}], status:'active', beneficiary:{reference:patientUuid}}, request:{method:'POST', url:'Coverage'}});
+  }
+  if(STATE.picked.has('XML2')){
+    entries.push({resource:{resourceType:'Medication', code:{coding:[{code:'VN-12345-09', display:'Ramipril 5mg'}]}}, request:{method:'POST', url:'Medication'}});
+    entries.push({resource:{resourceType:'MedicationRequest', status:'active', intent:'order', subject:{reference:patientUuid}, dispenseRequest:{quantity:{value:14,unit:'viên'}}}, request:{method:'POST', url:'MedicationRequest'}});
+  }
+  if(STATE.picked.has('XML3')) entries.push({resource:{resourceType:'Procedure', subject:{reference:patientUuid}, code:{coding:[{system:'CodeSystem/dvkt-vn', code:'5012.0123', display:'Siêu âm tim'}]}, performedDateTime:nowIso()}, request:{method:'POST', url:'Procedure'}});
+  if(STATE.picked.has('XML4')) entries.push({resource:{resourceType:'Observation', status:'final', code:{coding:[{code:'HGB', display:'Hemoglobin'}]}, valueQuantity:{value:13.4, unit:'g/dL'}}, request:{method:'POST', url:'Observation'}});
+  if(STATE.picked.has('XML5')) entries.push({resource:{resourceType:'ClinicalImpression', status:'completed', subject:{reference:patientUuid}, summary:'Bệnh nhân tỉnh, mạch ổn định'}, request:{method:'POST', url:'ClinicalImpression'}});
+  if(STATE.picked.has('XML7')) entries.push({resource:{resourceType:'Composition', status:'final', type:{coding:[{code:'discharge-summary'}]}, subject:{reference:patientUuid}, title:'Giấy ra viện'}, request:{method:'POST', url:'Composition'}});
+  return {resourceType:'Bundle', type:'transaction', entry:entries};
+}
+async function runPipeline(){
+  $('#pipe-run').disabled = true;
+  renderPipelineStages('pipe-stages');
+  const rows = $('#pipe-stages').querySelectorAll('.stage-row');
+  for(let i=0;i<rows.length;i++){
+    const r = rows[i];
+    const dot = r.querySelector('[data-dot]');
+    const bar = r.querySelector('[data-bar]');
+    const out = r.querySelector('[data-out]');
+    dot.classList.add('active');
+    bar.classList.remove('hidden');
+    await new Promise(rs=>setTimeout(rs, 220 + Math.random()*180));
+    bar.classList.add('hidden');
+    dot.classList.remove('active'); dot.classList.add('done');
+    dot.textContent = '✓';
+    const msgs = {
+      0:`payload: ${fmtBytes(STATE.wrapper.b64?.length||0)}`,
+      1:`decoded → ${fmtBytes(STATE.wrapper.signed?.length||0)} XML bytes`,
+      2:`DOM nodes ≈ ${100+STATE.picked.size*40}`,
+      3:`SHA256 OK · ${STATE.wrapper.hash?.slice(0,16)}…`,
+      4:`MACSKCB=${$('#w-cskcb').value} · ${STATE.picked.size} hồ sơ`,
+      5:`${STATE.picked.size} FILEHOSO entries`,
+      6:`${STATE.picked.size} XML con parsed`,
+      7:`${countResources()} resources sinh ra`,
+      8:`hit: icd-10-vn, dvkt-vn, thuoc-vn`,
+      9:`Organization/${$('#w-cskcb').value} resolved`,
+     10:`Practitioner refs: 0 (mock)`,
+     11:`Bundle.entry[]: ${countResources()}`,
+     12:`profile R4B: PASS`,
+     13:`POST /fhir → 200 OK`,
+     14:`response Bundle (transaction-response)`,
+     15:`logId: ${STATE.submission.logId || uuid()}`
+    };
+    out.textContent = msgs[i] || '';
+    out.classList.remove('hidden');
+  }
+  const bundle = buildBundle();
+  $('#pipe-bundle').textContent = JSON.stringify(bundle, null, 2);
+  $('#pipe-stats').innerHTML = `
+    <div class="panel-2 rounded-sm p-2.5"><div class="ink-3 text-[10.5px] mono uppercase">resources</div><div class="serif text-[22px]">${bundle.entry.length}</div></div>
+    <div class="panel-2 rounded-sm p-2.5"><div class="ink-3 text-[10.5px] mono uppercase">type</div><div class="serif text-[22px]">transaction</div></div>
+    <div class="panel-2 rounded-sm p-2.5"><div class="ink-3 text-[10.5px] mono uppercase">commit</div><div class="serif text-[22px]" style="color:var(--emerald);">200 OK</div></div>`;
+  STATE.pipelineDone = true;
+  $('#pipe-run').disabled = false;
+  renderSteps();
+}
+function countResources(){
+  let n = 2; // Patient + Encounter
+  if(STATE.picked.has('XML1')) n+=3;
+  if(STATE.picked.has('XML2')) n+=2;
+  ['XML3','XML4','XML5','XML7'].forEach(c=>{if(STATE.picked.has(c))n++;});
+  return n;
+}
+$('#pipe-run').addEventListener('click', runPipeline);
+
+/* =========================================================================
+   STEP 7 — Verify
+   ========================================================================= */
+function refreshRecentLogs(){
+  const ul = $('#vr-recent'); if(!ul) return;
+  ul.innerHTML = '';
+  STATE.recentLogs.slice(-6).reverse().forEach(l=>{
+    const li = document.createElement('li');
+    li.className = 'flex items-center gap-2 cursor-pointer hover:text-white';
+    const st = JSON.parse(l.metadata||'{}').status || (l.metadata?.status);
+    const cls = st==='success'?'chip-em':st==='pending'?'chip-am':'chip-rs';
+    li.innerHTML = `<span class="chip ${cls}">${st}</span><span class="mono text-[11px] ink-2 truncate">${l.id}</span>`;
+    li.addEventListener('click', ()=>{ $('#vr-logid').value = l.id; $('#vr-go').click(); });
+    ul.appendChild(li);
+  });
+}
+$('#vr-go').addEventListener('click', ()=>{
+  const id = $('#vr-logid').value.trim();
+  const log = STATE.recentLogs.find(l=>l.id===id);
+  if(!log){ $('#vr-out').textContent = `HTTP 404\n\n{ "status":404, "error":"Not Found", "message":"logId không tồn tại" }`; return; }
+  log.viewed = true;
+  $('#vr-out').textContent = JSON.stringify({page:1,pageSize:1,totalRecords:1,totalPages:1,data:[log]},null,2);
+  renderSteps();
+});
+
+/* =========================================================================
+   LOGS pushLog + page
+   ========================================================================= */
+function pushLog(l){
+  l.timestamp = nowIso();
+  l.metadata = typeof l.metadata==='string' ? l.metadata : JSON.stringify(l.metadata);
+  STATE.recentLogs.push(l);
+  refreshRecentLogs();
+}
+$('#lg-go').addEventListener('click', ()=>{
+  const rt = $('#lg-rt').value;
+  const rows = STATE.recentLogs.filter(l=>!rt||l.resourceType===rt);
+  const tb = $('#lg-rows'); tb.innerHTML='';
+  if(rows.length===0){
+    tb.innerHTML = `<tr><td colspan="6" class="p-6 text-center ink-3">Không có log nào — gửi hồ sơ ở Bước 5 để tạo log.</td></tr>`;
+  } else {
+    rows.slice().reverse().forEach(l=>{
+      const md = typeof l.metadata==='string'?JSON.parse(l.metadata):l.metadata;
+      const cls = md.status==='success'?'chip-em':md.status==='pending'?'chip-am':'chip-rs';
+      const tr = document.createElement('tr');
+      tr.className='border-b hairline hover:bg-white/5';
+      tr.innerHTML = `<td class="p-2.5 mono text-[11px]">${l.id}</td><td class="p-2.5 mono text-[11px]">${l.action}</td><td class="p-2.5 mono text-[11px]">${l.resourceType}</td><td class="p-2.5 mono text-[11px] ink-2">${l.timestamp}</td><td class="p-2.5"><span class="chip ${cls}">${md.status}</span></td><td class="p-2.5 ink-2">${md.message||''}</td>`;
+      tb.appendChild(tr);
+    });
+  }
+  $('#lg-page').innerHTML = `<span>${rows.length} bản ghi · trang 1/1</span><span class="mono ink-3">fromDate=${$('#lg-from').value} · toDate=${$('#lg-to').value}</span>`;
+});
+
+/* =========================================================================
+   FHIR PATCH cards
+   ========================================================================= */
+const PATCHES = [
+  {res:'Coverage', id:'cov-{MA_THE_BHYT}', why:'Bổ sung subscriber, beneficiary, payor (BHXH tỉnh).', body:[{op:'add',path:'/subscriber',value:{reference:'Patient/MA_BN_nguoi_dong'}},{op:'add',path:'/subscriberId',value:'MA_BHXH_nguoi_dong'},{op:'add',path:'/beneficiary',value:{reference:'Patient/MA_BN'}},{op:'add',path:'/payor/0',value:{reference:'Organization/bhxh-tinh-01'}}]},
+  {res:'Medication', id:'med-{MA_THUOC}', why:'Bổ sung tên INN + mã ATC từ WHO/Cục Dược.', body:[{op:'add',path:'/code/coding/-',value:{system:'http://www.whocc.no/atc',code:'C09AA05',display:'Ramipril'}},{op:'add',path:'/code/coding/-',value:{system:'https://duocvn.gov.vn/inn',code:'ramipril',display:'Ramipril (INN)'}}]},
+  {res:'ClaimResponse', id:'clm-{MA_LK}', why:'Cập nhật kết quả phê duyệt từ cơ quan BHXH.', body:[{op:'replace',path:'/status',value:'active'},{op:'replace',path:'/outcome',value:'complete'},{op:'add',path:'/processNote/-',value:{type:'display',text:'Đã phê duyệt thanh toán ngày 15/08/2026'}}]},
+];
+function renderPatchCards(){
+  const g = $('#patch-grid'); g.innerHTML='';
+  PATCHES.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'panel rounded-sm p-5';
+    card.innerHTML = `
+      <div class="flex items-center justify-between mb-2">
+        <div class="serif text-[22px]">${p.res}</div>
+        <span class="chip chip-vi">PATCH</span>
+      </div>
+      <div class="ink-2 text-[12.5px] mb-3">${p.why}</div>
+      <div class="text-[10.5px] mono ink-3 uppercase tracking-wider mb-1">URL</div>
+      <div class="mono text-[11.5px] panel-2 rounded-sm p-2 mb-3">/api/fhir/${p.res}/${p.id}</div>
+      <div class="text-[10.5px] mono ink-3 uppercase tracking-wider mb-1">JSON Patch</div>
+      <pre class="mono text-[11px] panel-2 rounded-sm p-2.5 leading-relaxed">${JSON.stringify(p.body,null,2)}</pre>
+      <button class="btn w-full mt-3 patch-run" data-res="${p.res}">▸ Áp dụng patch (mock)</button>
+      <div class="patch-out hidden mono text-[11px] ink-2 panel-2 rounded-sm p-2.5 mt-2"></div>`;
+    card.querySelector('.patch-run').addEventListener('click', e=>{
+      const out = card.querySelector('.patch-out');
+      out.classList.remove('hidden');
+      const lid = uuid();
+      out.textContent = `HTTP 200 OK\n\n${JSON.stringify({logId:lid,metadata:{resourceType:'OperationOutcome',issue:[{severity:'information',code:'informational',diagnostics:`${p.res}/${p.id} patched successfully`}]}},null,2)}`;
+      pushLog({id:lid,action:'submitFhir',resourceType:'json',metadata:{status:'success',message:`${p.res} patched`,code:'200'}});
+    });
+    g.appendChild(card);
+  });
+}
+
+/* =========================================================================
+   Pipeline FULL view + map table
+   ========================================================================= */
+function renderPipelineFull(){
+  const wrap = $('#pipe-full'); wrap.innerHTML='';
+  PIPELINE.forEach(p=>{
+    const row = document.createElement('div');
+    row.className = 'stage-row';
+    row.innerHTML = `<div class="step-dot done" style="border-color:var(--line-2);color:var(--ink-2);background:var(--bg);">${p.phase}</div>
+      <div><div class="text-[13px]">${p.title}</div><div class="text-[10.5px] mono ink-3 mt-0.5">${p.desc}</div></div>`;
+    wrap.appendChild(row);
+  });
+}
+function renderMapTable(){
+  const t = $('#map-table'); t.innerHTML='';
+  XML_FILES.forEach(f=>{
+    const tr = document.createElement('tr');
+    tr.className='border-b hairline';
+    tr.innerHTML = `<td class="p-2.5 mono text-[11.5px]">${f.code}</td><td class="p-2.5 ink-2 text-[11.5px]">${f.fhir}</td>`;
+    t.appendChild(tr);
+  });
+}
+
+/* =========================================================================
+   Reset & demo
+   ========================================================================= */
+$('#btn-reset').addEventListener('click', ()=>{
+  Object.assign(STATE,{auth:null,xml0:{xml:null,signed:null,b64:null,hash:null,logId:null,resp:null},picked:new Set(),encoded:{},wrapper:{xml:null,signed:null,b64:null,hash:null},submission:{logId:null,status:null,resp:null},pipelineDone:false,recentLogs:[],step:1});
+  $('#login-res').textContent='— chưa có response —'; $('#x0-xml').textContent='— bấm "Sinh XML0" —'; $('#x0-b64-out').textContent='—'; $('#x0-resp').textContent='— chưa gửi —';
+  $('#x-encode-list').classList.add('hidden'); $('#w-xml').textContent='—'; $('#w-b64-out').textContent='—'; $('#sub-res').textContent='— chưa gửi —'; $('#sub-status').classList.add('hidden');
+  $('#pipe-bundle').textContent='— chạy pipeline để xem Bundle —'; $('#pipe-stats').innerHTML=''; $('#pipe-stages').innerHTML=''; $('#vr-out').textContent='— chưa tra cứu —';
+  $('#auth-pill').innerHTML = `<span class="w-1.5 h-1.5 rounded-full" style="background:var(--rose);"></span><span>chưa đăng nhập</span>`;
+  ['btn-refresh','btn-revoke','x0-build','x0-sign','x0-b64','x0-send','w-build','w-sign','w-b64','sub-send','pipe-run','x-encode'].forEach(id=>$('#'+id).disabled=true);
+  STATE.picked.add('XML1'); renderXmlGrid(); updateXmlCount(); renderSteps(); refreshX0Steps(); refreshWSteps(); refreshLoginPreview(); refreshSubReq(); refreshRecentLogs(); renderPipelineStages('pipe-stages'); showStep(1);
+});
+$('#btn-demo').addEventListener('click', async ()=>{
+  $('#btn-reset').click();
+  await new Promise(r=>setTimeout(r,200));
+  STATE.step=1; renderSteps(); showStep(1);
+  $('#btn-login').click(); await new Promise(r=>setTimeout(r,400));
+  STATE.step=2; renderSteps(); showStep(2);
+  $('#x0-build').click(); await new Promise(r=>setTimeout(r,300));
+  $('#x0-sign').click(); await new Promise(r=>setTimeout(r,300));
+  $('#x0-b64').click(); await new Promise(r=>setTimeout(r,200));
+  $('#x0-send').click(); await new Promise(r=>setTimeout(r,400));
+  STATE.step=3; renderSteps(); showStep(3);
+  ['XML2','XML3','XML4'].forEach(c=>STATE.picked.add(c)); renderXmlGrid(); updateXmlCount();
+  await new Promise(r=>setTimeout(r,200));
+  $('#x-encode').click(); await new Promise(r=>setTimeout(r,400));
+  STATE.step=4; renderSteps(); showStep(4);
+  $('#w-build').click(); await new Promise(r=>setTimeout(r,300));
+  $('#w-sign').click(); await new Promise(r=>setTimeout(r,300));
+  $('#w-b64').click(); await new Promise(r=>setTimeout(r,300));
+  STATE.step=5; renderSteps(); showStep(5);
+  $('#sub-send').click(); await new Promise(r=>setTimeout(r,500));
+  STATE.step=6; renderSteps(); showStep(6);
+  await runPipeline();
+  STATE.step=7; renderSteps(); showStep(7);
+  refreshRecentLogs();
+  if(STATE.recentLogs.length) $('#vr-logid').value = STATE.recentLogs[STATE.recentLogs.length-1].id;
+});
+
+/* =========================================================================
+   INIT
+   ========================================================================= */
+function init(){
+  STATE.picked.add('XML1');
+  renderSteps(); showStep(1);
+  renderXmlGrid(); updateXmlCount();
+  refreshX0Steps(); refreshWSteps();
+  refreshLoginPreview();
+  renderPipelineStages('pipe-stages');
+  renderPipelineFull();
+  renderMapTable();
+  renderPatchCards();
+  refreshSubReq();
+}
+init();
+</script>
+</body>
+</html>
