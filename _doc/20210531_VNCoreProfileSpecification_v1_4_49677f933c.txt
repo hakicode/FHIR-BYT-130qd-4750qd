@@ -1,0 +1,9716 @@
+--- Page 0 ---
+fhi360
+THE SCIENCE OF IMPROVING LIVES
+EHA
+Tên tài liệu
+Tên chương trình
+Đơn vị thụ hưởng
+Giám đốc chương trình
+Đại diện nhóm tác giả
+Đặc tả Core Data Profile dành cho các hệ thống thông tin Y tế Việt
+Nam theo tiêu chuẩn HL7 FHIR phiên bản R4
+Better Health Program
+Cục Công nghệ thông tin - Bộ Y tế
+Tình trạng
+Phiên bản
+Ngày cập nhật
+Review
+1.4
+31/05/2021
+Đặc tả Core Data dành cho các hệ thống
+thông tin Y tế Việt Nam theo tiêu chuẩn
+HL7 FHIR phiên bản R4
+LƯU Ý: Nội dung trong tài liệu đang trong quá trình lấy ý kiến đánh giá của các
+đơn vị chuyên môn; do đó, các nội dung trong tài liệu này sẽ được cập nhật đê đảm
+bảo khả năng tiếp thu trước khi được sử dụng, tham khảo bởi các bên liên quan
+--- Page 1 ---
+Phiên bản tài liệu
+Phiên bản
+Draft.1.0
+1.1
+1.2
+1.3
+1.4
+Ngày cập nhật
+13/11/2020
+05/11/2020
+29/12/2020
+19/03/2021
+31/05/2021
+Nội dung cập nhật
+Cập nhật theo góp ý của các chuyên gia
+Cập nhật theo góp ý của các chuyên gia
+Cập nhật theo góp ý của các chuyên gia
+Cập nhật/điều chỉnh Core Profile
+Người đánh giá
+Họ tên
+Vị trí công tác
+Ngày
+Phiên bản
+Người phê duyệt
+Họ tên
+Vị trí công tác
+Ngày
+Phiên bản
+BHP VIETNAM 2
+--- Page 2 ---
+Nội dung tài liệu
+1 Danh sách các DataType Profile..
+1.1
+VN Core Coding profile..
+1.2
+VN Core Codeable Concept profile...
+1.3
+VN Core Address profile
+1.4
+VN Core Dosage profile
+2
+Danh sách các Profile.
+2.1
+VN Core Patient profile ....
+2.2
+VN Core Provider (Organization) Profile.
+2.3
+VN Core Healthcare Department (Organization) profile
+2.4
+VN Core Location profile
+2.5
+VN Core Practitioner profile.
+2.6
+VN Core Practitioner Role profile ...
+2.7
+VN Core Encounter Profile..
+2.8
+VN Core Encounter Diagnosis (Condition) profile
+2.9
+VN Core Problem List (Condition) profile.
+2.10 VN Core Allergy Intolerance profile.
+2.11
+VN Core Procedure profile..
+2.12
+VN Core Service Request profile
+2.13
+VN Core Immunization profile.
+2.14 VN Core Medication profile
+2.15 VN Core Medication Request profile ..
+2.16 VN Core Medication Statement profile ..
+2.17 VN Core Medication Dispense profile....
+2.18 VN Core Medication Administration profile..
+2.19 VN Core DiagnosticReport profile.
+2.20
+VN Core Specimen profile...
+2.21
+VN Core ImagingStudy profile.
+2.22
+VN Core Device profile....
+2.23
+VN Core Media profile
+2.24
+VN Core Base Result (Observation) profile
+2.25
+VN Core Laboratory Code (Observation) profile
+2.26
+VN Core Pathology Code (Observation) profile..
+2.27
+VN Core Radiology Result (Observation) profile .....
+2.28
+FHIR Blood pressure (Observation) profile - HL7 FHIR Core Profile...
+2.29
+FHIR Respiratory rate (Observation) profile - HL7 FHIR Core profile
+2.30
+FHIR Heart rate (Observation) profile - HL7 FHIR Core profile
+...6
+6
+..7
+...7
+...8
+.. 10
+.. 10
+..14
+..17
+...19
+..20
+...22
+...24
+..30
+..33
+..36
+..39
+...42
+..45
+...49
+..51
+..53
+...56
+...58
+...61
+..65
+..67
+...71
+...72
+...74
+...79
+...81
+...83
+..86
+...87
+...88
+BHP VIETNAM 3
+--- Page 3 ---
+2.31
+2.32
+2.33
+2.34
+2.35
+FHIR Oxygen saturation (Observation) profile - HIL7 FHIR Core profile.
+FHIR Body temperature (Observation) profile - HL7 FHIR Core profile
+FHIR Body weight (Observation) profile - HIL7 FHIR Core profile.
+FHIR Body height (Observation) profile - HIL7 FHIR Core profile ..
+. 89
+..89
+...90
+..91
+FHIR Head Occipital-frontal circumference (Observation) profile - HIL7 FHIR Core profile
+3
+4
+5
+2.36
+FHIR Body Mass Index (BMI (Observation) profile - HL7 FHIR Core profile.
+2.37
+Lý do vào viện - Chief complaint+ Reason for visit (Observation) profile
+2.38
+Đánh giá toàn trạng - Review of systems (Observation) profile.
+2.39
+Thăm, khám lâm sàng - Physical findings (Observation) profile
+..93
+...93
+...95
+..96
+2.40 Tiền sử bệnh lý và các đặc điểm xã hội liên quan - Patient histories & Social factor
+(Observation) profile..
+Danh sách các Extension.
+3.1
+Extension dành cho thông tin Tôn giáo..
+3.2
+Extension dành cho thông tin Dân tộc ....
+3.3
+Extension dành cho thông tin Nghề nghiệp..
+3.4
+Extension dành cho thông tin Quốc tịch ....
+3.5
+Extension dành cho thông tin Địa danh hành chính
+3.6
+Extension dành cho thông tin Trình độ văn hóa ...
+3.7
+Extension dành cho thông tin SnomedCT Description ID
+Danh sách các CodeSystem ..
+4.1
+Danh mục mã bệnh tật ICD-10 (theo ban hành của Bộ Y tế) ...
+4.2
+Bộ pháp điển SNOMED CT
+4.3
+Danh mục Địa danh hành chính theo ban hành của Tổng cục thống kê
+4.4
+Danh mục Trình độ văn hóa
+4.5
+Danh mục Dân tộc theo ban hành của Tổng cục thống kê...
+4.6
+Danh mục Tôn giáo theo ban hành của Tổng cục thống kê ...
+4.7
+Danh mục Mã dược phẩm - theo ban hành và quản lý của Bộ Y tế..
+..97
+...98
+...98
+...99
+99
+99
+100
+... 101
+..102
+103
+. 103
+103
+..107
+.107
+107
+... 109
+..110
+4.8
+Danh mục Nghề nghiệp theo thành phần xã hội được ban hành theo QĐ số 4069/2011/QĐ-
+BYT
+110
+4.9
+Danh mục Nghề nghiệp - theo ban hành của Tổng cục thống kê
+4.10 Danh mục Dịch vụ kỹ thuật - theo ban hành và quản lý của Bộ Y tế
+Danh sách các ValueSet.
+5.1
+ValueSet: Iso 3166 Part 1: 2 Letter Codes
+5.2
+ValueSet: LOINC Codes...
+5.3
+ValueSet: Loại tiền sử bệnh lý và đặc điểm xã hội, sử dụng LOINC Code
+5.4
+ValueSet: Loại thăm, khám lâm sàng, sử dụng LOINC Code...
+5.5
+ValueSet: Các chỉ dẫn dùng thuốc (bổ sung) (SNOMED CT)
+111
+112
+..112
+112
+119
+.121
+123
+126
+BHP VIETNAM 4
+--- Page 4 ---
+6
+5.6
+ValueSet: Vị trí cơ thể theo giải phẫu học (SNOMED CT)..
+5.7
+ValueSet: Các thông tin chân đoán lâm sàng (SNOMED CT)
+5.8
+ValueSet: Vaccine Code
+5.9
+ValueSet: Thông tin địa danh hành chính
+5.10
+ValueSet: Mã bệnh tật
+5.11
+ValueSet: Diagnostic Report Code ....
+5.12
+ValueSet: Thông tin trình độ học vấn...
+5.13
+ValueSet: Thông tin tôn giáo
+5.14
+ValueSet: Thông tin nghề nghiệp
+5.15
+ValueSet: Thông tin dân tộc.
+5.16 ValueSet: Thông tin dịch vụ kỹ thuật.
+Danh sách các NamingSystem...
+6.1
+NamingSystem dành cho số CMTND của người bệnh
+6.2
+NamingSystem dành cho số bảo hiểm y tế của người bệnh
+6.3
+NamingSystem dành cho thẻ căn cước công dân của người bệnh
+6.4
+NamingSystem dành cho số hộ chiếu của người bệnh.
+6.5
+NamingSystem dành cho bằng lái xe......
+6.6
+NamingSystem dành cho mã số bệnh nhân (dùng cho các cơ sở khám, chữa bệnh)
+6.7
+NamingSystem dành cho mã cơ sở khám, chữa bệnh (theo ban hành của Bộ Y tế)
+6.8
+NamingSystem dành cho mã số kinh doanh của cơ sở khám, chữa bệnh
+6.9
+NamingSystem dành cho số giấy phép hoạt động khám, chữa bệnh
+.128
+130
+..132
+..133
+.134
+..134
+.135
+135
+....136
+. 136
+. 136
+.137
+137
+.138
+138
+138
+.139
+.139
+140
+140
+140
+BHP VIETNAM 5
+--- Page 5 ---
+1 Danh sách các DataType Profile
+1.1 VN Core Coding profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-coding
+Được xây dựng dựa trên profile:
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/Coding-uv-ips
+Version:
+1.0.0
+Name:
+CodingIPS
+Title:
+Coding with translations
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Definition:
+This rofile entends the capabilies of the coding data ype to support muti language designations (display) i relies on
+Publisher:
+Health Level Seven International - Patient Care Work Group
+* Nội dung chi tiết
+Element Path
+Coding.id
+Coding.extension
+- extension-coding-sct-descid
+Type
+string
+Extension
+Extension
+Flag
+Card. Diễn giải
+0..1
+O..*
+0..1
+Extension về thông tin Snomed CT Description ID
+Giá trị tham chiếu:
+BHP VIETNAM 6
+--- Page 6 ---
+Element Path
+Type
+Flag
+Coding.system
+Coding. version
+Coding.code
+Coding.display
+Coding.display.extension
+- translation
+string
+string
+string
+string
+Extension
+Extension
+S
+S
+S
+S
+0..1
+0..1
+0..1
+0..1
+0..*
+0..1
+value
+S: Must support, - : Slide item
+String
+0..1
+1.2
+VN Core Codeable Concept profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-codeableconcept
+* Nội dung chi tiết
+Element Path
+CodeableConcept.coding
+CodeableConcept.text
+S: Must support, - : Slide item
+Type
+VN Core Coding
+string
+Flag
+S
+S
+1.3
+VN Core Address profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-address
+* Nội dung chi tiết
+Element Path
+Type
+Flag
+Card.
+Diễn giải
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+coding-sct-descid
+Extension về Language Translation (Localization)
+Giá trị tham chiếu:
+http://h17.org/fhir/StructureDefinition/translation
+Card. Diễn giải
+0.*
+0..1
+Card. Diễn giải
+BETTER HEALTH PROGRAMME SEA 7
+--- Page 7 ---
+Element Path
+Address.extension
+- extension-administrative-address
+Type
+Extension
+Extension
+Flag
+S
+Address.use
+Address.text
+Address.line
+Address.city
+Address.district
+Address.state
+Address.country
+S: Must support, - : Slide item
+code
+string
+string
+string
+string
+string
+string
+S
+S
+S
+S
+1.4
+VN Core Dosage profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-dosage
+* Nội dung chi tiết
+Element Path
+Dosage.text
+Dosage.additionalInstruction
+Flag
+S
+Card.
+0..*
+0..1
+Diễn giải
+Extension về thông tin Tôn giáo của bệnh nhân
+Giá trị tham chiếu:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+administrative-address
+0..1
+1..1
+0.*
+0..1
+0..1
+0..1
+0..1
+Dosage.patientInstruction
+Dosage.timing
+Dosage. asNeededCodeableConcept
+Dosage.site
+Type
+string
+VN Core
+Codeable
+Concept
+string
+Timing
+VN Core
+Codeable
+Concept
+VN Core
+S
+Card. Diễn giải
+0..1
+O..*
+0.1
+0..1
+0.1
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/snomedCT-additional-
+dosage-instruction
+Type: preferred
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/snomedCT-clinical-
+finding
+Type: preferred
+0..1
+BETTER HEALTH PROGRAMME SEA 8
+--- Page 8 ---
+Element Path
+Dosage.route
+Dosage.method
+Dosage.dose AndRate
+extension
+type
+doseRange
+dose Quantity
+rateRatio
+rate Range
+rate Quantity
+Dosage.maxDosePerPeriod
+Dosage.maxDosePerAdministration
+Dosage.maxDosePerLifetime
+S: Must support, - : Slide item
+Các profile tham chiếu khác:
+STT
+Profile name
+01
+RangelPS
+02
+RatioIPS
+03
+SimpleQuantity IPS
+Type
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Extension
+VN Core
+Codeable
+Concept
+RangeIPS
+SimpleQuantity I
+PS
+RatioIPS
+RangelPS
+SimpleQuantityI
+PS
+RatioIPS
+SimpleQuantityI
+ps
+SimpleQuantityI
+PS
+Flag
+Card. Diễn giải
+S
+S
+S
+S
+S
+0.1
+0..1
+0..*
+0..*
+0.1
+0..1
+0..1
+0..1
+0..1
+0..1
+0..1
+0..1
+0..1
+URL
+http://hl7.org/fhir/uv/ips/StructureDefinition/Range-uv-ips
+http://hl7.org/fhir/uv/ips/StructureDefinition/Ratio-uv-ips
+http://hl7.org/fhir/uv/ips/StructureDefinition/SimpleQuantity-uv-ips
+BETTER HEALTH PROGRAMME SEA 9
+--- Page 9 ---
+2 Danh sách các Profile
+2.1 VN Core Patient profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-patient
+Được xây dựng dựa trên profile:
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/Patient-uv-ips
+Version:
+1.0.0
+Name:
+PatientUvIps
+Title:
+Patient (IPS)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Definition:
+This profile represents the constraints applied to the Patient resource by the International Patient Summary (IPS) FHIR
+Implementation Guide and describes the minimum expectations for the Patient resource when used in the IPS
+composition or in one of the referred resources.
+Publisher:
+Health Level Seven International - Patient Care Work Group
+* Nội dung chi tiết
+Element Path
+Patient.id@value
+Patient.meta.profile@value
+Type
+String
+String
+Flag
+Card.
+Diễn giải
+1.1
+1.1
+Yêu cầu: kiểu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-
+patient
+BETTER HEALTH PROGRAMME SEA 10
+--- Page 10 ---
+Element Path
+Patient. extension
+- extension-ethic
+- extension-race
+- extension-occupation
+- extension-nationality
+— extension-education-level
+Patient.identifier
+— identifier:SoCMT
+use
+type
+coding
+system
+code
+display
+text
+system
+value
+- identifier: SoHoChieu
+use
+Type
+Extension
+Extension
+Flag
+S
+S
+S
+Card.
+0..*
+0..1
+0..1
+0.1
+S
+0.1
+Diễn giải
+Extension về thông tin Tôn giáo của bệnh nhân
+Giá trị tham chiếu:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+ethic
+Extension về thông tin Dân tộc của người bệnh
+Giá trị tham chiếu:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+Extension về thông tin Nghề nghiệp của người bệnh
+Giá trị tham chiếu:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+occupation
+Extension về thông tin Quốc tịch của người bệnh
+Giá trị tham chiếu:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+nationality
+Extension về thông tin Trình độ văn hóa
+Giá trị tham chiếu:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+education-level
+Định nghĩa cho số CMT nhân dân
+Giá trị mặc định: official
+Identifier
+Identifier
+code
+CodeableConcept
+Coding
+uri
+code
+string
+string
+uri
+string
+Identifier
+code
+0.*
+0..1
+0..1
+0..1
+1.1
+1..1
+1.1
+1..1
+1..1
+1..1
+1..1
+0..1
+0..1
+Giá trị mặc định: http://terminology.h17.org/CodeSystem/v2-
+0203
+Giá trị mặc định: NI
+Giá trị mặc định: National unique individual identifier
+Giá trị mặc định: National unique individual identifier
+Giá trị mặc định: http://moh.gov.vn/fhir/core/sid/citizen_id
+Giá trị của số CMT nhân dân
+Định nghĩa cho số hộ chiếu
+Giá trị mặc định: official
+BETTER HEALTH PROGRAMME SEA 11
+--- Page 11 ---
+Element Path
+type
+coding
+text
+system
+code
+display
+system
+value
+-identifier:TheCCCD
+use
+type
+coding
+system
+code
+display
+text
+system
+value
+- identifier: The BHYT
+use
+type
+coding
+system
+code
+display
+text
+system
+value
+— identifier: BangLaiXe
+Type
+CodeableConcept
+Coding
+uri
+code
+string
+string
+uri
+string
+Identifier
+code
+CodeableConcept
+Coding
+uri
+code
+string
+string
+uri
+string
+Identifier
+code
+CodeableConcept
+Coding
+uri
+code
+string
+string
+uri
+string
+Identifier
+Flag
+Card.
+0..1
+1..1
+1.1
+1..1
+1..1
+1..1
+1.1
+1..1
+0..1
+0..1
+0..1
+1..1
+1..1
+1..1
+1..1
+1..1
+1..1
+1..1
+0..1
+0..1
+0..1
+1..1
+1.1
+1..1
+1..1
+1..1
+1.1
+1..1
+0..1
+Diễn giải
+Giá trị mặc định: http://terminology.h17.org/CodeSystem/v2-
+Giá trị mặc định: PPN
+Giá trị mặc định: Passport number
+Giá trị mặc định: Passport number
+Giá trị mặc định:
+nttp://moh.gov.vn/fhir/core/sid/passport_number
+Giá trị của sô hộ chiêu
+Định nghĩa cho thẻ căn cước công dân
+Giá trị mặc định: official
+Giá trị mặc định: http://terminology.h17.org/CodeSystem/v2-
+Giá trị mặc định: NI
+Giá trị mặc định: National unique individual identifier
+Giá trị mặc định: National unique individual identifier
+Giá trị mặc định: http://moh.gov.vn/fhir/core/sid/national id
+Giá trị của thẻ căn cước công dân
+Định nghĩa cho thông tin về thẻ bảo hiểm y tế
+Giá trị mặc định: official
+Giá trị mặc định: http://terminology.h17.org/CodeSystem/v2-
+0203
+Giá trị mặc định: SB
+Giá trị mặc định: Social Beneficiary Identifier
+Giá trị mặc định: Social Beneficiary Identifier
+Giá trị mặc định: http://moh.gov.vn/fhir/core/sid/patient-
+internal-id
+Giá trị của mã bệnh nhân
+Định nghĩa dành cho bằng lái xe
+BETTER HEALTH PROGRAMME SEA 12
+--- Page 12 ---
+Element Path
+use
+type
+coding
+system
+code
+display
+text
+system
+value
+- identifier:MaBenhNhan
+use
+type
+coding
+system
+code
+display
+text
+system
+value
+Patient.active
+Patient.name
+text
+family
+given
+Patient.telecom
+Patient.gender
+Patient.birthDate
+Patient.address
+Patient.maritalStatus
+Type
+code
+CodeableConcept
+Coding
+uri
+code
+string
+string
+uri
+string
+Identifier
+code
+CodeableConcept
+Coding
+uri
+code
+string
+string
+uri
+string
+boolean
+HumanName
+string
+string
+string
+ContactPoint
+code
+date
+VN Core
+Address
+VN Core
+Flag
+S
+S
+S
+S
+Card.
+0..1
+0..1
+1.1
+1..1
+Diễn giải
+Giá trị mặc định: official
+1..1
+1..1
+1..1
+1..1
+1.1
+0..1
+0..1
+0..1
+1..1
+1..1
+1..1
+1..1
+1..1
+1.1
+1..1
+0..1
+1.*
+1..1
+0.1
+0.*
+O..*
+1..1
+1.1
+0.*
+Thông tin liên hệ
+Giới tính
+Ngày tháng năm sinh
+Địa chỉ liên lạc
+0..1
+Tình trạng hôn nhân
+Giá trị mặc định: http://terminology.h17.org/CodeSystem/v2-
+0203
+Giá trị mặc định: DL
+Giá trị mặc định: Driver's license number
+Giá trị mặc định: Driver's license number
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/sid/driver_license_number
+Sô bằng lái xe
+Mã bệnh nhân tại Cơ sở khám, chữa bệnh
+Giá trị mặc định: http://terminology.h17.org/CodeSystem/v2-
+0203
+Giá trị mặc định: PI
+Giá trị mặc định: Patient internal identifier
+Giá trị mặc định: Patient internal identifier
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/sid/patient-internal-id
+Mã bệnh nhân
+Họ, tên người bệnh
+Họ tên đầy đủ của người bệnh
+BETTER HEALTH PROGRAMME SEA
+13
+--- Page 13 ---
+Element Path
+Patient.multipleBirth[x]
+Patient.photo
+Patient.contact
+relationship
+name
+telecom
+address
+organization
+Patient.communication
+language
+Patient. generalPractitioner
+Type
+Codeable
+Concept
+Attachment
+BackboneElement
+VN Core
+Codeable
+Concept
+HumanName
+ContactPoint
+VN Core
+Address
+Reference(Organi
+zation)
+BackboneElement
+CodeableConcept
+Reference(Organi
+zation|
+ractitioner
+PractitionerRole
+Reference(Organi
+zation)
+Flag
+Card.
+Diễn giải
+S
+S
+S
+0..1
+0..*
+0.*
+O..*
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/personal-relationship-
+uv-ips
+Type: required
+S
+S
+S
+0..1
+0.*
+0..1
+0..1
+1.1
+0.*
+ValueSet binding:
+http://h17.org/fhir/ValueSet/all-languages
+Type: required
+Patient. managingOrganization
+S
+S: Must support, - : Slide item
+2.2 VN Core Provider (Organization) Profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-provider
+Được xây dựng dựa trên profile:
+0..1
+BETTER HEALTH PROGRAMME SEA 14
+--- Page 14 ---
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+http://hl7.org/fhir/uv/ips/StructureDefinition/Organization-uv-ips
+Publisher:
+1.0.0
+OrganizationUvIps
+Organization (IPS)
+Active as of 2021-05-05T07:38:43+00:00
+This profile constrains the Organization resource to represent an organization that acts as performer or observer for a result
+observation (laboratory, pathology or imaging), or as performer for a procedure.
+Health Level Seven International - Patient Care Work Group
+* Nội dung chi tiết:
+Element Path
+Organization.id @value
+Organization.meta.profile@value
+Organization.identifier
+— identifier:SoDKKinhDoanh
+use
+type
+coding
+system
+code
+display
+text
+system
+Type
+String
+String
+Identifier
+Identifier
+code
+CodeableConcept
+Coding
+uri
+code
+string
+string
+uri
+Flag
+Card.
+1.1
+1..1
+O..*
+0.1
+0..1
+0..1
+1..1
+1.1
+1..1
+1.1
+1..1
+1.1
+Diễn giải
+Yêu cầu: kiếu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-
+provider
+Định nghĩa cho số đăng ký kinh doanh
+Giá trị mặc định: official
+Giá trị mặc định: http://terminology.h17.org/CodeSystem/v2-
+0203
+Giá trị mặc định: LN
+Giá trị mặc định: License number
+Giá trị mặc định: License number
+Giá trị mặc định: http:/ /moh.gov.vn/fhir/core/sid/provider-
+BETTER HEALTH PROGRAMME SEA 15
+--- Page 15 ---
+Element Path
+value
+identifier:SoGPHoatDongKhamChua
+Benh
+use
+type
+coding
+system
+code
+display
+text
+system
+value
+- identifier:MaCSKCB
+use
+type
+coding
+system
+code
+display
+text
+system
+value
+Organization.active
+Organization.type
+coding
+system
+code
+display
+Type
+string
+Identifier
+code
+CodeableConcept
+Coding
+uri
+code
+string
+string
+uri
+string
+Identifier
+code
+CodeableConcept
+Coding
+uri
+code
+string
+string
+uri
+string
+boolean
+CodeableConcept
+Coding
+uri
+code
+string
+Flag
+Card.
+Diễn giải
+1..1
+Giá trị tương ứng,
+0..1
+Định nghĩa cho số giấy phép hoạt động khám, chữa bệnh
+0..1
+0..1
+1..1
+1..1
+1.1
+1.1
+1..1
+1..1
+1..1
+0..1
+0..1
+0..1
+1..1
+1..1
+1..1
+1..1
+1.1
+1..1
+1..1
+0..1
+1..1
+1..1
+1..1
+1..1
+1.1
+Giá trị mặc định: official
+Giá trị mặc định: http://terminology.h17.org/CodeSystem/v2-
+0203
+Giá trị mặc định: LN
+Giá trị mặc định: License number
+Giá trị mặc định: License number
+Giá trị mặc định: http:/ /moh.gov.vn/fhir/core/sid/provider-
+medical-license-number
+Giá trị tương ưng
+Định nghĩa cho Mã cơ sở khám, chữa bệnh theo ban hành của Bộ
+Giá trị mặc định: official
+Giá trị mặc định: http://terminology.h17.org/CodeSystem/v2-
+0203
+Giá trị mặc định: PRN
+Giá trị mặc định: Provider number
+Giá trị mặc định: Provider number
+Giá trị mặc định: http://moh.gov.vn/fhir/core/sid/provider-
+code
+Giá trị tương ứng
+S
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/organization-type
+Giá trị mặc định: prov
+Giá trị mặc định: Healthcare Provider
+BETTER HEALTH PROGRAMME SEA
+--- Page 16 ---
+Element Path
+text
+Organization.name
+Organization.alias
+Orgnization.address
+Organization.telecom
+Organization.partOf
+Organization.contact
+name
+telecom
+address
+Type
+string
+string
+string
+VN Core
+Address
+ContactPoint
+Reference(Organi
+zation)
+BackboneElement
+HumanName
+ContactPoint
+VN Core
+Address
+Flag
+S
+S
+Card.
+1..1
+1..1
+0..*
+0.*
+S
+S
+O...*
+0.1
+S
+O..*
+0..1
+0..*
+0..1
+S: Must support, - : Slide item
+2.3 VN Core Healthcare Department (Organization) profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-healthcare-department
+Được xây dựng dựa trên profile:
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/Organization-uv-ips
+Version:
+1.0.0
+Name:
+OrganizationUvIps
+Title:
+Organization (IPS)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Diễn giải
+Giá trị mặc định: Healthcare Provider
+BETTER HEALTH PROGRAMME SEA 17
+--- Page 17 ---
+Definition:
+Publisher:
+This profile constrains the Organization resource to represent an organization that acts as performer or observer for a result
+observation (laboratory, pathology or imaging), or as performer for a procedure.
+Health Level Seven International - Patient Care Work Group
+* Nội dung chi tiết:
+Element Path
+Organization.id@value
+Organization.meta.profile@value
+Organization.identifier
+Organization.active
+Organization.type
+coding
+system
+code
+display
+text
+Organization.name
+Organization.alias
+Orgnization.address
+Organization.telecom
+Organization.partOf
+Organization.contact
+name
+telecom
+address
+Type
+String
+String
+Identifier
+boolean
+CodeableConcept
+Coding
+uri
+code
+string
+string
+string
+string
+VN Core
+Address
+ContactPoint
+Reference(Provid
+er Profile - VN
+Core R4)
+BackboneElement
+HumanName
+ContactPoint
+VN Core
+Address
+Flag
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+Card.
+Diễn giải
+1.1
+Yêu cầu: kiểu dữ liệu UUID
+1.1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-
+healthcare-department
+0..*
+0..1
+1..1
+1..1
+1.1
+1..1
+1..1
+1..1
+1.1
+O..*
+0.*
+0.*
+0..1
+0..*
+0.1
+0..*
+0..1
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/organization-type
+Giá trị mặc định: dept
+Giá trị mặc định: Hospital Department
+Giá trị mặc định: Hospital Department
+Tham chiếu đến VN Core (Organization) Provider Profile
+BETTER HEALTH PROGRAMME SEA
+18
+--- Page 18 ---
+S: Must support, - : Slide item
+2.4
+VN Core Location profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-location
+* Nội dung chi tiết:
+Element Path
+Location id @value
+Location.meta.profile@value
+Location.identifier
+Location.status
+Location.operationalStatus
+Location.name
+Location.alias
+Location description
+Location.type
+Location.address
+Location.telecom
+Location.physicalType
+Location.managingOrganization
+Location.partOf
+Type
+String
+String
+Flag
+Identifier
+code
+VN Core Coding
+string
+string
+string
+VN Core
+CodeableConcep
+VN Core
+Address
+ContactPoint
+VN Core
+Codeable
+Concept
+Reference(Provid
+er Profile - VN
+Core R4|
+HealthcareDepart
+ment Profile -
+VN Core R4)
+Reference (Locati
+S
+S
+S
+S
+S
+S
+S
+S
+Card.
+1.1
+1..1
+0.*
+0..1
+0..1
+1..1
+0..*
+0..1
+O..*
+0..1
+0..*
+1.1
+1..1
+0..1
+Diễn giải
+Yêu cầu: kiểu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-
+Tham chiếu đến VN Core Provider (Organization) Profile, VN
+Core Healthcare Department (Organization) Profile
+Tham chiếu đến VN Core Location Profile
+BETTER HEALTH PROGRAMME SEA 19
+--- Page 19 ---
+Element Path
+Type
+on | Location
+Profile - VN
+Core R4)
+BackboneElement
+Flag
+Card. Diễn giải
+Location.hoursOfOperation
+S: Must support, - : Slide item
+S
+0..*
+2.5
+VN Core Practitioner profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-practitioner
+Đựa xây dựng dựa trên profile:
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/Practitioner-uv-ips
+Version:
+1.0.0
+Name:
+PractitionerUvIps
+Title:
+Practitioner (IPS)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Definition:
+This profile constrains the practitioner resource to represent a practitioner acting as observer for these imaging results.
+Publisher:
+Health Level Seven International - Patient Care Work Group
+* Nội dung chi tiết:
+Element Path
+Practitioner.id@value
+Type
+String
+Flag Card. Diễn giải
+1.. 1 Yêu cầu: kiểu dữ liệu UUID
+BETTER HEALTH PROGRAMME SEA 20
+--- Page 20 ---
+Element Path
+Practitioner.meta.profile@value
+Practitioner identifier
+- identifier: MaSoNhanVien
+use
+type
+coding
+system
+code
+display
+text
+system
+value
+Practitioner.active
+Practitioner.name
+text
+family
+given
+Practitioner.telecom
+Practitioner.address
+Practitioner.gender
+Practitioner qualification
+- qualification:ChungChiHanhNghe
+identifier
+use
+type
+coding
+Type
+String
+Identifier
+Identifier
+code
+CodeableCon
+cept
+Coding
+uri
+code
+string
+string
+uri
+string
+boolean
+HumanName
+string
+string
+string
+ContactPoint
+VN Core
+Address
+code
+BackboneEle
+ment
+Identifier
+code
+CodeableCon
+cept
+Coding
+Flag
+Card.
+Diễn giải
+1..1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-practitioner
+S
+S
+S
+S
+S
+0..*
+0..1
+0..1
+0..1
+1..1
+1..1
+1..1
+1..1
+1.1
+1.. 1
+1..1
+0..1
+1..1
+1..1
+0.1
+0.*
+O..*
+0.*
+0.1
+0..*
+1..1
+0..1
+0..1
+1.1
+Thông tin về Mã số nhân viên của cán bộ y tế tại CSKCB
+Giá trị mặc định: official
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/v2-0203
+Giá trị mặc định: EI
+Giá trị mặc định: Employee number
+Giá trị mặc định: Employee number
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/sid/healthworker-employee-
+number
+Giá trị tương ứng
+Thông tin về số chứng chỉ hành nghề
+Giá trị mặc định: official
+BETTER HEALTH PROGRAMME SEA 21
+--- Page 21 ---
+Element Path
+system
+code
+display
+text
+system
+value
+period
+issuer
+Practitioner.communication
+Type
+uri
+code
+string
+string
+uri
+string
+Period
+Reference(Or
+ganization)
+VN Core
+Codeable
+Concept
+Flag Card.
+Diễn giải
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/v2-0203
+Giá trị mặc định: LN
+Giá trị mặc định: License number
+Giá trị mặc định: License number
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/sid/healthworker-license-
+number
+Giá trị tương ứng
+S
+S
+S
+1.1
+1..1
+0..1
+0..1
+0.1
+S: Must support, — : Slide item
+2.6 VN Core Practitioner Role profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-practitioner-role
+Được xây dựng dựa trên profile:
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/PractitionerRole-uv-ips
+Version:
+1.0.0
+Name:
+PractitionerRoleUvIps
+Title:
+PractitionerRole (IPS)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+BETTER HEALTH PROGRAMME SEA 22
+--- Page 22 ---
+Definition:
+Publisher:
+This profile constrains the PractitionerRole resource to represent a practitioner acting as observer for observattion results for
+a specified organization.
+Health Level Seven International - Patient Care Work Group
+* Nội dung chi tiết:
+Element Path
+PractitionerRole.id@value
+PractitionerRole.meta.profile@value
+PractitionerRole.identifier
+PractitionerRole.active
+PractitionerRole.period
+PractitionerRole.practitioner
+PractitionerRole.organization
+PractitionerRole.code
+— code:healthcare ProfessionalRoles
+PractitionerRole.specialty
+Type
+String
+String
+Identifier
+boolean
+Period
+Reference(Pr
+actitioner
+Profile - VN
+Core R4)
+Reference Pr
+ovider
+Profile - VN
+Core R4|
+HealthcareDe
+partment
+Profile - VN
+Core R4)
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Flag
+Card.
+Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1.1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-practitioner-role
+S
+S
+S
+S
+0..*
+0..1
+0..1
+0..1
+Tham chiếu đến VN Core Practitioner Profile
+S
+0.1
+Tham chiếu đến VN Core Provider (Organization) Profile,
+VN Core Healthcare Department (Organization) Profile
+S
+S
+0..*
+0..*
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/healthcare-
+professional-roles-uv-ips
+Type: preferred
+S
+0..*
+BETTER HEALTH PROGRAMME SEA 23
+--- Page 23 ---
+Element Path
+PractitionerRole.location
+PractitionerRole.healthcareService
+PractitionerRole.telecom
+PractitionerRole.availableTime
+PractitionerRole.notAvailable
+Type
+Codeable
+Concept
+Reference(Lo
+cation
+Profile - VN
+Core R4)
+Reference(He
+althcare Servi
+ce)
+ContactPoint
+BackboneEle
+ment
+BackboneEle
+ment
+S
+S
+S
+S
+S: Must support, - : Slide item
+2.7
+VN Core Encounter Profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-encounter
+* Nội dung chi tiết:
+Element Path
+Encounter.id @value
+Encounter.meta.profile@value
+Type
+String
+String
+Flag
+Encounter identifier
+- identifier:MaBenhAn
+use
+type
+coding
+system
+Identifier
+Identifier
+code
+CodeableConcept
+Coding
+uri
+S
+Flag Card. Diễn giải
+0.*
+Tham chiếu đến VN Core Location Profile
+0.*
+O..*
+0.*
+0..*
+Card. Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1..1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-
+encounter
+0..*
+0..1
+0.1
+0..1
+1..1
+1..1
+Định nghĩa cho số vào viện/mã bệnh án
+Giá trị mặc định: official
+Giá trị mặc định: http://terminology.h17.org/CodeSystem/v2-
+BETTER HEALTH PROGRAMME SEA 24
+--- Page 24 ---
+Element Path
+code
+display
+text
+system
+value
+— identifier:MaLuuTru
+use
+type
+coding
+system
+code
+display
+text
+system
+value
+— identifier:MaDotThamKham
+use
+type
+coding
+system
+code
+display
+text
+system
+value
+Encounter.status
+Encounter. class
+Encounter. classHistory
+class
+Encounter.type
+Type
+code
+string
+string
+uri
+string
+Identifier
+code
+CodeableConcept
+Coding
+uri
+code
+string
+string
+uri
+string
+Identifier
+code
+CodeableConcept
+Coding
+uri
+code
+string
+string
+uri
+string
+code
+VN Core Coding
+BackboneElement
+VN Core Coding
+VN Core
+Flag
+Card.
+1..1
+1..1
+1..1
+1..1
+1..1
+0..1
+0..1
+0..1
+1..1
+1.1
+1..1
+1..1
+1..1
+1..1
+1..1
+0..1
+0..1
+0..1
+1..1
+1.1
+S
+1..1
+1..1
+1..1
+1.1
+1..1
+1..1
+1.1
+0..*
+1.1
+0..*
+Diễn giải
+0203
+Giá trị mặc định: MR
+Giá trị mặc định: Medical record number
+Giá trị mặc định: Medical record number
+Giá trị mặc định: http://moh.gov.vn/fhir/core/sid/MRN
+Giá trị của mã bệnh án
+Định nghĩa cho số lưu trữ
+Giá trị mặc định: official
+Giá trị mặc định: http://terminology.h17.org/CodeSystem/v2-
+0203
+Giá trị mặc định: MR
+Giá trị mặc định: Medical record number
+Giá trị mặc định: Medical record number
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/sid/MeidcalRecordArchiveNumber
+Giá tri của sô lưu trữ
+Định nghĩa cho số lưu trữ
+Giá trị mặc định: official
+Giá trị mặc định: http://terminology.h17.org/CodeSystem/v2-
+0203
+Giá trị mặc định: Visit number
+Giá trị mặc định: Visit number
+Giá trị mặc định: http://moh.gov.vn/fhir/core/sid/VisitNumber
+Giá trị của số lưu trữ
+BETTER HEALTH PROGRAMME SEA 25
+--- Page 25 ---
+Element Path
+Encounter.service Type
+Encounter.priority
+Encounter.subject
+Encounter.basedOn
+Encounter: participant
+type
+individual
+Encounter.appointment
+Encounter. period
+Encounter.length
+Encounter.reasonCode
+Encounter.reasonReference
+Type
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Reference(Patien
+t Profile - VN
+Core R4)
+Reference(Servic
+eRequest)
+BackboneElement
+VN Core
+Codeable
+Concept
+Reference (Practiti
+oner|
+PractitionerRole
+RelatedPerson|
+Practitioner
+profile - VN
+Core R4)
+Reference (Appoi
+ntment)
+Period
+Duration
+VN Core
+Codeable
+Concept
+Reference(Condit
+ion | Procedure|
+Observation/
+ImmunizationRec
+Flag
+Card. Diễn giải
+S
+S
+S
+0..1
+0..1
+0.1
+O..*
+0..*
+0..*
+0..1
+Tham chiếu đến VN Core Patient profile
+Tham chiếu đến VN Core Practitioner profile
+S
+S
+S
+S
+S
+0..*
+0..1
+0..1
+O..*
+0..*
+BETTER HEALTH PROGRAMME SEA 26
+--- Page 26 ---
+Element Path
+Encounter.diagnosis
+— diagnosis:AdmissionDiagnosis-
+CDVao Vien
+condition
+use
+coding
+system
+code
+display
+text
+- diagnosis: DischargeDiagnosis-
+CDRa Vien
+condition
+use
+coding
+system
+code
+display
+text
+- diagnosis:ChiefComplaint_
+CDBenhChinh
+Type
+ommendation)
+BackboneElement
+BackboneElement
+Flag
+Card.
+Diễn giải
+S
+Reference(Condit
+ion - Encounter
+Diagnosis- VN
+Core R4)
+CodeableConcept
+Coding
+uri
+code
+string
+string
+BackboneElement
+Reference(Condit
+ion - Encounter
+Diagnosis- VN
+Core R4)
+CodeableConcep
+Codins
+uri
+code
+string
+string
+BackboneElement
+0.*
+0..1
+1.1
+1.1
+1..1
+1..1
+1.1
+1.1
+0..1
+1.1
+1.1
+1.1
+1..1
+1..1
+1..1
+1.1
+Chấn đoán vào viện
+Tham chiếu đến Condition - Encounter Diagnosis- VN Core R4
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/diagnosis-role
+Giá trị mặc định:
+AD
+Giá trị mặc định:
+Admission diagnosis
+Giá trị mặc định:
+Admission diagnosis
+Chân đoán ra viện
+Tham chiếu đến Condition - Encounter Diagnosis - VN Core R4
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/diagnosis-role
+Giá trị mặc định:
+DD
+Giá trị mặc định:
+Discharge diagnosis
+Giá trị mặc định:
+Discharge diagnosis
+Chân đoán bệnh chính
+BETTER HEALTH PROGRAMME SEA 27
+--- Page 27 ---
+Element Path
+condition
+use
+coding
+system
+code
+display
+text
+- diagnosis:Comorbidity Diagnosis-
+CDBenhPhu
+condition
+use
+coding
+system
+code
+display
+text
+- diagnosis: Pre_opDiagnosis_
+CDTruocPTTT
+condition
+Type
+Reference(Condit
+ion - Encounter
+Diagnosis- VN
+Core R4)
+CodeableConcept
+Coding
+uri
+code
+string
+string
+BackboneElement
+Reference(Condit
+ion - Encounter
+Diagnosis- VN
+Core R4)
+CodeableConcept
+Coding
+uri
+code
+string
+string
+BackboneElement
+Reference(Condit
+ion - Encounter
+Diagnosis- VN
+Core R4)
+Flag
+Card.
+Diễn giải
+Tham chiếu đến Condition - Encounter Diagnosis- VN Core R4
+1..1
+1..1
+1.1
+1.1
+1.1
+1.1
+0.*
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/diagnosis-role
+Giá trị mặc định:
+CC
+Giá trị mặc định:
+Chief complaint
+Giá trị mặc định:
+Chief complaint
+Chấn đoán bệnh phụ
+Tham chiếu đến Condition - Encounter Diagnosis- VN Core R4
+1.1
+1.1
+1..1
+1..1
+1.1
+1.1
+0..1
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/diagnosis-role
+Giá trị mặc định:
+CM
+Giá trị mặc định:
+Comorbidity diagnosis
+Giá trị mặc định:
+Comorbidity diagnosis
+Chẩn đoán trước phẫu thuật, thủ thuật
+Tham chiếu đến Condition - Encounter Diagnosis - VN Core R4
+BETTER HEALTH PROGRAMME SEA 28
+--- Page 28 ---
+Element Path
+use
+coding
+system
+code
+display
+text
+- diagnosis:Post_opDiagnosis_
+CDSauPTTT
+condition
+use
+coding
+system
+code
+display
+text
+Encounter.hospitalization
+preAdmissionldentifier
+origin
+admitSource
+reAdmission
+Type
+Codeable Concept
+Coding
+uri
+code
+string
+string
+BackboneElement
+Flag
+Reference(Condit
+ion - Encounter
+Diagnosis - VN
+Core R4)
+CodeableConcept
+Coding
+uri
+code
+string
+string
+BackboneElement
+Identifier
+Reference(Locati
+on | Organization)
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+S
+S
+S
+S
+Card.
+Diễn giải
+1.1
+1..1
+1..1
+1..1
+1.1
+1..1
+0.1
+1.1
+1..1
+1.1
+1..1
+1..1
+1.1
+0.1
+0.1
+0..1
+0..1
+0.1
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/diagnosis-role
+Giá trị mặc định:
+pre-op
+Giá trị mặc định:
+pre-op diagnosis
+Giá trị mặc định:
+ân don sau phẩu thuật, thi thuật
+Tham chiếu đến Condition - Encounter Diagnosis - VN Core R4
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/diagnosis-role
+Giá trị mặc định:
+post-op
+Giá trị mặc định:
+post-op diagnosis
+Giá trị mặc định:
+post-op diagnosis
+BETTER HEALTH PROGRAMME SEA 29
+--- Page 29 ---
+Element Path
+dietPreference
+specialCourtesy
+special Arrangement
+destination
+dischargeDisposition
+Encounter.location
+location
+Encounter.serviceProvider
+Type
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Reference(Locati
+on | Organization)
+VN Core
+Codeable
+Concept
+BackboneElement
+Reference(Locati
+on Profile - VN
+Core R4)
+Reference(Provid
+er Profile - VN
+Core R4|
+HealthcareDepart
+ment profile -
+VN Core R4)
+Reference (Encou
+nter)
+Flag
+S
+S
+S
+Card. Diễn giải
+O.*
+0..*
+0..*
+0.1
+0..1
+O..*
+1..1
+0..1
+Tham chiếu đến VN Core Location profile
+Tham chiếu đến Provider Profile - VN Core R4,
+HealthcareDepartment Profile - VN Core R4
+Encounter.partOf
+S
+0..1
+S: Must support, - : Slide item
+2.8
+VN Core Encounter Diagnosis (Condition) profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-condition-encounter-diagnosis
+Được xây dựng dựa trên profile:
+BETTER HEALTH PROGRAMME SEA 30
+--- Page 30 ---
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/Condition-uv-ips
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+1.0.0
+ConditionUvIps
+Condition (IPS)
+Active as of 2021-05-05T07:38:43+00:00
+This profile represents the constraints applied to the Condition resource by the International Patient Summary (IPS) FHIR
+Implementation Guide. A record of a problem is represented in the patient summary as an instance of the Condition resource
+constrained by this profile.
+Health Level Seven International - Patient Care Work Group
+* Thông tin chi tiết:
+Element Path
+Condition.id@value
+Condition.meta.profile@value
+Condition identifier
+Condition.clinicalStatus
+Condition.verificationStatus
+Condition.category
+Type
+string
+string
+Identifier
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Flag
+Card.
+Diễn giải
+1..1
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+Giá trị mặc định:
+ttp://moh.gov.vn/fhir/core/StructureDefinition/vn
+ore-condition-encounter-diagnosi
+S
+0.*
+0..1
+S
+0..1
+1.*
+BETTER HEALTH PROGRAMME SEA 31
+--- Page 31 ---
+Element Path
+coding
+system
+code
+display
+Condition.severity
+Condition.code
+- code:problemGPSCode
+- code:absentOrUnknownProblem
+— code:condition Code
+Condition.bodySite
+Condition.subject
+Condition.encounter
+Type
+Coding
+uri
+code
+string
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Reference(Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+Flag Card. Diễn giải
+1..1
+1.1
+S
+S
+1..1
+1..1
+0..1
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/condition-
+Giá trị mặc định: encounter-diagnosis
+Giá trị mặc định: Encounter Diagnosis
+1.1
+0..1
+S
+0.1
+0.1
+Thông tin chấn đoán
+Mã chẩn đoán từ bộ Refset GPS (SNOMED CT)
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/core-problem-
+finding-situation-event-gps-uv-ips
+Mã thể hiện vẫn đề chưa dược xác dịnh hoặc không rõ ràng
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/absent-or-unknown-
+problems-uv-ips
+Type: required
+Mã chấn đoán
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-condition-
+code
+Type: required
+0..*
+1..1
+Tham chiếu đến VN Core R4 Patient profile
+1.1
+Tham chiếu đến VN Core R4 Encounter profile
+BETTER HEALTH PROGRAMME SEA 32
+--- Page 32 ---
+Element Path
+Type
+counter
+Profile - VN
+Core R4)
+Flag
+Card.
+Diễn giải
+Condition.onset[x]
+Condition.abatement[x]
+Condition.recordedDate
+Condition.recorder
+S
+S
+S
+S
+0..1
+0..1
+0..1
+0..1
+Condition.asserter
+date Time
+Reference Pr
+actitioner
+Profile - VN
+Core R4)
+Reference(Pr
+actitioner
+Profile - VN
+Core R4)
+Tham chiếu đến VN Core R4 Practitioner profile
+S
+0.1
+Tham chiếu đến VN Core R4 Practitioner profile
+Condition.stage
+Condition.evidence
+S: Must support, - : Slide item
+S
+S
+0.*
+0.*
+2.9
+Thông tin đường dẫn URL:
+VN Core Problem List (Condition) profile
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-condition-problemlist
+Được xây dựng dựa trên profile:
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/Condition-uv-ips
+Version:
+1.0.0
+Name:
+ConditionUvIps
+Title:
+Condition (IPS)
+BETTER HEALTH PROGRAMME SEA 33
+--- Page 33 ---
+Status:
+Definition:
+Publisher:
+Active as of 2021-05-05T07:38:43+00:00
+This profile represents the constraints applied to the Condition resource by the International Patient Summary (IPS) FHIR
+Implementation Guide. A record of a problem is represented in the patient summary as an instance of the Condition resource
+constrained by this profile.
+Health Level Seven International - Patient Care Work Group
+* Thông tin chi tiết:
+Element Path
+Condition.id @value
+Condition.meta.profile@value
+Condition.identifier
+Condition.clinicalStatus
+Condition.verificationStatus
+Condition.category
+coding
+system
+code
+display
+Condition severity
+Type
+string
+string
+Identifier
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Coding
+uri
+code
+string
+VN Core
+Codeable
+Flag Card.
+Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1.1
+Giá trị mặc định:
+nttp://moh.gov.vn/fhir/core/StructureDefinition/vn
+core-condition-problemlist
+S
+S
+S
+0.*
+0.1
+0.1
+1.*
+1..1
+1..1
+1.1
+1..1
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/condition-
+category
+Giá trị mặc định: problem-list-item
+Giá trị mặc định: Problem List Item
+0..1
+BETTER HEALTH PROGRAMME SEA 34
+--- Page 34 ---
+Element Path
+Condition.code
+- code:problem GPSCode
+- code:absentOrUnknownProblem
+- code:condition Code
+Condition.bodySite
+Condition.subject
+Condition.encounter
+Condition.onset(x]
+Condition.abatement[x]
+Condition.recordedDate
+Condition.recorder
+Type
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Reference Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+counter
+Profile - VN
+Core R4)
+Flag
+Card.
+Diễn giải
+S
+1..1
+Thông tin chân đoán
+S
+0.1
+S
+0.1
+S
+0..1
+Mã chân đoán từ bộ Refset GPS (SNOMED CT)
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/core-problem-
+finding-situation-event-gps-uv-ips
+Type: required
+Mã thế hiện vấn đề chưa được xác định hoặc không rõ ràng
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/absent-or-unknown-
+problems-uv-ips
+Type: required
+Mã chấn đoán
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-condition-
+code
+Type: required
+S
+0..*
+1..1
+Tham chiếu đến VN Core R4 Patient profile
+1.1
+Tham chiếu đến VN Core R4 Encounter profile
+dateTime
+Reference Pr
+actitioner
+Profile - VN
+S
+S
+S
+S
+0..1
+0.1
+0..1
+0..1
+Tham chiếu đến VN Core R4 Practitioner profile
+BETTER HEALTH PROGRAMME SEA 35
+--- Page 35 ---
+Element Path
+Condition.asserter
+Type
+Core R4)
+Reference(Pr
+actitioner
+Profile - VN
+Core R4)
+Flag
+Card.
+S
+0..1
+Diễn giải
+Tham chiếu đến VN Core R4 Practitioner profile
+Condition.stage
+Condition.evidence
+S: Must support, - : Slide item
+S
+S
+0..*
+0..*
+2.10 VN Core Allergy Intolerance profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-allergy-intolerance
+Được xây dựng dựa trên profile:
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/AllergyIntolerance-uv-ips
+Version:
+1.0.0
+Name:
+Allergy Intolerance UvIps
+Title:
+Allergy Intolerance (IPS)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Definition:
+This profile represents the constraints applied to the AllergyIntolerance resource by the International Patient Summary (IPS)
+FHIR Implementation Guide. A record of an allergy or intolerance is represented in the patient summary as an instance of an
+Allergy Intolerance resource constrained by this profile.
+It documents the relevant allergies or intolerances (conditions) for a patient, describing the kind of reaction (e.g. rash,
+anaphylaxis,..); preferably the agents that cause it; and optionally the criticality and the certainty of the allergy.
+BETTER HEALTH PROGRAMME SEA 36
+--- Page 36 ---
+Publisher:
+Health Level Seven International - Patient Care Work Group
+* Thông tin chi tiết:
+Element Path
+Allergy Intolerance id @value
+Allergy Intolerance.meta.profile@value
+Allergy Intolerance.extension
+- abatement-date Time-uv-ips
+Type
+string
+string
+Extension
+Extension
+Flag
+Card.
+1.1
+1..1
+S
+O..*
+0.1
+AllergyIntolerance.identifier
+AllergyIntolerance.clinicalStatus
+Allergy Intolerance.verificationStatus
+Allergy Intolerance.type
+AllergyIntolerance.category
+AllergyIntolerance.criticality
+AllergyIntolerance.code
+— code: allergy IntoleranceGPSCode
+— code:absentOrUnknownAllergyIntolerance
+Identifier
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+code
+code
+code
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+S
+O.*
+0..1
+S
+S
+S
+S
+0.1
+S
+0.1
+O.*
+0.1
+1.1
+0..1
+0.1
+Diễn giải
+Yêu cầu: kiếu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-allergy-intolerance
+Extension về thời điểm ghi nhận dấu hiện thuyên giảm
+Giá trị tham chiếu:
+http://h17.org/fhir/uv/ips/StructureDefinition/abatemen
+t-dateTime-uv-ips
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/allergy-
+intolerance-substance-condition-uv-ips
+Type: preferred
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/allergy-
+intolerance-substance-condition-gps-uv-ips
+Type: required
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/absent-or-unknown-
+allergies-uv-ips
+BETTER HEALTH PROGRAMME SEA 37
+--- Page 37 ---
+Element Path
+AllergyIntolerance.patient
+Allergy Intolerance.encounter
+Allergy Intolerance.onset[x]
+- onset/x/:onsetDate Time
+Allergy Intolerance.asserter
+Allergy Intolerance.reaction
+manifestation
+- manifestation:allergy Intolerance
+Reaction Manifestation GPSCode
+onset
+severity
+S: Must support, — : Slide item
+Type
+Reference(Pa
+tient
+Profile - VN
+Core R4)
+Reference En
+counter |
+Encounter
+Profile - VN
+Core R4)
+date Time
+Reference Pat
+ient |
+RelatedPerso
+n
+Practitioner|
+PractitionerR
+ole |
+Practitioner
+Profile - VN
+Core R4)
+BackboneEle
+ment
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+date Time
+code
+Flag
+Card.
+S
+1..1
+Diễn giải
+Type: required
+Tham chiêu đên VN Core R4 Patient profile
+0..1
+Tham chiếu đến VN Core R4 Encounter profile
+S
+S
+0..1
+0.1
+0.1
+Tham chiếu đến VN Core R4 Practitioner profile
+S
+0..*
+1.*
+S
+0..1
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/allergy-reaction-
+gps-uv-ips
+Type: required
+S
+0.1
+0..1
+BETTER HEALTH PROGRAMME SEA 38
+--- Page 38 ---
+2.11 VN Core Procedure profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-procedure
+Được xây dựng dựa trên profile:
+Defining URL:
+http://h17.org/fhir/uv/ips/StructureDefinition/Procedure-uv-ips
+Version:
+1.0.0
+Name:
+ProcedureUvIps
+Title:
+Procedure (IPS)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Definition:
+This profile represents the constraints applied to the Procedure resource by the IPS project, which specifies an entry of the
+History of Procedure for the international patient summary based on the FHIR standard R4.
+Publisher:
+Health Level Seven International - Patient Care Work Group
+* Thông tin chi tiết:
+Element Path
+Procedure.id @value
+Procedure.meta.profile@value
+Procedure.identifier
+Procedure.basedOn
+Type
+string
+string
+Identifier
+Reference(Se
+rviceRequest
+profile - VN
+Flag Card.
+Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1.1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-procedure
+S
+S
+0.*
+0..*
+Tham chiếu đến VN Core R4 Service Request profile
+BETTER HEALTH PROGRAMME SEA 39
+--- Page 39 ---
+Element Path
+Procedure.partOf
+Procedure.status
+Procedure statusReason
+Procedure.category
+Procedure.code
+— code:absentOrUnknownProcedure
+Procedure.subject
+Procedure.encounter
+Procedure.performed [x]
+extension
+- data-absent-reason
+Procedure.recorder
+Type
+Core R4)
+Reference (Pr
+ocedure
+Observation
+MedicationA
+dministration)
+code
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Reference Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+counter
+Profile - VN
+Core R4)
+Extension
+code
+Flag Card. Diễn giải
+S
+0.*
+1..1
+0.1
+S
+0.1
+1.1
+S
+0..1
+S
+1..1
+Mã dịch vụ kỹ thuật/phẫu thuật/thủ thuật
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vn-procedure-code
+Type: preferred
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/absent-or-unknown-
+procedures-uv-ips
+Type: required
+Tham chiếu đến VN Core R4 Patient profile
+S
+0..1
+Tham chiếu đến VN Core R4 Encounter profile
+S
+S
+1..1
+0..*
+0.1
+Reference Pat
+S
+0.1
+Extension về lý do bị thiếu dữ liệu
+Giá trị tham chiếu:
+http://h17.org/fhir/StructureDefinition/data-absent-
+reason
+Tham chiếu đến VN Core R4 Practitioner profile
+BETTER HEALTH PROGRAMME SEA 40
+--- Page 40 ---
+Element Path
+Procedure.asserter
+Procedure.performer
+actor
+onBehalfOf
+Procedure.location
+Type
+ient |
+RelatedPerso
+n|
+Practitioner |
+PractitionerR
+ole |
+Practitioner
+Profile - VN
+Core R4)
+Reference(Pat
+ient|
+RelatedPerso
+n|
+Practitioner |
+PractitionerR
+ole
+Practitioner
+Profile - VN
+Core R4)
+BackboneEle
+ment
+Reference Pr
+actitioner
+Profile - VN
+Core R4)
+Reference Pr
+ovider
+Profile - VN
+Core R4|
+HealthcareDe
+partment
+Profile - VN
+Core R4)
+Reference(Lo
+cation
+Profile - VN
+Core R4)
+Flag
+Card.
+Diễn giải
+0.1
+Tham chiếu đến VN Core R4 Practitioner profile
+0.*
+1..1
+Tham chiếu đến VN Core R4 Practitioner profile
+0..1
+Tham chiếu đến VN Core R4 Provider (Organization)
+profile, VN Core R4 Healthcare Department
+(Organization) profile
+S
+0..1
+Tham chiếu đến VN Core R4 Location profile
+BETTER HEALTH PROGRAMME SEA 41
+--- Page 41 ---
+Element Path
+Procedure.bodySite
+Procedure.outcome
+Procedure.report
+Type
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Reference(Di
+agnosticRepo
+it|
+DocumentRef
+erence
+Composition |
+DiagnosticRe
+port Profile
+- VN Core
+R4)
+Flag Card. Diễn giải
+S
+O..*
+S
+S
+0.1
+0.*
+Tham chiếu đến VN Core R4 Diagnostic Report profile
+S: Must support, - : Slide item
+2.12 VN Core Service Request profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-service-request
+* Thông tin chi tiết:
+Element Path
+ServiceRequest.id@value
+ServiceRequest.meta.profile@value
+Type
+string
+string
+Flag Card. Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1..1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-service-request
+ServiceRequest.identifier
+ServiceRequest.basedOn
+Identifier
+Reference Ca
+rePlan
+ServiceReque
+S
+S
+O..*
+0..*
+Tham chiếu đến VN Core R4 Service Request profile
+BETTER HEALTH PROGRAMME SEA 42
+--- Page 42 ---
+Element Path
+ServiceRequest.requisition
+ServiceRequest.category
+ServiceRequest.priority
+ServiceRequest.code
+ServiceRequest.order Detail
+ServiceRequest.subject
+Service Request.encounter
+ServiceRequest.occurrence[x]
+ServiceRequest.authoredOn
+ServiceRequest.requester
+Type
+st |
+MedicationRe
+quest |
+ServiceReque
+st profile -
+VN Core R4)
+Identifier
+VN Core
+Codeable
+Concept
+code
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Reference(Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+counter
+Profile - VN
+Core R4)
+date Time
+Reference (Pr
+actitioner
+Profile - VN
+Core R4|
+PractitionerR
+ole |
+Organization |
+Patient
+Flag
+Card.
+Diễn giải
+S
+0..1
+O..*
+S
+0..1
+1.1
+Mã dịch vụ kỹ thuật
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vn-procedure-code
+Type: preferred
+0..*
+S
+1.1
+Tham chiếu đến VN Core R4 Patient profile
+S
+0..1
+Tham chiếu đến vN Core R4 Encounter profile
+S
+S
+0..1
+0..1
+0.1
+Tham chiếu đến VN Core R4 Practitioner profile
+BETTER HEALTH PROGRAMME SEA 43
+--- Page 43 ---
+Element Path
+ServiceRequest.performer
+ServiceRequest. locationReference
+ServiceRequest.reasonCode
+ServiceRequest.reasonReference
+Type
+Device |
+RelatedPerso
+Reference(Pr
+actitioner |
+PractitionerR
+ole
+Organization |
+Care Team |
+HealthcareSer
+vice Patient
+Device |
+RelatedPerso
+n|
+Practitioner
+Profile - VN
+Core R4|
+HealthcareDe
+partment
+Profile - VN
+Core R4)
+Reference (Lo
+cation
+Location
+Profile - VN
+Core R4)
+VN Core
+Codeable
+Concept
+Reference Co
+ndition |
+Observation |
+DiagnosticRe
+port
+DocumentRef
+Flag
+Card.
+Diễn giải
+0..1
+Tham chiếu đến VN Core R4 Practitioner profile, VN Core
+R4 Healthcare Department profile
+Tham chiếu đến VN Core R4 Location profile
+S
+0..*
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-condition-
+code
+Type: required
+S
+0..*
+BETTER HEALTH PROGRAMME SEA 44
+--- Page 44 ---
+Element Path
+ServiceRequest.specimen
+ServiceRequest.body Site
+ServiceRequest.patientInstruction
+S: Must support, - : Slide item
+Type
+erence)
+Reference(Sp
+ecimen)
+VN Core
+Codeable
+Concept
+string
+Flag Card.
+Diễn giải
+S
+0..*
+0..*
+S
+0..1
+2.13 VN Core Immunization profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-immunization
+Được xây dựng dựa trên profile:
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/Immunization-uv-ips
+Version:
+1.0.0
+Name:
+ImmunizationUvIps
+Title:
+Immunization (IPS)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Definition:
+This profile represents the constraints applied to the Immunization resource by the International Patient Summary (IPS) FHIR
+Implementation Guide. A record of an immunization is represented in the patient summary as an instance of an Immunization
+resource constrained by this profile.
+It describes the event of a patient being administered a vaccination or a record of a vaccination as reported by a patient, a
+clinician or another party.
+BETTER HEALTH PROGRAMME SEA 45
+--- Page 45 ---
+Publisher:
+Health Level Seven International - Patient Care Work Group
+* Thông tin chi tiết:
+Element Path
+Immunization.id@value
+Immunization.meta.profile@value
+Immunization.identifier
+Immunization.status
+Immunization.statusReason
+Immunization. vaccineCode
+— vaccine Code:vaccineGPSCode
+— vaccine Code: atc Class
+- vaccineCode:
+absentOrUnknownImmunization
+— vaccine Code: vaccine Code
+Immunization.patient
+Immunization.encounter
+Type
+String
+Identifier
+code
+VN Core
+Codeabe
+Concept
+VN Core
+Codeabe
+Concept
+VN Core
+Codeabe
+Concept
+VN Core
+Codeabe
+Concept
+VN Core
+Codeabe
+Concept
+VN Core
+Codeabe
+Concept
+Reference Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+Flag
+Card.
+1.1
+1..1
+S
+S
+S
+S
+S
+S
+S
+S
+0.*
+1..1
+0..1
+1.1
+0..1
+0..1
+0..1
+0..1
+1.1
+1..1
+Diễn giải
+Yêu cầu: kiểu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-immunization
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/vaccines-uv-ips
+Type: preferred
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/vaccines-gps-uv-ips
+Type: required
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/whoatc-uv-ips
+Type: required
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/absent-or-unknown-
+immunizations-uv-ips
+Type: required
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vaccine-code
+Type: required
+Tham chiếu đến VN Core R4 Patient profile
+Tham chiếu đến VN Core R4 Encounter profile
+BETTER HEALTH PROGRAMME SEA 46
+--- Page 46 ---
+Element Path
+Immunization.occurrence[x]
+extension
+- data-absent-reason
+Immunization.recorded
+Immunization.location
+Immunization.manufacturer
+Immunization.lotNumber
+Immunization.expirationDate
+Immunization.site
+Immunization.route
+Immunization.doseQuantity
+Immunization.performer
+actor
+Immunization.reasonCode
+Type
+counter
+Profile - VN
+Core R4)
+Extension
+code
+Flag
+Card.
+Diễn giải
+S
+S
+S
+S
+1..1
+0..*
+0..1
+0..1
+0..1
+Extension dành cho lý do không xác định được thời điểm
+thực hiện
+Giá trị tham chiếu:
+http://h17.org/fhir/StructureDefinition/data-absent-
+reason
+Tham chiếu đến VN Core R4 Location profile
+date Time
+Reference(Lo
+cation |
+Location
+Profile - VN
+Core R4)
+Reference(Or
+ganization)
+string
+date
+VN Core
+Codeabe
+Concept
+VN Core
+Codeabe
+Concept
+SimpleQuant
+ityIPS
+BackboneEle
+ment
+Reference(Pr
+actitioner
+Profile - VN
+Core R4)
+VN Core
+S
+S
+S
+S
+S
+0..1
+0..1
+0..1
+0..1
+0..1
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/target-site-uv-ips
+Type: preferred
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/medicine-route-of-
+administration
+Type: preferred
+S
+S
+S
+S
+0.1
+0..1
+1..1
+0..*
+Tham chiếu đến VN Core R4 Practitioner profile
+BETTER HEALTH PROGRAMME SEA 47
+--- Page 47 ---
+Element Path
+Immunization.reasonReference
+Immunization.subpotentReason
+Immunization.programEligibility
+Immunization fundingSource
+Immunization.reaction
+Immunization.protocolApplied
+targetDisease
+- targetDisease:
+targetDiseaseGPSCode
+S: Must support, - : Slide item
+Các profile tham chiếu khác:
+STT Profile name
+01
+SimpleQuantity IPS
+Type
+Codeabe
+Concept
+Reference Co
+ndition|
+Observation |
+DiagnosticRe
+port)
+VN Core
+Codeabe
+Concept
+VN Core
+Codeabe
+Concept
+VN Core
+Codeabe
+Concept
+BackboneEle
+ment
+BackboneEle
+ment
+CodeableCon
+cept
+VN Core
+Codeabe
+Concept
+Flag Card. Diễn giải
+S
+0.*
+S
+O..*
+0.*
+0..*
+0.*
+0.*
+0..*
+0.1
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/targetDiseases-uv-
+ips
+Type: preferred
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-condition-
+code
+Type: required
+URL
+http://h17.org/fhir/uv/ips/StructureDefinition/SimpleQuantity-uv-ips
+BETTER HEALTH PROGRAMME SEA 48
+--- Page 48 ---
+2.14 VN Core Medication profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-medication
+Được xây dựng dựa trên profile:
+Defining URL: http://hl7.org/fhir/uv/ips/StructureDefinition/Medication-uv-ips
+Version:
+1.0.0
+Name:
+MedicationIPS
+Title:
+Medication (IPS)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Definition:
+This profile represents the constraints applied to the Medication resource by the International Patient Summary (IPS) FHIR
+Implementation Guide, based on FHIR R4. A medication is described in the patient summary as an instance of a Medication
+resource constrained by this profile.
+Publisher:
+Health Level Seven International - Patient Care Work Group
+* Thông tin chi tiết:
+Element Path
+Medication id @value
+Medication.meta.profile@value
+Medication.identifier
+Medication.code
+Type
+string
+string
+Identifier
+CodeableCon
+cept
+Flag
+Card.
+Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1.1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-medication
+S
+$
+0..*
+1..1
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/medication-example-
+BETTER HEALTH PROGRAMME SEA 49
+--- Page 49 ---
+Element Path
+- code:atcClass
+- code:snomed
+— code:medicationCode
+Medication.status
+Medication.manufacturer
+Medication.form
+Medication.amount
+Medication.ingredient
+item[x]
+— item[x]:item Codeable Concept
+isActive
+strength
+Medication.batch
+lotNumber
+expirationDate
+S: Must support, - : Slide item
+Các profile tham chiếu khác:
+Type
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+code
+Reference(Or
+ganization)
+VN Core
+Codeable
+Concept
+RatioIPS
+BackboneEle
+ment
+VN Core
+Codeable
+Concept
+boolean
+RatiolPS
+BackboneEle
+ment
+string
+date Time
+Flag
+S
+S
+S
+S
+S
+S
+S
+Card.
+0..1
+0.1
+0.1
+0..1
+0..1
+0..1
+0..1
+0..*
+1.1
+1.1
+Diễn giải
+uv-ips
+Type: example
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/whoatc-uv-ips
+Type: required
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/medication-snomed-
+uv-ips
+Type: required
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vn-medication-code
+Type: extensible
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/medicine-doseform
+Type: preferred
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/medicine-active-
+substances-uv-ips
+Type: required
+S
+S
+S
+S
+S
+0..1
+0..1
+0..1
+0..1
+0..1
+BETTER HEALTH PROGRAMME SEA 50
+--- Page 50 ---
+STT Profile name
+01
+SimpleQuantityIPS
+URL
+http://h17.org/fhir/uv/ips/StructureDefinition/SimpleQuantity-uv-ips
+2.15 VN Core Medication Request profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-medication-request
+* Thông tin chi tiết:
+Element Path
+MedicationRequest.id @value
+MedicationRequest.meta.profile@value
+Type
+string
+string
+Flag Card. Diễn giải
+1.1
+Yêu cầu: kiểu dữ liệu UUID
+1.1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-medication
+MedicationRequest identifier
+MedicationRequest.status
+MedicationRequest.statusReason
+MedicationRequest.category
+MedicationRequest.medication[x]
+— medication[x]:medicationCodeable Concept
+- medication/x/:medication Reference
+Identifier
+code
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Reference(M
+edication |
+Medication
+Profile - VN
+Core R4)
+S
+S
+S
+S
+O...*
+1..1
+0.1
+0.*
+1..1
+0..1
+0..1
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vn-medication-code
+Type: extensible
+Tham chiếu đến VN Core R4 Medication profile
+BETTER HEALTH PROGRAMME SEA 51
+--- Page 51 ---
+Element Path
+MedicationRequest.subject
+MedicationRequest.encounter
+MedicationRequest.authoredOn
+MedicationRequest.requester
+MedicationRequest.performer
+MedicationRequest.performerType
+MedicationRequest.recorder
+Type
+Reference Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+counter
+Profile - VN
+Core R4)
+date Time
+Reference Pr
+actitioner
+Profile - VN
+Core R4)
+Reference Pr
+actitioner |
+PractitionerR
+ole |
+Organization |
+Patient |
+Device |
+RelatedPerso
+n | Care Team
+Practitioner
+Profile - VN
+Core R4 |
+HealthcareDe
+partment
+Profile - VN
+Core R4)
+VN Core
+Codeable
+Concept
+Reference(Pr
+actitioner |
+PractitionerR
+ole
+Flag
+S
+Card.
+Diễn giải
+1..1
+Tham chiếu đến VN Core R4 Patient profile
+S
+0.1
+Tham chiếu đến VN Core R4 Encounter profile
+S
+0..1
+1.1
+Tham chiếu đến VN Core R4 Practitioner profile
+1..1
+Tham chiếu đến VN Core R4 Practitioner profile, VN Core
+R4 Healthcare Department profile
+S
+0.1
+S
+0..1
+Tham chiếu đến VN Core R4 Practitioner profile
+BETTER HEALTH PROGRAMME SEA 52
+--- Page 52 ---
+Element Path
+MedicationRequest.reasonCode
+MedicationRequest.basedOn
+Type
+Practitioner
+Profile - VN
+Core R4)
+VN Core
+Codeable
+Concept
+Reference(Ca
+rePlan
+MedicationRe
+quest |
+ServiceReque
+st |
+Immunization
+Recommenda
+tion
+MedicationRe
+quest
+Profile - VN
+Core R4)
+Identifier
+Annotation
+VN Core
+Dosage
+BackboneEle
+ment
+Flag Card.
+Diễn giải
+S
+0..*
+S
+0..*
+Tham chiếu đến VN Core R4 MedicationRequest profile
+MedicationRequest.groupldentifier
+MedicationRequest.note
+MedicationRequest.dosageInstruction
+S
+S
+S
+0..1
+0..*
+O..*
+MedicationRequest.dispenseRequest
+0..1
+S: Must support, - : Slide item
+2.16 VN Core Medication Statement profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-medication-statement
+Được xây dựng dựa trên profile:
+BETTER HEALTH PROGRAMME SEA 53
+--- Page 53 ---
+Defining URL: http://hl7.org/fhir/uv/ips/StructureDefinition/MedicationStatement-uv-ips
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+1.0.0
+MedicationStatementIPS
+Medication Statement (IPS)
+Active as of 2021-05-05T07:38:43+00:00
+This profile represents the constraints applied to the MedicationStatement resource by the International Patient Summary (IPS)
+FHIR Implementation Guide, based on FHIR R4. A record of a medication statement is represented in the patient summary as
+an instance of a MedicationStatement resource constrained by this profile.
+Health Level Seven International - Patient Care Work Group
+* Thông tin chi tiết:
+Element Path
+MedicationStatement.id @value
+MedicationStatement.meta.profile@value
+MedicationStatement.identifier
+MedicationStatement.basedOn
+Type
+string
+string
+Identifier
+Reference(M
+edicationReq
+uest
+CarePlan |
+ServiceReque
+st
+MedicationRe
+quest
+Profile - VN
+Core R4)
+Flag
+Card.
+1..1
+1..1
+0.*
+1..*
+Diễn giải
+Yêu cầu: kiếu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-medication-statement
+Tham chiếu đến VN Core R4 Medication Request profile
+BETTER HEALTH PROGRAMME SEA 54
+--- Page 54 ---
+Element Path
+MedicationStatement.status
+MedicationStatement.category
+MedicationStatement.medication[x]
+— medication/x/:medication CodeableConcept
+- medication/x/:medication Reference
+MedicationStatement.subject
+MedicationStatement.context
+MedicationStatement.effective[x]
+Extension
+- data-absent-reason
+MedicationStatement.informationSource
+Type
+code
+VN Core
+Codeable
+Concept
+Flag
+Card.
+Diễn giải
+S
+1.1
+S
+0..1
+1..1
+VN Core
+Codeable
+Concept
+Reference Me
+dication
+Profile - VN
+Core R4)
+Reference Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+counter
+Profile - VN
+Core R4)
+Extension
+code
+S
+S
+0..1
+0.1
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/medication-example-
+uv-ips
+Type: example
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vn-medication-code
+Type: extensible
+Tham chiếu đến VN Core R4 Medication profile
+S
+1.1
+Tham chiếu đến VN Core R4 Patient profile
+S
+0.1
+Tham chiếu đến VN Core R4 Encounter profile
+1.1
+0..1
+0..1
+Reference Pat
+ient |
+Practitioner
+PractitionerR
+ole/
+RelatedPerso
+0.1
+Extension dành cho lý do không xác định được thời điểm
+thực hiện
+Giá trị tham chiếu:
+http://h17.org/fhir/StructureDefinition/data-absent-
+reason
+BETTER HEALTH PROGRAMME SEA 55
+--- Page 55 ---
+Element Path
+MedicationStatement.derivedFrom
+MedicationStatement.reasonCode
+Type
+Organization)
+Reference(Re
+source)
+VN Core
+Codeable
+Concept
+Annotation
+VN Core
+Dosage
+Flag Card.
+Diễn giải
+S
+0..*
+0.*
+0..*
+0.*
+MedicationStatement.note
+MedicationStatement.dosage
+S
+S
+S: Must support, - : Slide item
+2.17 VN Core Medication Dispense profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-medication-dispense
+* Thông tin chi tiết:
+Element Path
+MedicationDispense.id@value
+MedicationDispense.meta.profile@value
+Type
+string
+string
+Flag Card. Diễn giải
+1..1
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-medication-dispense
+MedicationDispense.identifier
+MedicationDispense.partOf
+MedicationDispense.category
+MedicationDispense.medication[x]
+- medication/x/:medicationCodeableConcept
+Identifier
+Reference(Pr
+ocedure)
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concent
+S
+0..*
+0..*
+0..1
+1..1
+0.1
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vn-medication-code
+Type: extensible
+BETTER HEALTH PROGRAMME SEA 56
+--- Page 56 ---
+Element Path
+— medication/x/:medication Reference
+MedicationDispense.subject
+MedicationDispense.context
+MedicationDispense.performer
+actor
+MedicationDispense.location
+MedicationDispense.authorizingPrescription
+MedicationDispense.type
+Type
+Reference(Me
+dication
+Profile - VN
+Core R4)
+Reference Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+counter
+Profile - VN
+Core R4)
+BackboneEle
+ment
+Reference (Pr
+actitioner |
+PractitionerR
+ole |
+Organization |
+Patient |
+Device |
+RelatedPerso
+n|
+Practitioner
+Profile - VN
+Core R4)
+Reference(Lo
+cation |
+Location
+Profile - VN
+Core R4)
+Reference (Me
+dicationRequ
+est Profile
+- VN Core
+R4)
+VN Core
+Flag
+S
+Card.
+Diễn giải
+0..1
+Tham chiếu đến VN Core R4 Medication profile
+1..1
+Tham chiếu đến VN Core R4 Patient profile
+S
+0..1
+Tham chiếu đến VN Core R4 Encounter profile
+S
+S
+0..*
+1..1
+Tham chiếu đến VN Core R4 Practitioner profile
+S
+0..1
+Tham chiếu đến VN Core R4 Location profile
+0..*
+Tham chiếu đến VN Core R4 MedicationRequest profile
+0..1
+BETTER HEALTH PROGRAMME SEA 57
+--- Page 57 ---
+Element Path
+MedicationDispense.quantity
+MedicationDispense.destination
+MedicationDispense.receiver
+Type
+Codeable
+Concept
+SimpleQuant
+ity IPS
+Reference(Lo
+cation |
+Location
+Profile - VN
+Core R4)
+Reference Pa
+tient
+Profile - VN
+Core R4 |
+Practitioner
+Profile - VN
+Core R4)
+Annotation
+VN Core
+Dosage
+Flag
+Card.
+Diễn giải
+S
+0..1
+0.1
+Tham chiếu đến VN Core R4 Location profile
+S
+0..*
+Tham chiếu đến VN Core R4 Patient profile, VN Core R4
+Practitioner profile
+MedicationDispense.note
+MedicationDispense.dosageInstruction
+S
+S
+0..1
+0..1
+S: Must support, - : Slide item
+2.18 VN Core Medication Administration profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-medication-administration
+* Thông tin chi tiết:
+Element Path
+MedicationAdministration.id @value
+MedicationAdministration.meta.profile@value
+Type
+string
+string
+Flag
+Card.
+Diễn giải
+1.1
+1..1
+Yêu cầu: kiếu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-medication-administration
+MedicationAdministration.identifier
+MedicationAdministration.partOf
+Identifier
+Reference(M
+S
+S
+O..*
+0.*
+Tham chiếu đến VN Core R4 Administration profile, VN
+BETTER HEALTH PROGRAMME SEA 58
+--- Page 58 ---
+Element Path
+MedicationAdministration.status
+MedicationAdministration.category
+Medication Administration.medication(x]
+— medication/x/:medication CodeableConcept
+- medication/x/:medicationReference
+MedicationAdministration.subject
+MedicationAdministration.context
+MedicationAdministration.effective[x]
+MedicationAdministration.performer
+actor
+Type
+edication Adm
+inistration |
+Procedure|
+MedicationAd
+ministration
+Profile - VN
+Core R4 |
+Procedure
+Profile - VN
+Core R4)
+code
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Reference(Me
+dication
+Profile - VN
+Core R4)
+Reference(Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+counter
+Profile - VN
+Core R4)
+BackboneEle
+ment
+Reference(Pr
+actitioner |
+PractitionerR
+ole | Patient|
+Flag
+Card.
+Diễn giải
+Core R4 Procedure profile
+1..1
+0..1
+S
+1..1
+0..1
+S
+0.1
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vn-medication-code
+Type: extensible
+Tham chiếu đến VN Core R4 Medication profile
+S
+1.1
+Tham chiếu đến VN Core R4 Patient profile
+S
+0..1
+Tham chiếu đến VN Core R4 Encounter profile
+S
+S
+1..1
+O..*
+1.1
+Tham chiếu đến VN Core R4 Practitioner profile
+BETTER HEALTH PROGRAMME SEA 59
+--- Page 59 ---
+Element Path
+MedicationAdministration.reasonCode
+MedicationAdministration.reasonReference
+MedicationAdministration.request
+MedicationAdministration.device
+MedicationAdministration.note
+Medication Administration.dosage
+site
+route
+method
+dose
+Type
+RelatedPerso
+n | Device |
+Practitioner
+Profile - VN
+Core R4)
+VN Core
+Codeable
+Concept
+Reference (Co
+Observation |
+DiagnosticRe
+Reference (Me
+dicationRequ
+est Profile
+- VN Core
+R4)
+Reference (De
+vice)
+Annotation
+BackboneEle
+ment
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+SimpleQuant
+Flag Card. Diễn giải
+S
+S
+0.*
+0..*
+S
+0..1
+Tham chiếu đến VN Core R4 MedicationRequest profile
+S
+S
+S
+0.*
+O.*
+0..1
+0.1
+0..1
+0..1
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/snomedCT-
+anatomical-body-structure
+Type: preferred
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/snomedCT-dosage-
+administration-route
+Type: preferred
+ValueSet binding:
+http://h17.org/fhir/ValueSet/administration-method-
+codes
+Type: preferred
+0..1
+BETTER HEALTH PROGRAMME SEA 60
+--- Page 60 ---
+Element Path
+rateRatio
+rate Quantity
+S: Must support, - : Slide item
+Các profile tham chiếu khác:
+STT
+Profile name
+01
+RangelPS
+02
+RatioIPS
+03
+SimpleQuantityIPS
+Type
+ity IPS
+RatioIPS
+SimpleQuant
+itvIPS
+Flag Card. Diễn giải
+0..1
+0..1
+URL
+http://hl7.org/fhir/uv/ips/StructureDefinition/Range-uv-ips
+http://hl7.org/fhir/uv/ips/StructureDefinition/Ratio-uv-ips
+http://h17.org/fhir/uv/ips/StructureDefinition/SimpleQuantity-uv-ips
+2.19 VN Core DiagnosticReport profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-diagnostic-report
+Được xây dựng dựa trên profile:
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/DiagnosticReport-uv-ips
+Version:
+1.0.0
+Name:
+DiagnosticReportUvIps
+Title:
+DiagnosticReport (IPS)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Definition:
+This profile constrains the DiagnosticReport resource to represent diagnostic test and procedure reports in a patient
+BETTER HEALTH PROGRAMME SEA 61
+--- Page 61 ---
+Publisher:
+summary.
+Health Level Seven International - Patient Care Work Group
+* Thông tin chi tiết:
+Element Path
+DiagnosticReport.id@value
+DiagnosticReport.meta.profile@value
+DiagnosticReport.identifier
+DiagnosticReport.basedOn
+DiagnosticReport.status
+DiagnosticReport.category
+DiagnosticReport.code
+Type
+string
+string
+Identifier
+Reference(Ca
+rePlan |
+Immunization
+Recommenda
+tion
+MedicationRe
+quest |
+NutritionOrde
+ServiceReque
+st|
+ServiceReque
+st profile -
+VN Core R4 |
+MedicationRe
+quest
+Profile - VN
+Core R4)
+code
+VN Core
+Codeable
+Concept
+VN Core
+Flag
+Card.
+1..1
+1..1
+S
+$
+0.*
+0.*
+Diễn giải
+Yêu cầu: kiểu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-diagnostic-report
+Tham chiếu đến VN Core R4 ServiceRequest profile, VN
+Core R4 MedicationRequest profile
+S
+S
+1..1
+1..1
+1..1
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-
+BETTER HEALTH PROGRAMME SEA 62
+--- Page 62 ---
+Element Path
+DiagnosticReport.subject
+DiagnosticReport.encounter
+DiagnosticReport.effectivelx]
+Extension
+- data-absent-reason
+DiagnosticReport.issued
+DiagnosticReport.performer
+DiagnosticReport.resultsInterpreter
+DiagnosticReport.specimen
+Type
+Codeable
+Concept
+Reference(Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+counter
+Profile - VN
+Core R4)
+Extension
+code
+Flag
+S
+Card.
+1..1
+Diễn giải
+diagnosticreport-code
+Type: preferred
+Tham chiếu đến VN Core R4 Patient profile
+S
+0..1
+Tham chiếu đến VN Core R4 Encounter profile
+S
+S
+1..1
+0..1
+0..1
+Extension dành cho lý do không xác định được thời điếm
+thực hiện
+Giá trị tham chiếu:
+http://h17.org/fhir/StructureDefinition/data-absent-
+reason
+Tham chiếu đến VN Core R4 Practitioner profile
+instant
+Reference(Pr
+actitioner
+Profile - VN
+Core R4)
+Reference(Pr
+actitioner |
+PractitionerR
+ole
+Organization |
+Care Team |
+Practitioner
+Profile - VN
+Core R4)
+Reference (Sp
+ecimen (IPS)
+Specimen
+profile - VN
+Core R4)
+S
+S
+0.1
+0.*
+0..*
+Tham chiếu đến VN Core R4 Practitioner profile
+S
+0..*
+Tham chiếu đến VN Core R4 Specimen profile
+BETTER HEALTH PROGRAMME SEA 63
+--- Page 63 ---
+Element Path
+DiagnosticReport.result
+— result:observation-results
+DiagnosticReport.imagingStudy
+DiagnosticReport.media
+Type
+Reference(Ob
+servation
+Results:
+laboratory
+(IPS)|
+Observation
+Results:
+pathology
+(IPS) |
+Observation
+Results:
+radiology
+(IPS) |
+Observation
+Results (IPS)
+Observation
+- Laboratory
+Result Code
+Profile - VN
+Core R4 ||
+Observation
+- Pathology
+Result Code
+rofile - VN
+Core R4 |
+Observation
+- Radiology
+Result Code
+Profile - VN
+Core R4)
+Reference(Im
+agingStudy |
+Imaging
+Study
+profile - VN
+Core R4)
+BackboneEle
+Flag
+Card.
+S
+0..*
+S
+0.*
+Diễn giải
+Tham chiếu đến VN Core R4 Laboratory Result Code
+(Observation) profile, VN Core R4 Pathology Result Code
+(Observation)
+profile, VN Core R4 Radiology Result Code
+(Observation)
+profile
+S
+0..*
+Tham chiếu đến VN Core R4 ImagingStudy profile
+S
+0..*
+BETTER HEALTH PROGRAMME SEA 64
+--- Page 64 ---
+Element Path
+link
+Type
+Reference(M
+edia | Media
+Observation
+profile - VN
+Core R4)
+string
+Attachment
+Flag
+Card.
+Diễn giải
+Tham chiếu đến VN Core R4 Media Observation profile
+DiagnosticReport.conclusion
+DiagnosticReport.presentedForm
+S: Must support, - : Slide item
+S
+S
+0..1
+0..*
+2.20 VN Core Specimen profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-specimen
+Được xây dựng dựa trên profile:
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/Specimen-uv-ips
+Version:
+1.0.0
+Name:
+SpecimenUvIps
+Title:
+Specimen (IPS)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Definition:
+This profile constrains the Specimen resource to represent the characteristics of a biological specimens in the context of
+laboratory results integrated to a patient summary.
+Publisher:
+Health Level Seven International - Patient Care Work Group
+BETTER HEALTH PROGRAMME SEA 65
+--- Page 65 ---
+* Thông tin chi tiết:
+Element Path
+Specimen.id@value
+Specimen.meta.profile@value
+Specimen.identifier
+Specimen.accessionldentifier
+Specimen.status
+Specimen.type
+Specimen.subject
+Specimen.parent
+Specimen.request
+Specimen.collection
+quantity
+method
+bodySite
+Type
+string
+string
+Identifier
+Identifier
+code
+VN Core
+Codeable
+Concept
+Reference(Pat
+ient (IPS) |
+Patient
+Profile - VN
+Core R4)
+Reference (Sp
+ecimen |
+Specimen
+profile - VN
+Core R4)
+Reference (Se
+rvice Request |
+ServiceReque
+st profile -
+VN Core R4)
+BackboneEle
+ment
+SimpleQuant
+ity IPS
+VN Core
+Codeable
+Concept
+VN Core
+Flag
+Card. Diễn giải
+1..1
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-specimen
+S
+S
+0.*
+0..1
+0..1
+1..1
+S
+1.1
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/results-specimen-
+type-gps-uv-ips
+Type: extensible
+Tham chiếu đến VN Core R4 Patient profile
+0.*
+Tham chiếu đến VN Core R4 Specimen profile
+S
+0..1
+Tham chiếu đến VN Core R4 ServiceRequest profile
+S
+S
+S
+0..1
+0..1
+0.1
+0..1
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/results-specimen-
+collection-method-gps-uv-ips
+Type: extensible
+ValueSet binding:
+BETTER HEALTH PROGRAMME SEA 66
+--- Page 66 ---
+Element Path
+fastingStatusCodeableConcept
+Specimen.container
+Specimen.condition
+Type
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+BackboneEle
+ment
+VN Core
+Codeable
+Concept
+Flag
+Card.
+S
+0..1
+Diễn giải
+http://h17.org/fhir/ValueSet/body-site
+Type: extensible
+ValueSet binding:
+http://terminology.h17.org/ValueSet/v2-0916
+Type: extensible
+S
+S
+0.*
+0..*
+ValueSet binding:
+http://terminology.h17.org/ValueSet/v2-0493
+Type: extensible
+S: Must support, - : Slide item
+Các profile tham chiếu khác:
+STT
+Profile name
+01
+SimpleQuantityIPS
+URL
+http://h17.org/fhir/uv/ips/StructureDefinition/SimpleQuantity-uv-ips
+2.21 VN Core ImagingStudy profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-imaging-study
+Được xây dựng dựa trên profile:
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/ImagingStudy-uv-ips
+Version:
+1.0.0
+Name:
+ImagingStudyUvIps
+Title:
+Imaging Study (IPS)
+BETTER HEALTH PROGRAMME SEA 67
+--- Page 67 ---
+Status:
+Definition:
+Publisher:
+Active as of 2021-05-05T07:38:43+00:00
+This profile represents the constraints applied to the ImagingStudy resource by the IPS project, which specifies the
+information on a DICOM imaging study this imaging result is part of.
+Health Level Seven International - Patient Care Work Group
+* Thông tin chi tiết:
+Element Path
+ImagingStudy.id@value
+ImagingStudy.meta.profile@value
+ImagingStudy identifier
+ImagingStudy. status
+ImagingStudy. modality
+Type
+string
+string
+Identifier
+code
+Coding
+ImagingStudy, subject
+Flag Card.
+Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1..1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-imaging-study
+S
+S
+S
+0..*
+0..1
+0..*
+1.1
+ValueSet binding:
+http://dicom.nema.org/medical/dicom/current/output/chtm
+1/part16/sect_CID_29.html
+Type: extensible
+Tham chiêu đên VN Core R4 Patient profile
+ImagingStudy. encounter
+ImagingStudy. started
+ImagingStudy. basedOn
+Reference(Pat
+ient (IPS) |
+Patient
+Profile - VN
+Core R4)
+Reference(En
+counter |
+Encounter
+Profile - VN
+Core R4)
+dateTime
+Reference(Ca
+rePlan|
+ServiceReque
+st |
+S
+0..1
+Tham chiếu đến VN Core R4 Encounter profile
+S
+0..1
+0.*
+Tham chiếu đến VN Core R4 ServiceRequest profile
+BETTER HEALTH PROGRAMME SEA 68
+--- Page 68 ---
+Element Path
+ImagingStudy. referrer
+ImagingStudy. interpreter
+ImagingStudy, numberOfSeries
+ImagingStudy. numberOfInstances
+ImagingStudy. procedureReference
+ImagingStudy. procedureCode
+ImagingStudy. location
+Type
+Appointment
+Flag
+Appointment
+Response |
+Task |
+ServiceReque
+st profile -
+VN Core R4)
+Reference(Pr
+actitioner |
+PractitionerR
+ole |
+Practitioner
+Profile - VN
+Core R4)
+Reference(Pr
+actitioner |
+PractitionerR
+ole |
+Practitioner
+Profile - VN
+Core R4)
+unsignedInt
+unsignedInt
+Reference(Pr
+ocedure|
+Procedure
+Profile - VN
+Core R4)
+VN Core
+Codeable
+Concept
+Reference(Lo
+cation |
+Location
+Profile - VN
+Card.
+S
+S
+S
+S
+S
+Diễn giải
+0..1
+0.*
+0..1
+0.1
+0..1
+0.*
+0..1
+Tham chiếu đến VN Core R4 Practitioner profile
+Tham chiếu đến VN Core R4 Practitioner profile
+Tham chiếu đến VN Core R4 Procedure profile
+ValueSet binding:
+http://www.rsna.org/RadLex_Playbook.aspx
+Type: extensible
+Tham chiếu đến VN Core R4 Location profile
+BETTER HEALTH PROGRAMME SEA 69
+--- Page 69 ---
+Element Path
+ImagingStudy. reasonCode
+ImagingStudy. reasonReference
+ImagingStudy. series
+uid
+modality
+instance
+uid
+sopClass
+S: Must support, - : Slide item
+Type
+Core R4)
+VN Core
+Codeable
+Concept
+Reference(Co
+ndition |
+Observation |
+Media |
+DiagnosticRe
+port
+DocumentRef
+erence |
+Condition -
+Encounter
+Diagnosis-
+VN Core R4)
+BackboneEle
+ment
+Flag
+Card.
+Diễn giải
+S
+0.*
+0..*
+Tham chiếu đến VN Core R4 Encounter Diagnosis
+(Condition) profile
+S
+S
+0..*
+1..1
+Coding
+1.1
+DICOM Series Instance UID for the series
+Ví dụ:
+2:16.124-1135436003 23884283414529817418272380563
+ValueSet binding:
+http://dicom.nema.org/medical/dicom/current/output/chtm
+1/part16/sect_CID_29.html
+Type: extensible
+BackboneEle
+ment
+id
+Coding
+S
+S
+S
+0.*
+1..1
+1..1
+Ví dụ:
+2.16.124.113543.6003.189642796.63084.16748.2599092903
+DICOM class type
+ValueSet binding:
+http://dicom.nema.org/medical/di.com/current/output/chtm
+1/part04/sect_B.5.html#table_B.5-1
+Type: extensible
+BETTER HEALTH PROGRAMME SEA 70
+--- Page 70 ---
+2.22 VN Core Device profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-device
+Được xây dựng dựa trên profile:
+Defining URL:
+http://h17.org/fhir/uv/ips/StructureDefinition/Device-uv-ips
+Version:
+1.0.0
+Name:
+DeviceUvIps
+Title:
+Device (IPS)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Definition:
+This profile represents the constraints applied to the Device resource by the International Patient Summary (IPS) FHIR
+Implementation Guide, based on FHIR R4. A device used by or implanted on the patient is described in the patient summary
+as an instance of a Device resource constrained by this profile.
+Publisher:
+Health Level Seven International - Patient Care Work Group
+* Thông tin chi tiết:
+Element Path
+Device.id@value
+Device.meta.profile@value
+Device.identifier
+Device. type
+Type
+string
+string
+Identifier
+VN Core
+Codeable
+Flag
+Card.
+Diễn giải
+Yêu cầu: kiểu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-device
+S
+S
+0..*
+0..1
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/medical-devices-uv-
+BETTER HEALTH PROGRAMME SEA 71
+--- Page 71 ---
+Element Path
+- type:absentOrUnknownDevice
+Device. patient
+Type
+Concept
+VN Core
+Codeable
+Concept
+Reference(Pat
+ient (IPS) |
+Patient
+Profile - VN
+Core R4)
+Flag
+S
+S
+Card.
+Diễn giải
+ips
+Type: preferred
+0..1
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/absent-or-unknown-
+devices-uv-ips
+Type: required
+1.1
+Tham chiếu đến VN Core R4 Patient profile
+S: Must support, - : Slide item
+2.23 VN Core Media profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-media-observation
+Được xây dựng dựa trên profile:
+Defining URL:
+http://h17.org/fhir/uv/ips/StructureDefinition/Media-observation-uv-ips
+Version:
+1.0.0
+Name:
+MediaObservationUvIps
+Title:
+Media observation (Results: laboratory, media)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Definition:
+This profile constrains the Media resource (which is a specialized observation).
+Publisher:
+Health Level Seven International - Patient Care Work Group
+BETTER HEALTH PROGRAMME SEA 72
+--- Page 72 ---
+* Thông tin chi tiết:
+Element Path
+Media id @value
+Media.meta.profile@value
+Media identifier
+Media.status
+Media.type
+Media.subject
+Media.encounter
+Media.operator
+Type
+string
+string
+Identifier
+code
+VN Core
+Codeable
+Concept
+Reference(Pat
+ient (IPS) |
+Patient
+Profile - VN
+Core R4)
+Reference (En
+counter |
+Encounter
+Profile - VN
+Core R4)
+Reference(Pr
+actitioner |
+PractitionerR
+ole
+Organization |
+CareTeam |
+Patient |
+Device |
+RelatedPerso
+n |
+Practitioner
+Profile - VN
+Core R4 |
+Device
+Flag
+Card.
+1..1
+1..1
+S
+S
+0..*
+1..1
+0..1
+Diễn giải
+Yêu cầu: kiếu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-media-observation
+S
+1..1
+Tham chiếu đến VN Core R4 Patient profile
+S
+0.1
+Tham chiếu đến VN Core R4 Encounter profile
+S
+0.1
+Tham chiếu đến VN Core R4 Practitioner profile, VN Core
+R4 Device profile
+BETTER HEALTH PROGRAMME SEA 73
+--- Page 73 ---
+Element Path
+Media.device
+Type
+profile - VN
+Core R4)
+Reference (De
+vice |
+DeviceMetric
+Device |
+Device
+profile - VN
+Core R4)
+Attachment
+Flag
+Card.
+Diễn giải
+S
+0..1
+Tham chiếu đến VN Core R4 Device profile
+Media.content
+S: Must support, - : Slide item
+S
+1..1
+2.24 VN Core Base Result (Observation) profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-obervation-result-base
+Được xây dựng dựa trên profile:
+Defining URL:
+http://hl7.org/fhir/uv/ips/StructureDefinition/Observation-results-uv-ips
+Version:
+1.0.0
+Name:
+ObservationResultsUvIps
+Title:
+Observation Results (IPS)
+Status:
+Active as of 2021-05-05T07:38:43+00:00
+Definition:
+This profile constrains the Observation resource to represent various types of results and associated observations in a patient
+summary. This is the base profile from which the other results profiles are derived.
+Publisher:
+Health Level Seven International - Patient Care Work Group
+BETTER HEALTH PROGRAMME SEA 74
+--- Page 74 ---
+* Thông tin chi tiết:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Observation.identifier
+Observation.basedOn
+Observation. partOf
+Type
+string
+string
+Flag
+Card.
+1..1
+1..1
+0..*
+0..1
+Diễn giải
+Yêu cầu: kiếu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-obervation-result-base
+Tham chiếu đến VN Core R4 ServiceRequest profile, VN
+Core R4 MedicationRequest profile
+Identifier
+Reference(Ca
+rePlan |
+Device Reque
+st|
+Immunization
+Recommenda
+tion
+MedicationRe
+quest|
+NutritionOrde
+r|
+ServiceReque
+st|
+ServiceReque
+st profile
+VN Core R4 |
+MedicationRe
+quest
+Profile - VN
+Core R4)
+Reference(M
+edicationAdm
+inistration |
+MedicationDi
+spense
+MedicationSt
+atement|
+Procedure|
+S
+S
+S
+0..1
+Tham chiếu đến VN Core R4 Procedure profile, VN Core R4
+Immunization profile, VN Core R4
+MedicationAdministration profile, VN Core R4
+MedicationDispense profile, VN Core R4
+MedicationStatement profile
+BETTER HEALTH PROGRAMME SEA 75
+--- Page 75 ---
+Element Path
+Observation.status
+Observation.category
+Observation.code
+Observation.subject
+Observation.encounter
+Type
+Immunization
+ImagingStudy
+Procedure
+Profile - VN
+Core R4 |
+Immunization
+Profile - VN
+Core R4
+MedicationAd
+ministration
+Profile - VN
+Core R4 |
+MedicationDi
+spense
+Profile - VN
+R4 Core |
+MedicationSt
+atement
+Profile - VN
+Core R4)
+code
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Reference(Gr
+oup | Device |
+Location |
+Patient
+Profile - VN
+Core R4)
+Reference En
+counter
+Encounter
+Profile - VN
+Flag
+Card.
+Diễn giải
+S
+S
+0.1
+0.*
+1..1
+S
+1.1
+Tham chiếu đến VN Core R4 Patient profile
+0..1
+Tham chiếu đến VN Core R4 Encounter profile
+BETTER HEALTH PROGRAMME SEA 76
+--- Page 76 ---
+Element Path
+Observation.effective[x]
+Extension
+- data-absent-reason
+Observation issued
+Observation.performer
+Observation.value[x]
+— value Quantity
+— value Codeable Concept
+— value Range
+— value Ratio
+Observation.hasMember
+Type
+Core R4)
+Extension
+code
+Flag
+S
+S
+Card.
+Diễn giải
+1.1
+0..*
+0.1
+Extension dành cho lý do không xác định được thời điêm
+thực hiện
+Giá trị tham chiếu:
+http://h17.org/fhir/StructureDefinition/data-absent-
+reason
+Tham chiếu đến VN Core R4 Patient profile, VN Core R4
+Provider profile, VN Core R4 Practitioner profile, VN
+Core R4 Healthcare Department profile
+instant
+Reference(Ca
+reTeam
+RelatedPerso
+n| Patient
+Profile - VN
+Core R4 |
+Provider
+Profile - VN
+Core R4 |
+Practitioner
+Profile - VN
+Core R4 |
+HealthcareDe
+partment
+Profile - VN
+Core R4)
+SimpleQuant
+ityIPS
+VN Core
+Codeable
+Concept
+RangelPS
+RatioIPS
+Reference Ou
+estionnaireRe
+sponse|
+MolecularSeq
+S
+S
+0.1
+0.*
+S
+0..1
+0.1
+0.1
+S
+0.1
+0..1
+0.*
+Tham chiếu đến VN Core R4 Base Result (Observation)
+profile
+BETTER HEALTH PROGRAMME SEA 77
+--- Page 77 ---
+Element Path
+Observation.component
+code
+value[x]
+— value Quantity
+—value Codeable Concept
+— value Range
+— value Ratio
+dataAbsentReason
+interpretation
+S: Must support, - : Slide item
+Các profile tham chiếu khác:
+STT
+Profile name
+01
+RangelPS
+02
+RatiolPS
+03
+SimpleQuantity IPS
+Type
+uence |
+Observation
+- Result
+Base profile
+- VN Core
+R4)
+BackboneEle
+ment
+VN Core
+Codeable
+Concept
+SimpleQuant
+ityIPS
+VN Core
+Codeable
+Concept
+RangelPS
+RatioIPS
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+Flag Card. Diễn giải
+S
+0.*
+1.1
+0..1
+0..1
+0.1
+0..1
+0..1
+0.1
+0.*
+URL
+http://h17.org/fhir/uv/ips/StructureDefinition/Range-uv-ip
+http://h17.org/fhir/uv/ips/StructureDefinition/Ratio-uv-ip
+http://hl7.org/fhir/uv/ips/StructureDefinition/SimpleQuantity-uv-ips
+BETTER HEALTH PROGRAMME SEA 78
+--- Page 78 ---
+2.25 VN Core Laboratory Code (Observation) profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-observation-lab-code
+Được xây dựng dựa trên profile:
+Defining URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-obervation-result-base
+Version:
+1.0.0
+Name:
+VNCoreObservationResultBase
+Title:
+VN Core Base Result (Observation) profile
+Status:
+Definition:
+Publisher:
+Vietname Ministry of Health
+* Thông tin chi tiết:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Observation.identifier
+Observation.category
+- category:laboratory
+coding
+system
+Type
+string
+string
+Identifier
+Coding
+uri
+Flag Card. Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1.1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-observation-lab-code
+S
+S
+O..*
+1.*
+1.1
+1..1
+1..1
+Giá trị mặc định:
+BETTER HEALTH PROGRAMME SEA 79
+--- Page 79 ---
+Element Path
+code
+display
+Observation.code
+Observation.value[x]
+— value Quantity: value Quantity
+— value[x]: value Codeable Concept
+- value/x/: valueString
+— value[x]: value Boolean
+- value/x/:valuelnteger
+— value Range: value Range
+— value Ratio: value Ratio
+— value/x/:valueSampledData
+— value[x]: value Time
+— value/x/: value Date Time
+— value/x]: valuePeriod
+Observation.hasMember
+Type
+Flag
+Card.
+code
+string
+VN Core
+Codeable
+Concept
+QuantityIPS
+VN Core
+Codeable
+Concept
+string
+boolean
+integer
+RangelPS
+RatioIPS
+SampledData
+time
+date Time
+Period
+Reference(Qu
+estionnaireRe
+sponse |
+MolecularSeq
+uence |
+Observation
+- Result
+Base profile
+- VN Core R4
+Observation
+- Laboratory
+Code Profile
+- VN Core
+1.1
+1.1
+Diễn giải
+http://terminology.h17.org/CodeSystem/observation-
+category
+Giá trị mặc định: laboratory
+Giá trị mặc định: Laboratory
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/results-laboratory-
+observations-uv-ips
+Type: preferred
+S
+S
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/results-laboratory-
+observations-uv-ips
+Type: preferred
+S
+Tham chiếu đến VN Core R4 Base Result (Observation)
+profile, VN Core R4 Laboratory Code (Observation)
+profile
+BETTER HEALTH PROGRAMME SEA 80
+--- Page 80 ---
+Element Path
+Type
+R4)
+Flag
+Card.
+Diễn giải
+S: Must support, - : Slide item
+2.26 VN Core Pathology Code (Observation) profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-observation-pathology-code
+Được xây dựng dựa trên profile:
+Defining URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-obervation-result-base
+Version:
+1.0.0
+Name:
+VNCoreObservationResultBase
+Title:
+VN Core Base Result (Observation) profile
+Status:
+Definition:
+Publisher:
+Vietname Ministry of Health
+* Thông tin chi tiết:
+Element Path
+Observation.id @value
+Observation.meta.profile@value
+Type
+string
+string
+Flag Card. Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1..1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-observation-pathology-code
+BETTER HEALTH PROGRAMME SEA 81
+--- Page 81 ---
+Element Path
+Observation.identifier
+Observation.category
+- category: laboratory
+coding
+system
+code
+display
+Observation.code
+Observation.value[x]
+- value Quantity: value Quantity
+— value/x/: value Codeable Concept
+— value/x/: valueString
+— value/x/: value Boolean
+- value/x/: valueInteger
+— value Range: value Range
+- value Ratio: value Ratio
+— value[x]:valueSampledData
+- value/x/: value Time
+- value/x/: value Date Time
+— value/x/: value Period
+Observation.hasMember
+Type
+Identifier
+Coding
+uri
+Flag
+Card.
+Diễn giải
+S
+0..*
+S
+1.*
+1..1
+1..1
+1.1
+1..1
+1..1
+code
+string
+VN Core
+Codeable
+Concept
+QuantityIPS
+VN Core
+Codeable
+Concept
+string
+boolean
+integer
+RangelPS
+RatioIPS
+SampledData
+time
+dateTime
+Period
+Reference(Qu
+estionnaireRe
+sponse |
+MolecularSeq
+uence
+Observation
+- Result
+Base profile
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/observation-
+category
+Giá trị mặc định: laboratory
+Giá trị mặc định: Laboratory
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/results-pathology-
+observations-uv-ips
+Type: preferred
+S
+S
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/results-laboratory-
+observations-uv-ips
+Type: preferred
+S
+Tham chiếu đến VN Core R4 Base Result (Observation)
+profile, VN Core R4 Pathology Code (Observation)
+BETTER HEALTH PROGRAMME SEA 82
+--- Page 82 ---
+Element Path
+Type
+¡ IN core R4
+Observation
+- Pathology
+Code Profile
+- VN Core
+R4)
+Flag
+Card.
+Diễn giải
+S: Must support, - : Slide item
+2.27 VN Core Radiology Result (Observation) profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-observation-radiology-code
+Được xây dựng dựa trên profile:
+Defining URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-obervation-result-base
+Version:
+1.0.0
+Name:
+VNCoreObservationResultBase
+Title:
+VN Core Base Result (Observation) profile
+Status:
+Definition:
+Publisher:
+Vietname Ministry of Health
+* Thông tin chi tiết:
+BETTER HEALTH PROGRAMME SEA 83
+--- Page 83 ---
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Observation.identifier
+Observation.category
+— category:laboratory
+coding
+system
+code
+display
+Observation.code
+Observation.value[x]
+Observation.hasMember
+Observation.component
+- component: observation Text
+code
+Type
+string
+string
+Identifier
+Coding
+uri
+Flag
+Card.
+Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1.1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-observation-radiology-code
+S
+O..*
+1.*
+1..1
+1.1
+1..1
+1.1
+1..1
+code
+string
+VN Core
+Codeable
+Concept
+string
+Reference(Qu
+estionnaireRe
+sponse |
+MolecularSeq
+uence
+Observation
+- Result
+Base profile
+- VN Core R4
+Observation
+- Radiology
+Code Profile
+- VN Core
+R4)
+BackboneEle
+ment
+VN Core
+S
+S
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/observation-
+category
+Giá trị mặc định: imaging
+Giá trị mặc định: Imaging
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/results-radiology-
+observations-uv-ips
+Type: preferred
+Tham chiếu đến VN Core R4 Base Result (Observation)
+profile, VN Core R4 Radiology Code (Observation)
+profile
+S
+S
+0.*
+0..*
+1..1
+ValueSet binding:
+BETTER HEALTH PROGRAMME SEA 84
+--- Page 84 ---
+Element Path
+value[x]
+- component: observation Code
+code
+value[x]
+- component:numericQuantityMeasurement
+code
+value[x]
+— component:numericRangeMeasurement
+code
+value[x]
+— component:numericRatioMeasurement
+code
+value[x]
+- component:
+numericSampledData Measurement
+Type
+Codeable
+Concept
+string
+BackboneEle
+ment
+VN Core
+Codeable
+Concept
+VN Core
+Codeable
+Concept
+BackboneEle
+ment
+VN Core
+Codeable
+Concept
+Quantity IPS
+BackboneEle
+ment
+VN Core
+Codeable
+Concept
+RangelPS
+BackboneEle
+ment
+VN Core
+Codeable
+Concept
+RatioIPS
+BackboneEle
+ment
+Flag
+Card.
+Diễn giải
+http://h17.org/fhir/uv/ips/ValueSet/results-radiology-
+txtobs-gps-dicom-loinc-uv-ips
+Type: extensible
+S
+S
+S
+1..1
+0.*
+1.1
+1..1
+0.*
+1..1
+1.1
+0.*
+1.1
+1..1
+0..*
+1.1
+1..1
+0.*
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/results-radiology-
+observations-uv-ips
+Type: extensible
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/results-radiology-
+numobs-gps-dicom-uv-ips
+Type: extensible
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/results-radiology-
+numobs-gps-dicom-uv-ips
+Type: extensible
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/results-radiology-
+numobs-gps-dicom-uv-ips
+Type: extensible
+BETTER HEALTH PROGRAMME SEA 85
+--- Page 85 ---
+Element Path
+code
+Type
+VN Core
+Codeable
+Concept
+SampledData
+Flag Card.
+Diễn giải
+1.1
+ValueSet binding:
+http://h17.org/fhir/uv/ips/ValueSet/results-radiology-
+numobs-gps-dicom-uv-ips
+Type: extensible
+value [x]
+S: Must support, — : Slide item
+1..1
+2.28 FHIR Blood pressure (Observation) profile - HL7 FHIR Core Profile
+Thông tin đường dẫn URL:
+http://h17.org/fhir/StructureDefinition/bp
+* Thông tin chi tiết:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Observation.identifier
+Observation.code
+coding
+- coding:BPCode
+system
+code
+value(x]
+component
+— component:SystolicBP
+code
+coding
+- coding:SBPCode
+Type
+string
+string
+Identifier
+CodeableCon
+cept
+Coding
+Coding
+uri
+code
+BackboneEle
+ment
+BackboneEle
+ment
+CodeableCon
+cept
+Coding
+"odins
+Flag Card. Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1..1
+Giá trị mặc định:
+http://h17.org/fhir/StructureDefinition/bp
+S
+0..*
+1.1
+1..*
+1.1
+1..1
+1.1
+Giá trị mặc định: http://1oinc.org
+Giá trị mặc định: 85354-9
+0.0
+1..1
+1..1
+1.1
+1.1
+BETTER HEALTH PROGRAMME SEA 86
+--- Page 86 ---
+Element Path
+system
+code
+valueQuantity
+value
+unit
+system
+code
+— component:DiastolicBP
+code
+coding
+- coding:SBPCode
+system
+code
+value Quantity
+value
+unit
+system
+code
+S: Must support, - : Slide item
+Type
+uri
+code
+Quantity
+decimal
+string
+uri
+code
+BackboneEle
+ment
+CodeableCon
+cept
+Coding
+Coding
+uri
+code
+Quantity
+decimal
+string
+uri
+code
+Flag Card.
+Diễn giải
+1..1
+Giá trị mặc định: http://1oinc.org
+1.1
+0.1
+Giá trị mặc định: 8480-6
+S
+1.1
+1..1
+1..1
+1..1
+Giá trị mặc định: http://unitsofmeasure.org
+Giá trị mặc định: mm [Hg]
+1..1
+S
+S
+1..1
+1..1
+1..1
+1..1
+1..1
+0..1
+1..1
+1.1
+1..1
+1..1
+Giá trị mặc định: http://1oinc.org
+Giá trị mặc định: 8462-4
+Giá trị mặc định: http://unitsofmeasure.org
+Giá trị mặc định: mm [Hg]
+2.29 FHIR Respiratory rate (Observation) profile - HL7 FHIR Core profile
+Thông tin đường dẫn URL:
+http://h17.org/fhir/StructureDefinition/resprate
+* Thông tin chi tiết:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Type
+string
+string
+Flag Card. Diễn giải
+1.1
+1..1
+| Yêu cầu: kiểu dữ liệu UUID
+Giá trị mặc định:
+http://h17.org/fhir/StructureDefinition/resprate
+BETTER HEALTH PROGRAMME SEA 87
+--- Page 87 ---
+Element Path
+Observation.identifier
+Observation.code
+coding
+- coding:RespRate Code
+system
+code
+valueQuantity
+value
+unit
+system
+code
+S: Must support, - : Slide item
+Type
+Identifier
+CodeableCon
+cept
+Coding
+Coding
+uri
+code
+Quantity
+decimal
+string
+uri
+code
+Flag Card.
+Diễn giải
+S
+0..*
+1..1
+1.*
+1.1
+1..1
+1..1
+0..1
+1..1
+1..1
+1..1
+1..1
+Giá trị mặc định: http://1oinc.org
+Giá trị mặc định: 9279-1
+Giá trị mặc định: http://unitsofmeasure.org
+Giá trị mặc định: /min
+2.30 FHIR Heart rate (Observation) profile - HL7 FHIR Core profile
+Thông tin đường dẫn URL:
+http://h17.org/fhir/StructureDefinition/heartrate
+* Thông tin chi tiết:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Observation.identifier
+Observation.code
+coding
+— coding:HeartRateCode
+system
+code
+valueQuantity
+Type
+string
+string
+Identifier
+CodeableCon
+cept
+Coding
+Coding
+uri
+code
+Quantity
+Flag
+Card. Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1..1
+Giá trị mặc định:
+http://h17.org/fhir/StructureDefinition/heartrate
+S
+0.*
+1.1
+1.*
+1..1
+1..1
+1.1
+0..1
+Giá trị mặc định: http://1oinc.org
+Giá trị mặc định: 8867-4
+BETTER HEALTH PROGRAMME SEA 88
+--- Page 88 ---
+Element Path
+value
+unit
+system
+code
+S: Must support, - : Slide item
+Type
+decimal
+string
+uri
+code
+Flag
+Card.
+Diễn giải
+S
+1..1
+1..1
+S
+1.1
+1..1
+2.31 FHIR Oxygen saturation (Observation) profile - HL7 FHIR Core profile
+Thông tin đường dẫn URL:
+http://h17.org/fhir/StructureDefinition/oxygensat
+* Thông tin chi tiết:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Observation.identifier
+Observation.code
+Type
+string
+string
+Flag Card.
+1..1
+1..1
+coding
+— coding: OxygenSatCode
+system
+code
+valueQuantity
+value
+unit
+system
+code
+S: Must support, - : Slide item
+Identifier
+CodeableCon
+cept
+Coding
+Coding
+uri
+code
+Quantity
+decimal
+string
+uri
+code
+S
+0..*
+1..1
+S
+S
+1..*
+1..1
+1..1
+1..1
+0..1
+1..1
+1..1
+1..1
+1.1
+2.32 FHIR Body temperature (Observation) profile - HL7 FHIR Core profile
+Thông tin đường dẫn URL:
+Giá trị mặc định: http://unitsofmeasure.org
+Giá trị mặc định: /min
+Diễn giải
+Yêu cầu: kiểu dữ liệu UUID
+Giá trị mặc định:
+http://h17.org/fhir/StructureDefinition/oxygensat
+Giá trị mặc định: http://1oinc.org
+Giá trị mặc định: 2708-6
+Giá trị mặc định: http://unitsofmeasure.org
+Giá trị mặc định: %
+BETTER HEALTH PROGRAMME SEA 89
+--- Page 89 ---
+http://h17.org/fhir/StructureDefinition/bodytemp
+* Thông tin chi tiết:
+Element Path
+Observation.id @value
+Observation.meta.profile@value
+Observation.identifier
+Observation.code
+coding
+- coding:OxygenSatCode
+system
+code
+valueQuantity
+value
+unit
+system
+code
+Type
+string
+string
+Identifier
+CodeableCon
+cept
+Coding
+Coding
+uri
+code
+Quantity
+decimal
+string
+uri
+code
+Flag Card.
+Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1.1
+Giá trị mặc định:
+O..*
+http://h17.org/fhir/StructureDefinition/bodytemp
+1..1
+1.*
+1.1
+1..1
+1..1
+Giá trị mặc định: http://1oinc.org
+Giá trị mặc định: 8310-5
+0..1
+S
+1..1
+1..1
+1..1
+S
+1.1
+Giá trị mặc định: http://unitsofmeasure.org
+ValueSet binding:
+http://h17.org/fhir/ValueSet/ucum-bodytemp
+Type: required
+S: Must support, - : Slide item
+2.33 FHIR Body weight (Observation) profile - HL7 FHIR Core profile
+Thông tin đường dẫn URL:
+http://h17.org/fhir/StructureDefinition/bodyweight
+* Thông tin chi tiết:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Type
+string
+string
+Flag Card. Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1.1
+Giá trị mặc định:
+BETTER HEALTH PROGRAMME SEA 90
+--- Page 90 ---
+Element Path
+Observation.identifier
+Observation.code
+coding
+- coding:Body WeightCode
+system
+code
+valueQuantity
+value
+unit
+system
+code
+Type
+Identifier
+CodeableCon
+cept
+Coding
+Coding
+uri
+code
+Quantity
+decimal
+string
+uri
+code
+Flag
+Card.
+Diễn giải
+S
+S
+S
+0..*
+1.1
+1.*
+1..1
+1..1
+1..1
+0..1
+1..1
+1..1
+1..1
+1.1
+http://h17.org/fhir/StructureDefinition/bodyweight
+Giá trị mặc định: http://loinc.org
+Giá trị mặc định: 29463-7
+Giá trị mặc định: http://unitsofmeasure.org
+ValueSet binding:
+http://h17.org/fhir/ValueSet/ucum-bodyweight
+Type: required
+S: Must support, - : Slide item
+2.34 FHIR Body height (Observation) profile - HL7 FHIR Core profile
+Thông tin đường dẫn URL:
+http://h17.org/fhir/StructureDefinition/bodyheight
+* Thông tin chi tiết:
+Element Path
+Observation.id @value
+Observation.meta.profile@value
+Observation identifier
+Observation.code
+coding
+— coding:BodyHeightCode
+Type
+string
+string
+Identifier
+CodeableCon
+cept
+Coding
+Coding
+Flag Card.
+Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1..1
+Giá trị mặc định:
+http://h17.org/fhir/StructureDefinition/bodyheight
+S
+0..*
+1.1
+1.*
+1.1
+BETTER HEALTH PROGRAMME SEA 91
+--- Page 91 ---
+Element Path
+system
+code
+valueQuantity
+value
+unit
+system
+code
+Type
+uri
+code
+Quantity
+decimal
+string
+uri
+code
+Flag
+Card.
+1..1
+1..1
+0..1
+1..1
+1..1
+S
+1..1
+1.1
+Diễn giải
+Giá trị mặc định: http://loinc.org
+Giá trị mặc định: 8302-2
+Giá trị mặc định: http://unitsofmeasure.org
+ValueSet binding:
+http://h17.org/fhir/ValueSet/ucum-bodylength
+Type: required
+S: Must support, - : Slide item
+2.35 FHIR Head Occipital-frontal circumference (Observation) profile - HL7 FHIR Core profile
+Thông tin đường dẫn URL:
+http://h17.org/fhir/StructureDefinition/headcircum
+* Thông tin chi tiết:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Observation identifier
+Observation.code
+coding
+— coding:HeadCircum Code
+system
+code
+valueQuantity
+value
+unit
+system
+Type
+string
+string
+Identifier
+CodeableCon
+cept
+Coding
+Coding
+uri
+code
+uantit
+есіта
+string
+uri
+Flag
+Card. Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1..1
+Giá trị mặc định:
+0.*
+http://h17.org/fhir/StructureDefinition/headcircum
+1.1
+1.*
+1.1
+1.1
+1.1
+0.1
+1..1
+1..1
+1..1
+Giá trị mặc định: http://1oinc.org
+Giá trị mặc định: 9843-4
+Giá trị mặc định: http://unitsofmeasure.org
+BETTER HEALTH PROGRAMME SEA 92
+--- Page 92 ---
+Element Path
+code
+Type
+code
+Flag Card. Diễn giải
+S
+1.1
+ValueSet binding:
+http://h17.org/fhir/ValueSet/ucum-bodylength
+Type: required
+S: Must support, — : Slide item
+2.36 FHIR Body Mass Index (BMI) (Observation) profile - HL7 FHIR Core profile
+Thông tin đường dẫn URL:
+http://h17.org/fhir/StructureDefinition/bmi
+* Thông tin chi tiết:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Observation.identifier
+Observation.code
+coding
+- coding:BMICode
+system
+code
+valueQuantity
+value
+unit
+system
+code
+S: Must support, - : Slide item
+Type
+string
+string
+Identifier
+CodeableCon
+cept
+Coding
+Coding
+uri
+code
+Quantity
+decimal
+string
+uri
+code
+Flag
+Card. Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1.1
+Giá trị mặc định:
+http://h17.org/fhir/StructureDefinition/bmi
+S
+O..*
+1.1
+S
+S
+S
+1.*
+1..1
+1..1
+1..1
+0..1
+1.1
+1..1
+1..1
+1..1
+Giá trị mặc định: http://loinc.org
+Giá trị mặc định: 39156-5
+Giá trị mặc định: http://unitsofmeasure.org
+Giá trị mặc định: kg/m2
+2.37 Lý do vào viện - Chief complaint+Reason for visit (Observation) profile
+Thông tin đường dẫn URL:
+BETTER HEALTH PROGRAMME SEA 93
+--- Page 93 ---
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-observation-chiefcomplaint-reasonforvisit
+* Nội dung chi tiết:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Observation.status
+Observation.category
+coding
+Type
+string
+string
+code
+CodeableCon
+cept
+Coding
+uri
+system
+code
+display
+Observation.code
+coding
+system
+code
+display
+Observation.subject
+Flag Card.
+Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1.1
+Giá trị mặc định:
+1..1
+1..1
+1..1
+1..1
+1..1
+1..1
+1..1
+1..1
+1.1
+1..1
+1.1
+Giá tri mặc đinh: fina
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/observation-
+category
+Giá trị mặc định: survey
+Giá trị mặc định: Survey
+Giá trị mặc định: http://1oinc.org
+Giá trị mặc định: 46239 - 0
+Giá trị mặc định: Chief complaint+Reason for visit
+Narrative
+Tham chiếu đến VN Core R4 Patient Profile
+Observation.encounter
+Observation.performer
+Observation.value[x]
+code
+string
+Coding
+uri
+code
+string
+Reference(Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+counter
+Profile - VN
+Core R4)
+Reference Pr
+actitioner
+Profile - VN
+Core R4)
+valueString
+1..1
+Tham chiếu đến VN Core R4 Encounter Profile
+0.*
+Tham chiếu đến VN Core R4 Practitioner Profile
+1..1
+BETTER HEALTH PROGRAMME SEA 94
+--- Page 94 ---
+S: Must support, - : Slide item
+2.38 Đánh giá toàn trạng - Review of systems (Observation) profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-observation-reviewofsystems
+* Nội dung chi tiết:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Observation.status
+Observation.category
+coding
+system
+code
+display
+Observation.code
+coding
+system
+code
+display
+Observation.subject
+Observation.encounter
+Type
+string
+string
+code
+CodeableCon
+cept
+Coding
+uri
+code
+string
+Coding
+uri
+code
+string
+Reference(Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+counter
+Profile - VN
+Core R4)
+Flag
+Card.
+1..1
+1.1
+1..1
+1.1
+1.1
+1.1
+1.1
+1..1
+1..1
+1..1
+1..1
+1..1
+1.1
+Diễn giải
+Yêu cầu: kiểu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-observation-reviewofsystems
+Giá trị mặc định: final
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/observation-
+category
+Giá trị mặc định: exam
+Giá trị mặc định: Physical Exam
+Giá trị mặc định: http://1oinc.org
+Giá trị mặc định: 10187-3
+Giá trị mặc định: Review of systems Narrative - Reported
+Tham chiếu đến VN Core R4 Patient Profile
+1..1
+Tham chiếu đến VN Core R4 Encounter Profile
+BETTER HEALTH PROGRAMME SEA 95
+--- Page 95 ---
+Element Path
+Observation.performer
+Type
+Reference(Pr
+actitioner
+Profile - VN
+Core R4)
+valueString
+Flag
+Card.
+0..*
+Diễn giải
+Tham chiếu đến VN Core R4 Practitioner Profile
+Observation.value[x]
+S: Must support, - : Slide item
+1.. 1
+2.39 Thăm, khám lâm sàng - Physical findings (Observation) profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-observation-physicalfindings
+* Nội dung chi tiêt:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Type
+string
+string
+Observation.status
+Observation.category
+coding
+code
+CodeableCon
+cept
+Coding
+uri
+1..1
+1.1
+1..1
+Flag
+Card. Diễn giải
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+1..1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-observation-physicalfindings
+Giá trị mặc định: final
+system
+code
+display
+Observation.code
+Observation.subject
+code
+string
+VN Core
+Codeable
+Concept
+Reference(Pa
+tient
+Profile - VN
+Core R4)
+1..1
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/observation-
+category
+Giá trị mặc định: exam
+Giá trị mặc định: Physical Exam
+ValueSet binding:
+http://moh.gov.vn/fhir/core/ValueSet/physical-exam-type
+Type: required
+Tham chiếu đến VN Core R4 Patient Profile
+BETTER HEALTH PROGRAMME SEA 96
+--- Page 96 ---
+Element Path
+Observation.encounter
+Observation.performer
+Type
+Reference(En
+counter
+Profile - VN
+Core R4)
+Reference Pr
+actitioner
+Profile - VN
+Core R4)
+valueString
+Flag
+Card.
+Diễn giải
+1..1
+Tham chiếu đến VN Core R4 Encounter Profile
+O..*
+Tham chiếu đến VN Core R4 Practitioner Profile
+Observation.value[x]
+S: Must support, - : Slide item
+1..1
+2.40 Tiền sử bệnh lý và các đặc điểm xã hội liên quan - Patient histories & Social factor (Observation) profile
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-core-observation-patienthistory_socialfactor
+* Nội dung chi tiết:
+Element Path
+Observation.id@value
+Observation.meta.profile@value
+Observation.status
+Observation.category
+coding
+system
+code
+display
+Observation.code
+Type
+string
+string
+Flag
+Card.
+Diễn giải
+1.1
+1..1
+Yêu cầu: kiểu dữ liệu UUID
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/vn-
+core-observation-patienthistory socialfactor
+code
+Giá trị mặc định: final
+CodeableCon
+cept
+Coding
+uri
+1..1
+1..1
+code
+string
+VN Core
+Codeable
+Concept
+1..1
+1.1
+Giá trị mặc định:
+http://terminology.h17.org/CodeSystem/observation-
+category
+Giá trị mặc định: social-history
+Giá tri mặc đinh: Social Factor & Patient History
+ValueSet binding:
+social-Foc. on-type
+http://moh.gov.vn/fhir/core/ValueSet/patient-history-
+BETTER HEALTH PROGRAMME SEA 97
+--- Page 97 ---
+Element Path
+Observation.subject
+Observation.encounter
+Observation.performer
+Type
+Reference(Pa
+tient
+Profile - VN
+Core R4)
+Reference(En
+counter
+Profile - VN
+Core R4)
+Reference Pr
+actitioner
+Profile - VN
+Core R4)
+valueString
+Flag
+Card.
+1..1
+Diễn giải
+Type: required
+Tham chiếu đến VN Core R4 Patient Profile
+1.1
+Tham chiếu đến VN Core R4 Encounter Profile
+0..*
+Tham chiếu đến VN Core R4 Practitioner Profile
+Observation.value[x]
+S: Must support, - : Slide item
+3 Danh sách các Extension
+3.1
+Extension dành cho thông tin Tôn giáo
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-ethic
+* Thông tin chi tiết:
+Element Path
+Extension
+url
+Flag
+1..1
+value[x]
+Type
+Extension
+uri
+VN Core
+Codeable
+Concept
+Card.
+Diễn giải
+0..1
+Extension về thông tin Tôn giáo của bệnh nhân
+1.1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+ethic
+1..1
+Danh mục tham chiếu:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-ethic
+Type: required
+BETTER HEALTH PROGRAMME SEA 98
+--- Page 98 ---
+3.2
+Extension dành cho thông tin Dân tộc
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-race
+* Thông tin chi tiết:
+Element Path
+Extension
+url
+Type
+Extension
+uri
+Flag
+value[x]
+VN Core
+Codeable
+Concept
+3.3
+Thông tin đường dẫn URL:
+Extension dành cho thông tin Nghề nghiệp
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-occupation
+* Thông tin chi tiết:
+Element Path
+Extension
+url
+Type
+Extension
+uri
+Flag
+Card.
+0..1
+1..1
+value [x]
+VN Core
+Codeable
+Concept
+1..1
+3.4
+Extension dành cho thông tin Quốc tịch
+Thông tin đường dẫn URL:
+Card. Diễn giải
+0..1
+Extension về thông tin Tôn giáo của bệnh nhân
+1..1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+race
+1..1
+Danh mục tham chiếu:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-race
+Type: required
+Diễn giải
+Extension về thông tin Tôn giáo của bệnh nhân
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+occupation
+Danh mục tham chiếu:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-occupation
+Type: required
+BETTER HEALTH PROGRAMME SEA 99
+--- Page 99 ---
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-nationality
+* Thông tin chi tiết:
+Element Path
+Extension
+url
+Type
+Extension
+uri
+value[x]
+VN Core
+Codeable
+Concept
+3.5 Extension dành cho thông tin Địa danh hành chính
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-administrative-address
+* Thông tin chi tiết:
+Element Path
+Extension
+url
+Type
+Extension
+uri
+Flag
+Card.
+0..1
+1.1
+extension
+url
+value[x]
+extension
+url
+value[x]
+Extension
+uri
+VN Core
+Codeable
+Concept
+Extension
+uri
+VN Core
+Codeable
+0..1
+1..1
+0..1
+0..1
+1..1
+1..1
+Flag
+Card.
+Diễn giải
+0..1
+Extension về thông tin Tôn giáo của bệnh nhân
+1.1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+nationality
+1.1
+Danh mục tham chiếu:
+http://h17.org/fhir/ValueSet/iso3166-1-2
+Type: required
+Diễn giải
+Extension về thông tin Địa danh hành chính
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+administrative-address
+Extension dành cho Mã tỉnh
+Giá trị mặc định: state
+Danh mục tham chiếu:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-
+administrative-address
+Type: required
+Extension dành cho Mã thành phố
+Giá trị mặc định: city
+Danh mục tham chiếu:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-
+BETTER HEALTH PROGRAMME SEA 100
+--- Page 100 ---
+Element Path
+extension
+url
+value [x]
+extension
+url
+value[x]
+Type
+Concept
+Extension
+uri
+VN Core
+Codeable
+Concept
+Extension
+uri
+VN Core
+Codeable
+Concept
+Flag
+Card.
+0..1
+1.1
+1.1
+0..1
+1.1
+1..1
+Diễn giải
+administrative-address
+Type: required
+Extension dành cho Mã quận huyện
+Giá trị mặc định: district
+Danh mục tham chiếu:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-
+administrative-address
+Type: required
+Extension dành cho Mã phường xã
+Giá trị mặc định: ward
+Danh mục tham chiếu:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-
+administrative-address
+Type: required
+3.6 Extension dành cho thông tin Trình độ văn hóa
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-education-level
+* Thông tin chi tiết:
+Element Path
+Extension
+url
+Flag
+value[x]
+Type
+Extension
+uri
+VN Core
+Codeable
+Concept
+Card. Diễn giải
+0..1
+1.1
+Extension về thông tin Trình độ văn hóa
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+education-level
+1..1
+Danh mục tham chiếu:
+http://moh.gov.vn/fhir/core/ValueSet/vn-cone-education-
+Type: required
+BETTER HEALTH PROGRAMME SEA 101
+--- Page 101 ---
+3.7 Extension dành cho thông tin SnomedCT Description ID
+Thông tin đường dẫn URL:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-coding-sct-descid
+* Thông tin chi tiết:
+Element Path
+Extension
+url
+extension
+url
+value[x]
+extension
+url
+value[x]
+Type
+Extension
+uri
+Extension
+uri
+id
+Extension
+uri
+id
+Flag
+extension
+url
+value[x]
+Extension
+uri
+string
+Card.
+Diễn giải
+0..1
+Extension về thông tin SnomedCT Description ID
+1..1
+Giá trị mặc định:
+http://moh.gov.vn/fhir/core/StructureDefinition/extension-
+coding-sct-descid
+0..1
+1..1
+Extension dành cho Snomed CT International Edition version
+Giá trị mặc định: SctInternationalEditionVersion
+1.1
+0..1
+1..1
+1..1
+0..1
+1.. 1
+1..1
+Extension dành cho SNOMED CT Description ID
+Giá trị mặc định: SNOMED CT Description ID
+Danh mục tham chiếu:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-
+administrative-address
+Type: required
+Extension dành cho thông tin hiển thị liên quan đến SNOMED CT
+Description ID
+Giá trị mặc định: SctDescriptionDisplay
+BETTER HEALTH PROGRAMME SEA 102
+--- Page 102 ---
+4 Danh sách các CodeSystem
+4.1
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+OID:
+Danh mục mã bệnh tật ICD-10 (theo ban hành của Bộ Y tế)
+http://terminology.h17.org/CodeSystem/icd10
+1.0.0
+Icd10
+ICD-10
+Active
+International Classification of Diseases revision 10 (ICD 10)
+WHO
+2.16.840.1.113883.6.3 (for OID based terminology systems)
+Bộ pháp điển SNOMED CT
+4.2
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+Copyright:
+Content:
+OID:
+http://snomed.info/sct
+1.0.0
+SNOMED_CT
+SNOMED CT (all versions)
+Active
+SNOMED CT is the most comprehensive and precise clinical health terminology
+product in the world, owned and distributed around the world by The International
+Health Terminology Standards Development Organisation (IHTSDO).
+IHTSDO
+© 2002-2016 International Health Terminology Standards Development
+Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally
+created by The College of American Pathologists. "SNOMED" and "SNOMED CT"
+are registered trademarks of the IHTSDO http://www.ihtsdo.org/snomed-ct/get-
+snomed-ct
+Not Present: None of the concepts defined by the code system are included in the
+code system resource
+2.16.840.1.113883.6.96 (for OID based terminology systems)
+* Các thuộc tính:
+Code
+inactive
+definitionStatusId
+URL
+Description
+Type
+http://snomed.info/field/Concept.a
+Whether the code is active or boolean
+ctive
+not (defaults to false). Not the
+same as deprecated
+http://snomed.info/field/Concept.d Either of the codes that are
+code
+BETTER HEALTH PROGRAMME SEA 103
+--- Page 103 ---
+Code
+parent
+URL
+efinitionStatusld
+http.:/.....?
+child
+http://...
+......?
+moduleld
+normalForm
+http://snomed.info/field/Concept.
+moduleld
+http://........?
+normalFormTerse
+http://...?
+Description
+descendants of
+900000000000444006
+A SNOMED CT concept id
+that has the target of a direct
+is-a relationship from the
+Type
+code
+A SNOMED CT concept id
+code
+that has a direct is-a
+relationship to the concept
+The SNOMED CT concept id code
+of the module that the concept
+Generated Normal form
+expression for the provided
+code or expression, with terms
+Generated Normal form
+expression for the provided
+code or expression,
+conceptlds only
+string
+string
+Due to
+Associated with
+Associated morphology
+Has specimen
+Specimen source
+http://snomed.info/id/42752001
+http://snomed.info/id/47429007
+http://snomed.info/id/116676008
+http://snomed.info/id/116686009
+http://snomed.info/id/118168003
+morphology
+Specimen source
+http://snomed.info/id/118169006
+topography
+Specimen source identity http://snomed.info/id/118170007
+Specimen procedure
+http://snomed.info/id/118171006
+Part of
+http://snomed.info/id/123005000
+Has active ingredient
+http://snomed.info/id/127489000
+Subject of information
+http://snomed.info/id/131195008
+Causative agent
+http://snomed.info/id/246075003
+Associated finding
+http://snomed.info/id/246090004
+Component
+http://snomed.info/id/246093002
+Severity
+http://snomed.info/id/246112005
+Occurrence
+http://snomed.info/id/246454002
+Episodicity
+http://snomed.info/id/246456000
+Technique
+http://snomed.info/id/246501002
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+BETTER HEALTH PROGRAMME SEA 104
+--- Page 104 ---
+Code
+Revision status
+Units
+After
+Access
+Method
+Priority
+Clinical course
+Laterality
+Associated procedure
+Finding site
+Laterality
+Direct morphology
+Direct substance
+Has focus
+Has intent
+Procedure site
+Has definitional
+manifestation
+URL
+http://snomed.info/id/246513007
+http://snomed.info/id/246514001
+http://snomed.info/id/255234002
+http://snomed.info/id/260507000
+http://snomed.info/id/260686004
+http://snomed.info/id/260870009
+http://snomed.info/id/263502005
+http://snomed.info/id/272741003
+http://snomed.info/id/363589002
+http://snomed.info/id/363698007
+http://snomed.info/id/363699004
+http://snomed.info/id/363700003
+http://snomed.info/id/363701004
+http://snomed.info/id/363702006
+http://snomed.info/id/363703001
+http://snomed.info/id/363704007
+http://snomed.info/id/363705008
+Indirect morphology
+http://snomed.info/id/363709002
+Indirect device
+http://snomed.info/id/363710007
+Has interpretation
+http://snomed.info/id/363713009
+Interprets
+http://snomed.info/id/363714003
+Measurement method
+http://snomed.info/id/370129005
+Property
+http://snomed.info/id/370130000
+Recipient category
+http://snomed.info/id/370131001
+Scale type
+http://snomed.info/id/370132008
+Specimen substance
+http://snomed.info/id/370133003
+Time aspect
+http://snomed.info/id/370134009
+Pathological process
+http://snomed.info/id/370135005
+Procedure site - Direct
+http://snomed.info/id/405813007
+Procedure site - Indirect
+http://snomed.info/id/405814001
+Procedure device
+http://snomed.info/id/405815000
+Procedure morphology
+http://snomed.info/id/405816004
+Finding context
+http://snomed.info/id/408729009
+Procedure context
+http://snomed.info/id/408730004
+Description
+Type
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+BETTER HEALTH PROGRAMME SEA 105
+--- Page 105 ---
+Code
+Temporal context
+Subject relationship
+context
+Route of administration
+Has dose form
+Finding method
+Finding informer
+Using device
+Using energy
+Using substance
+Surgical approach
+Using access device
+Role group
+Property type
+Inheres in
+Towards
+Characterizes
+Process agent
+Process duration
+Process output
+Relative to
+Precondition
+Direct site
+Specified by
+Observes
+Is about
+URL
+http://snomed.info/id/408731000
+http://snomed.info/id/408732007
+http://snomed.info/id/410675002
+http://snomed.info/id/411116001
+http://snomed.info/id/418775008
+http://snomed.info/id/419066007
+http://snomed.info/id/424226004
+http://snomed.info/id/424244007
+http://snomed.info/id/424361007
+http://snomed.info/id/424876005
+http://snomed.info/id/425391005
+http://snomed.info/id/609096000
+http://snomed.info/id/704318007
+http://snomed.info/id/704319004
+http://snomed.info/id/704320005
+http://snomed.info/id/704321009
+http://snomed.info/id/704322002
+http://snomed.info/id/704323007
+http://snomed.info/id/704324001
+http://snomed.info/id/704325000
+http://snomed.info/id/704326004
+http://snomed.info/id/704327008
+http://snomed.info/id/704346009
+http://snomed.info/id/704347000
+http://snomed.info/id/704647008
+Description
+Type
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+code
+* Bộ lọc:
+Code
+concept
+expression
+Description
+Filter that includes concepts based on their
+logical definition. e.g. [concept] [is-a] [x] -
+include all concepts with an is-a relationship to
+concept x, or [conceptl lin] [x]- include all
+concepts in the reference set identified by
+The result of the filter is the result of executin
+he given SNOMED CT Expression Constrain
+operator
+Value
+is-a in
+A SNOMED CT code
+A SNOMED CT ECL
+expression (see
+BETTER HEALTH PROGRAMME SEA 106
+--- Page 106 ---
+Code
+Description
+expressions Whether post-coordinated expressions are
+included in the value set
+operator
+=
+Value
+http://snomed.org/ecl)
+true or false
+4.3
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Status:
+Definition:
+Publisher:
+Copyright:
+Danh mục Địa danh hành chính theo ban hành của Tổng cục thống kê
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-administrative-address
+11.0.0
+Danh mục Địa danh hành chính - theo ban hành của Tông cục thống kê
+Active
+Danh mục Địa danh hành chính - theo ban hành của Tổng cục thống kê
+Tổng cục thống kê
+Tổng cục thống kê
+4.4
+Defining URL:
+Version:
+Name:
+Status:
+Definition:
+Publisher:
+Copyright:
+Danh mục Trình độ văn hóa
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-education-level
+1.0.0
+Danh mục Trình độ văn hóa - theo ban hành của Tổng cục thống kê
+Active
+Danh mục Trình độ văn hóa - theo ban hành của Tổng cục thống kê
+Tổng cục thống kê
+Tổng cục thống kê
+4.5
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+Copyright:
+Danh mục Dân tộc theo ban hành của Tổng cục thống kê
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-race
+1.0.0
+Danh mục Dân tộc - theo ban hành của Tổng cục thống kê
+Danh mục Dân tộc - theo ban hành của Tổng cục thống kê
+Active
+Danh mục Dân tộc - theo ban hành của Tổng cục thống kê. Tham vấn:
+https://www.gso.gov.vn/default.aspx?tabid=727
+Cục Công nghệ thông tin - Bộ Y tế
+Tổng cục thống kê
+BETTER HEALTH PROGRAMME SEA 107
+--- Page 107 ---
+* Danh sách concept:
+Code Display
+01
+Kinh
+02
+Tày
+03
+Thái
+04
+05
+06
+07
+08
+09
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+Definition
+Việt
+Thổ, Ngạn, Phén, Thù Lao, Pa Dí, Tày Khao
+Tày Đăm, Tày Mười, Tày Thanh, Mán Thanh, Hàng Bông, Tày Mường, Pa Thay,
+Thổ Đà Bắc
+Hoa
+Khơ-me
+Mường
+Nùng
+HMông
+Dao
+Hán, Triều Châu, Phúc Kiến, Quảng Đông, Hải Nam, Hạ, Xạ Phạng
+Cur, Cul, Cu, Thổ, Việt gốc Miên, Krôm
+Mol, Mual, Mọi, Mọi Bi, Ao Tá, Ậu Tá
+Xuồng, Giang, Nùng An, Phàn Sinh, Nùng Cháo, Nùng Lòi, Quý Rim, Khèn Lài
+Mèo, Hoa, Mèo Xanh, Mèo Đỏ, Mèo Đen, Ná Mẻo, Mán Trắng
+Mán, Động, Trại, Xá, Dìu, Miên, Kiềm, Miền, Quần Trắng, Dao Đỏ, Quần Chẹt,
+Lô Giang, Dạo Tiền, Thanh Y, Lan Tẻn, Đại Bản, Tiểu Bản, Cóc Ngáng, Cóc
+Mùn, Sơn Đầu
+Gia-rai
+Ngái
+Ê-đê
+Ba na
+Giơ-rai, Tơ-buăn, Chơ-rai, Hơ-bau, Hđrung, Chor
+Xín, Lê, Đản, Khách Gia
+Ra-đê, Đê, Kpạ, A-đham, Krung, Ktul, Đliê Ruê, Blô, Epan, Mđhur, Bih
+Giơ-lar. Tơ-lô, Giơ-lâng, Y-lăng, Rơ-ngao, Krem, Roh, ConKđe, A-la Công,
+Kpăng Công, Bơ-nâm
+Xơ-Đăng
+Xơ-teng, Hđang, Tơ-đra, Mơ-nâm, Ha-lăng, Ca-dong, Kmrâng, ConLan, Bri-la,
+Tang
+Sán Chay
+Cao Lan, Sán Chỉ, Mán Cao Lan, Hờn Bạn, Sơn Tử
+Cơ-ho
+Xrê, Nốp, Tu-lốp, Cơ-don, Chil, Lat, Lach, Trinh
+Chăm
+Chàm, Chiêm Thành, Hroi
+Sán Dìu
+Sán Dẻo, Trại, Trại Đất, Mán, Quần Cộc
+Hrê
+Chăm Rê, Chom, Krẹ Luỹ
+Mnông
+Phông, Nông, Pré, Bu-đâng, ĐiPri, Biat, Gar, Rơ-lam, Chil
+Ra-glai
+Ra-clây, Rai, Noang, La-oang
+Xiêng
+Xa-điêng
+Bru-Vân Kiều
+Bru, Vân Kiều, Măng Coong, Tri Khùa
+Thổ
+Kẹo, Mọn, Cuối, Họ, Đan Lai, Ly Hà, Tày Pọng, Con Kha, Xá Lá Vàng
+Giáy
+Nhắng, Dẩng, Pầu Thìn Nu Nà, Cùi Chu, Xa
+Cơ-tu
+Ca-tu, Cao, Hạ, Phương, Ca-tang
+Gié Triêng
+Đgiéh, Tareb, Giang Rẫy Pin, Triêng, Treng, Ta-riêng, Ve, Veh, La-ve, Ca-tang
+Mạ
+Châu Mạ, Mạ Ngăn, Mạ Xóp, Mạ Tô, Mạ Krung
+Khơ-mú
+Xá Cẩu, Mứn Xen, Pu Thênh, Tềnh, Tày Hay
+BETTER HEALTH PROGRAMME SEA 108
+--- Page 108 ---
+Code Display
+30
+Co
+31
+Tà-ôi
+32
+Chơ-ro
+33
+Kháng
+34
+Xinh-mun
+35
+Hà Nhì
+36
+Chu ru
+37
+Lào
+38
+La Chí
+39
+La Ha
+40
+Phù Lá
+41
+La Hủ
+42
+Lự
+43
+Lô Lô
+44
+Chứt
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+99
+Mảng
+Pà Thẻn
+Co Lao
+Cống
+Bố Y
+Si La
+Pu Péo
+Brâu
+Ơ Đu
+Rơ măm
+Người nước
+ngoài
+Không rõ
+Definition
+Cor, Col, Cùa, Trầu
+Tôi-ôi, Pa-co, Pa-hi, Ba-hi
+Dơ-ro, Châu-ro
+Xá Khao, Xá Súa, Xá Dón, Xá Dẩng, Xá Hốc, Xá Ái, Xá Bung, Quảng Lâm
+Puộc, Pụa
+U Ni, Xá U Ni
+Chơ-ru, Chu
+Là Bốc, Lào Nọi
+Cù Tê, La Quả
+Xá Khao, Khlá Phlạo
+Bồ Khô Pạ, Mu Di Pạ Xá, Phó, Phổ, Va Xơ
+Lao, Pu Đang, Khù Xung, Cò Xung, Khả Quy
+Lừ, Nhuồn, Duôn
+Mun Di
+Sách, Máy, Rục, Mã-liêng, A-rem, Tu vang, Pa-leng, Xơ-Lang, Tơ-hung, Chà-củi,
+Tắc-củi, U-mo, Xá Lá Vàng
+Mảng Ư, Xá Lá Vàng
+Pà Hưng, Tổng
+Xắm Khống, Mầng Nhé, Xá Xeng
+Chủng Chá, Trọng Gia, Tu Di, Tu Din
+Cù Dề Xừ, Khả pẻ
+Ka Pèo, Pen Ti Lô Lô
+Brao
+Tày Hạt
+4.6
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Danh mục Tôn giáo theo ban hành của Tổng cục thống kê
+http://moh.gov.vn/fhir/CodeSystem/DMDanToc-v1.0
+1.0.0
+Danh mục Tôn giáo - theo ban hành của Tổng cục thống kê
+BETTER HEALTH PROGRAMME SEA 109
+--- Page 109 ---
+Title:
+Status:
+Content:
+Definition:
+Publisher:
+Content Mode:
+Copyright:
+Danh mục Tôn giáo - theo ban hành của Tổng cục thống kê
+Active
+All the concepts defined by the code system are included in the code system
+resource
+Danh mục Dân tộc - theo ban hành của Tông cục thông kê. Tham vân:
+https://www.gso.gov.vn/danhmuc/DMtongiao.aspx
+Cục Công nghệ thông tin - Bộ Y tế
+Complete
+Tông cục thống kê
+* Danh sách concept:
+Mã
+1
+2
+3
+4
+Hiển thị
+Phật Giáo
+Công Giáo
+Phật giáo Hòa Hảo
+Hồi giáo
+...
+4.7
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Status:
+Definition:
+Publisher:
+Copyright:
+Diễn giải
+Phật Giáo
+Công Giáo
+Phật giáo Hòa Hảo
+Hôi giáo - Cao đài Tây Ninh, - Cao đài Tiên Thiên - Cao đài Chơn Lý
+- Cao đài Bạch Y
+Tôn giáo ...
+Danh mục Mã dược phẩm - theo ban hành và quản lý của Bộ Y tế
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-medicationCode
+1.0.0
+Danh mục Mã dược phẩm - theo ban hành và quản lý của Bộ Y tế
+Active
+Danh mục Mã dược phẩm - theo ban hành và quản lý của Bộ Y tế.
+Cục Công nghệ thông tin - Bộ Y tế
+Bộ Y tế
+4.8
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Danh mục Nghề nghiệp theo thành phần xã hội được ban hành theo
+QĐ số 4069/2011/QĐ-BYT
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-occupation-4069
+1.0.0
+Danh mục Nghề nghiệp theo thành phần xã hội được ban hành theo QĐ số
+BETTER HEALTH PROGRAMME SEA 110
+--- Page 110 ---
+Status:
+Definition:
+Publisher:
+Copyright:
+* Danh sách concept:
+Code
+Display
+01
+Trẻ < 6 tuổi đi học, <15 tuổi không đi học
+02
+Sinh viên, học sinh
+03
+Hưu và > 60 tuổi
+04
+Công nhân
+05
+Nông dân
+06
+Lực lượng vũ trang
+07
+Trí thức
+08
+Hành chính, sự nghiệp
+09
+Y tế
+10
+Dịch vụ
+11
+Việt kiều
+12
+Ngoại kiều
+99
+Khác
+4069/2011/QĐ-BYT
+Active
+Danh mục Nghề nghiệp theo thành phần xã hội được ban hành theo QĐ số
+4069/2011/QĐ-BYT
+Cục Công nghệ thông tin - Bộ Y tế
+Bộ Y tế
+4.9
+* Tổng quan:
+Defining
+URL:
+Version:
+Name:
+Status:
+Definition:
+Publisher:
+Copyright:
+Danh mục Nghề nghiệp - theo ban hành của Tổng cục thống kê
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-occupation
+1.0.0
+Danh mục Nghề nghiệp - theo ban hành của Tổng cục thống kê
+Active
+Danh mục Nghề nghiệp - theo ban hành của Tổng cục thống kê.
+Tổng cục thống kê
+Tổng cục thống kê
+BETTER HEALTH PROGRAMME SEA 111
+--- Page 111 ---
+4.10
+Danh mục Dịch vụ kỹ thuật - theo ban hành và quản lý của Bộ Y tế
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Status:
+Definition:
+Publisher:
+Copyright:
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-procedureCode
+1.0.0
+Danh mục Dịch vụ kỹ thuật - theo ban hành và quản lý của Bộ Y tế
+Active as of 2020-12-31
+Danh mục Dịch vụ kỹ thuật - theo ban hành và quản lý của Bộ Y tế.
+Bộ Y tế
+Bộ Y tế
+5 Danh sách các ValueSet
+5.1
+* Tổng quan:
+ValueSet: Iso 3166 Part 1: 2 Letter Codes
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+http://hl7.org/fhir/ValueSet/iso3166-1-2
+1.0.0
+Iso3166-1-2
+Iso 3166 Part 1: 2 Letter Codes
+Active
+This value set defines the ISO 3166 Part 1 2-letter codes
+* Nội dung:
+Bao gồm tất cả các concept từ CodeSystem urn: iso:std: is0:3166
+* Danh sách concept:
+Code
+Display
+AD
+Andorra
+AE
+United Arab Emirates
+AF
+Afghanistan
+AG
+Antigua and Barbuda
+AI
+Anguilla
+AL
+Albania
+AM
+Armenia
+AO
+Angola
+BETTER HEALTH PROGRAMME SEA 112
+--- Page 112 ---
+Code
+AQ
+AR
+AS
+AT
+AU
+AW
+AX
+BB
+Display
+Antarctica
+Argentina
+American Samoa
+Austria
+Australia
+Aruba
+Aland Islands
+Azerbaijan
+Bosnia and Herzegovina
+Barbados
+Bangladesh
+Belgium
+Burkina Faso
+Bulgaria
+Bahrain
+Burundi
+Benin
+Saint Barthélemy
+Bermuda
+Brunei Darussalam
+Bolivia, Plurinational State of
+Bonaire, Sint Eustatius and Saba
+Brazil
+Bahamas
+Bhutan
+Bouvet Island
+Botswana
+Belarus
+Belize
+Canada
+Cocos (Keeling) Islands
+Congo, the Democratic Republic of the
+Central African Republic
+Congo
+Switzerland
+BETTER HEALTH PROGRAMME SEA 113
+--- Page 113 ---
+Display
+Côte d"Ivoire
+Cook Islands
+Chile
+Cameroon
+China
+Colombia
+Costa Rica
+Cuba
+Cabo Verde
+Curaçao
+Christmas Island
+Cyprus
+Czechia
+Germany
+Djibouti
+Denmark
+Dominica
+Dominican Republic
+Algeria
+Ecuador
+Estonia
+Egypt
+Western Sahara
+Eritrea
+Spain
+Ethiopia
+Finland
+Fiji
+Falkland Islands (Malvinas)
+Micronesia, Federated States of
+Faroe Islands
+France
+Gabon
+United Kingdom of Great Britain and Northern Ireland
+Grenada
+BETTER HEALTH PROGRAMME SEA 114
+--- Page 114 ---
+Code
+Display
+Georgia
+French Guiana
+Guernsey
+Ghana
+Gibraltar
+Greenland
+Gambia
+Guinea
+Guadeloupe
+Equatorial Guinea
+Greece
+South Georgia and the South Sandwich Islands
+Guatemala
+Guam
+Guinea-Bissau
+Guyana
+Hong Kong
+Heard Island and McDonald Islands
+Honduras
+Croatia
+Haiti
+Hungary
+Indonesia
+Ireland
+Israel
+Isle of Man
+India
+British Indian Ocean Territory
+Iraq
+Iran, Islamic Republic of
+Iceland
+Italy
+Jersey
+Jamaica
+Jordan
+BETTER HEALTH PROGRAMME SEA 115
+--- Page 115 ---
+Code
+JP
+KE
+KG
+LA
+LB
+LC
+LI
+LK
+LR
+LS
+LT
+LU
+LV
+LY
+MA
+MC
+MD
+ME
+MF
+MG
+MH
+MK
+ML
+MM
+MN
+MO
+Display
+Japan
+Kenya
+Kyrgyzstan
+Cambodia
+Kiribati
+Comoros
+Saint Kitts and Nevis
+Korea, Democratic People"s Republic of
+Korea, Republic of
+Kuwait
+Cayman Islands
+Kazakhstan
+Lao People"s Democratic Republic
+Lebanon
+Saint Lucia
+Liechtenstein
+Sri Lanka
+Liberia
+Lesotho
+Lithuania
+Luxembourg
+Latvia
+Libya
+Morocco
+Monaco
+Moldova, Republic of
+Montenegro
+Saint Martin (French part)
+Madagascar
+Marshall Islands
+Macedonia, the former Yugoslav Republic of
+Mali
+Myanmar
+Mongolia
+Macao
+BETTER HEALTH PROGRAMME SEA 116
+--- Page 116 ---
+Code
+MP
+MQ
+MR
+MS
+MT
+MU
+MV
+MW
+MX
+MY
+MZ
+NA
+NC
+NE
+NF
+NG
+PA
+Display
+Northern Mariana Islands
+Martinique
+Mauritania
+Montserrat
+Malta
+Mauritius
+Maldives
+Malawi
+Mexico
+Malaysia
+Mozambique
+Namibia
+New Caledonia
+Niger
+Norfolk Island
+Nigeria
+Nicaragua
+Netherlands
+Norway
+Nepal
+Nauru
+Niue
+New Zealand
+Oman
+Panama
+Peru
+French Polynesia
+Papua New Guinea
+Philippines
+Pakistan
+Poland
+Saint Pierre and Miquelon
+Pitcairn
+Puerto Rico
+Palestine, State of
+BETTER HEALTH PROGRAMME SEA 117
+--- Page 117 ---
+RS
+RU
+RW
+SA
+SB
+SC
+SD
+SE
+SG
+SH
+SI
+SJ
+SK
+SL
+SM
+SN
+SO
+SR
+SS
+ST
+SV
+SX
+SY
+SZ
+TC
+TD
+TF
+TG
+TH
+Display
+Portugal
+Palau
+Paraguay
+Qatar
+Réunion
+Romania
+Serbia
+Russian Federation
+Rwanda
+Saudi Arabia
+Solomon Islands
+Seychelles
+Sudan
+Sweden
+Singapore
+Saint Helena, Ascension and Tristan da Cunha
+Slovenia
+Svalbard and Jan Mayen
+Slovakia
+Sierra Leone
+San Marino
+Senegal
+Somalia
+Suriname
+South Sudan
+Sao Tome and Principe
+El Salvador
+Sint Maarten (Dutch part)
+Syrian Arab Republic
+Swaziland
+Turks and Caicos Islands
+Chad
+French Southern Territories
+Togo
+Thailand
+BETTER HEALTH PROGRAMME SEA 118
+--- Page 118 ---
+Code
+TJ
+TK
+TW
+UG
+UM
+US
+UY
+UZ
+VA
+VC
+VE
+VG
+VI
+VN
+VU
+WF
+WS
+YE
+YT
+ZA
+ZM
+ZW
+Display
+Tajikistan
+Tokelau
+Timor-Leste
+Turkmenistan
+Tunisia
+Tonga
+Turkey
+Trinidad and Tobago
+Tuvalu
+Taiwan, Province of China
+Tanzania, United Republic of
+Ukraine
+Uganda
+United States Minor Outlying Islands
+United States of America
+Uruguay
+Uzbekistan
+Holy See
+Saint Vincent and the Grenadines
+Venezuela, Bolivarian Republic of
+Virgin Islands, British
+Virgin Islands,
+Viet Nam
+Vanuatu
+Wallis and Futuna
+Samoa
+Yemen
+Mayotte
+South Africa
+Zambia
+Zimbabwe
+5.2
+* Tổng quan:
+ValueSet: LOINC Codes
+BETTER HEALTH PROGRAMME SEA 119
+--- Page 119 ---
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+Committee:
+Copyright:
+http://hl7.org/fhir/ValueSet/observation-codes
+1.0.0
+LOINCCodes
+LOINC Codes
+Draft as of 2019-11-01T09:29:23+11:00 (Standards Status: Draft)
+This value set includes all LOINC codes
+FHIR Infrastructure
+This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the
+LOINC Committee, and available at no cost under the license at
+http://loinc.org/terms-of-use.
+1
+Maturity:
+OID:
+* Nội dung:
+2.16.840.1.113883.4.642.3.396 (for OID based terminology systems)
+Bao gồm tất các các concept thuộc CodeSystem http://1oinc.org
+* Danh sách concept:
+(Do số lượng concept lớn nên số lượng hiển thị tại đây chỉ với mục đích tham khảo)
+Code
+Display
+1-8
+Acyclovir [Susceptibility]
+10-9
+Amdinocillin [Susceptibility] by Serum bactericidal titer
+100-8
+Cefoperazone [Susceptibility] by Minimum inhibitory concentration (MIC)
+1000-9
+DBG Ab [Presence] in Serum or Plasma from Blood product unit
+10000-8
+R wave duration in lead AVR
+10001-6
+R wave duration in lead I
+10002-4
+R wave duration in lead II
+10003-2
+R wave duration in lead III
+10004-0
+R wave duration in lead V1
+10005-7
+R wave duration in lead V2
+10006-5
+R wave duration in lead V3
+10007-3
+R wave duration in lead V4
+10008-1
+R wave duration in lead V5
+10009-9
+R wave duration in lead V6
+1001-7
+DBG Ab [Presence] in Serum or Plasma from Donor
+10010-7
+R' wave amplitude in lead AVF
+10011-5
+R' wave amplitude in lead AVL
+10012-3
+R' wave amplitude in lead AVR
+BETTER HEALTH PROGRAMME SEA 120
+--- Page 120 ---
+Code
+Display
+10013-1
+R' wave amplitude in lead I
+10014-9
+R' wave amplitude in lead II
+10015-6
+R' wave amplitude in lead III
+10016-4
+R' wave amplitude in lead V1
+10017-2
+R' wave amplitude in lead V2
+10018-0
+R' wave amplitude in lead V3
+10019-8
+R' wave amplitude in lead V4
+1002-5
+DBG Ab [Presence] in Serum or Plasma
+10020-6
+R' wave amplitude in lead V5
+10021-4
+R' wave amplitude in lead V6
+10022-2
+R' wave duration in lead AVF
+10023-0
+R' wave duration in lead AVL
+10024-8
+R' wave duration in lead AVR
+10025-5
+R' wave duration in lead I
+10026-3
+R' wave duration in lead II
+10027-1
+R' wave duration in lead III
+10028-9
+R' wave duration in lead V1
+10029-7
+R' wave duration in lead V2
+1003-3
+Indirect antiglobulin test.complement specific reagent [Presence] in Serum or Plasma
+10030-5
+R' wave duration in lead V3
+10031-3
+R' wave duration in lead V4
+10032-1
+R' wave duration in lead V5
+10033-9
+R' wave duration in lead V6
+10034-7
+S wave amplitude in lead AVF
+10035-4
+S wave amplitude in lead AVL
+10036-2
+S wave amplitude in lead AVR
+10037-0
+S wave amplitude in lead I
+10038-8
+S wave amplitude in lead II
+10039-6
+S wave amplitude in lead III
+1004-1
+Direct antiglobulin test.complement specific reagent [Presence] on Red Blood Cells
+10040-4
+S wave amplitude in lead V1
+5.3
+* Tổng quan:
+ValueSet: Loại tiền sử bệnh lý và đặc điểm xã hội, sử dụng LOINC Code
+BETTER HEALTH PROGRAMME SEA 121
+--- Page 121 ---
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+http://moh.gov.vn/fhir/core/ValueSet/patient-history-social-factor-type
+1.0.0
+ValueSet-PatientHistory_SoicalFactor_Type
+ValueSet dành cho loại tiền sử bệnh lý và đặc điểm xã hội
+Active
+ValueSet dành cho loại tiền sử bệnh lý và đặc điểm xã hội, sử dụng LOINC Code
+Cục Công nghệ thông tin - Bộ Y tế
+* Danh sách concept:
+Code
+10164-2
+11348-0
+11338-1
+10162-6
+44939-7
+10167-5
+11336-5
+10156-8
+11346-4
+46264-8
+10155-0
+11369-6
+11332-4
+29762-2
+1380-
+11320-9
+11294-6
+11340-7
+10161-8
+55280-2
+11330-8
+11366-2
+11342-3
+11350-6
+10182-4
+11344-9
+Display
+History of Present illness
+History of Past illness
+History of Major illnesses and injuries
+History of pregnancies
+History of Adverse drug reaction
+History of Surgical procedures
+History of Hospitalization
+History of Childhood diseases
+History of Outpatient visits
+History of medical device use
+History of allergies, reported
+History of Immunization
+History of Cognitive function
+Social history
+Marital status and living arrangements
+Feeding and dietary status
+Current employment
+History of Occupation
+History of Occupational exposure
+Military service
+History of Alcohol use
+History of Tobacco use
+History of Other nonmedical drug use
+History of Sexual behavior
+History of Travel
+History of Other social factors
+BETTER HEALTH PROGRAMME SEA 122
+--- Page 122 ---
+Code
+10157-6
+8672-8
+11358-9
+10170-9
+10172-5
+11352-2
+56836-0
+56837-8
+56838-6
+11357-1
+10178-2
+11353-0
+10171-7
+11354-8
+10169-1
+10174-1
+10168-3
+10175-8
+10177-4
+11355-5
+11356-3
+10176-6
+10181-6
+56871-7
+49033-4
+56833-7
+10173-3
+Display
+History of family member diseases
+History of Nervous system disorders
+History of Psychiatric disorders
+History of Endocrine system disorders
+History of Hematologic system disorders
+History of Allergenic and Immunologic disorders
+History of Blood transfusion
+History of Neoplastic disease
+History of Infectious disease
+History of Integumentary system disorders
+History of Skin disorders
+History of Breasts disorders
+History of Eyes disorders
+History of Ears and Nose and Sinuses and Mouth and Throat disorders
+History of Ear disorders
+History of Nose disorders
+History of Cardiovascular system disorders
+History of Oral cavity disorders
+History of Respiratory system disorders
+History of Gastrointestinal system disorders
+History of Genitourinary systems disorders
+History of Reproductive system disorders
+History of Urinary tract disorders
+History of Gynecologic system disorders
+Menstrual History - Reported
+Pregnancy related history
+History of Musculoskeletal system disorders
+5.4
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Title:
+ValueSet: Loại thăm, khám lâm sàng, sử dụng LOINC Code
+http://moh.gov.vn/fhir/core/ValueSet/physical-exam-type
+1.0.0
+ValueSet-Physical_Exam_Type
+ValueSet dành cho loại thăm, khám lâm sàng
+BETTER HEALTH PROGRAMME SEA 123
+--- Page 123 ---
+Status:
+Definition:
+Publisher:
+Active
+ValueSet dành cho loại thăm, khám lâm sàng, sử dụng LOINC Code
+Cục Công nghệ thông tin - Bộ Y tế
+* Danh sách concept:
+Code
+Display
+10199-8
+Head, physical findings
+32432-7
+Face, physical findings
+32446-7
+Lip, physical findings
+10197-2
+Eye, physical findings
+32424-4
+Conjunctiva, physical findings
+32425-1
+Cornea, physical findings
+32429-3
+Extraocular muscles, physical findings
+32431-9
+Eye lid, physical findings
+32440-0
+Iris, physical findings
+32443-4
+Lacrimal apparatus, physical findings
+32459-0
+Optic lens, physical findings
+32466-5
+Pupil, physical findings
+32468-1
+Retina, physical findings
+32471-5
+Sclera, physical findings
+32469-9
+Scalp, physical findings
+10195-6
+Ear, physical Findings
+32484-8
+Tympanic membrane, physical Findings
+32421-0
+Auditory canal, physical Findings
+10203-8
+Nose, physical findings
+32460-8
+Palate, physical findings
+11393-6
+Ears, nose, mouth, throat, physical findings
+10201-2
+Mouth, throat, teeth, physical findings
+32453-3
+Mouth, physical findings
+32478-0
+Teeth and gum, physical findings
+32483-0
+Tongue, physical findings
+56867-5
+Throat, physical findings
+32444-2
+Larynx, physical findings
+32482-2
+Tonsil, physical findings
+51850-6
+Head, ears, eyes, nose, throat, physical findings
+11411-6
+Neck, physical findings
+BETTER HEALTH PROGRAMME SEA 124
+--- Page 124 ---
+Code
+10207-9
+11391-0
+11392-8
+10200-4
+10193-1
+10192-3
+32476-4
+32462-4
+10191-5
+10204-6
+11403-3
+10198-0
+11400-9
+11401-7
+11402-5
+32465-7
+32487-1
+32486-3
+32423-6
+11388-6
+10205-3
+10196-4
+11413-2
+11387-8
+11386-0
+11394-4
+11398-5
+11415-7
+11404-1
+32427-7
+56843-6
+11406-6
+11414-0
+11407-4
+11389-4
+Display
+Thorax, lungs, physical findings
+Chest, physical findings
+Chest wall, physical findings
+Heart, physical findings
+Breasts, physical findings
+Back, physical findings
+Spine, physical findings
+Paraverteberal muscles, physical findings
+Abdomen, physical findings
+Pelvis, physical findings
+Groin, physical findings
+Genitourinary tract, physical findings
+Genitalia, physical findings
+Genitalia female, physical findings
+Genitalia male, physical findings
+Prostate, physical findings
+Vagina, physical findings
+Uterus, physical findings
+Cervix, physical findings
+Buttocks, physical findings
+Rectum, physical findings
+Extremities, physical findings
+Shoulder, physical findings
+Axilla, physical findings
+Upper arm, physical findings
+Elbow, physical findings
+Forearm, physical findings
+Wrist, physical findings
+Hand, physical findings
+Digits, physical findings
+Nail bed, physical findings
+Hip, physical findings
+Thigh, physical findings
+Knee, physical findings
+Calf, physical findings
+BETTER HEALTH PROGRAMME SEA 125
+--- Page 125 ---
+Code
+11385-2
+11397-7
+32480-6
+10209-5
+32433-5
+10212-9
+10211-1
+10206-1
+10194-9
+32426-9
+10208-7
+56845-1
+11384-5
+11412-4
+32450-9
+29301-9
+11390-2
+11399-3
+10202-0
+11410-8
+32455-8
+56873-3
+56876-6
+32452-5
+32441-8
+8703-1
+11451-2
+10210-3
+10190-7
+47420-5
+32473-1
+Display
+Ankle, physical findings
+Foot, physical findings
+Toes, physical findings
+Neurologic balance, coordination, physical findings
+Gait, coordination, physical findings
+Strength, physical findings
+Sensation, physical findings
+Skin, physical findings
+Neurologic deep tendon reflexes, physical findings
+Nerves.cranial, physical findings
+Vessels, physical findings
+Pulse strength on exam
+Physical examination by organ systems
+Respiratory system, physical findings
+Lymph node, physical findings
+Endocrine system, physical findings
+Cardiovascular system, physical findings
+Gastrointestinal system, physical findings
+Neurologic system, physical findings
+Musculoskeletal system, physical findings
+Muscle tone, physical findings
+Brain stem reflexes, physical findings
+Primitive reflexes, physical findings
+Motor function, physical findings
+Joint, physical findings
+Extremities, physical findings
+Psychiatric findings
+General Status
+Mental Status
+Functional Status
+Physical findings sensation
+ValueSet: Các chỉ dẫn dùng thuốc (bổ sung) (SNOMED CT)
+5.5
+* Tổng quan:
+Defining URL:
+http://moh.gov.vn/fhir/core/ValueSet/snomedCT-additional-dosage-instruction
+BETTER HEALTH PROGRAMME SEA 126
+--- Page 126 ---
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+Copyright:
+1.0.0
+ValueSet-SnomedCT_Additional_Dosage_Instruction
+ValueSet dành cho Các chỉ dẫn dùng thuốc (bổ sung) (SNOMED CT)
+Draft as of 2020-12-31
+ValueSet dành cho Các chỉ dẫn dùng thuốc (bổ sung) (SNOMED CT)
+Cục Công nghệ thông tin - Bộ Y tế
+This value set includes content from: 1. SNOMED CT, which is copyright ©
+2002+ International Health Terminology Standards Development Organisation
+(IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer
+use of SNOMED CT is not covered by this agreement.
+* Nội dung:
+Bao gồm các concept thuộc CodeSystem http:/ / snomed. info/sct với các thuộc tính sau:
+Concept is-a 419492006 (Additional dosage instructions (qualifier value))
+* Danh sách concept:
+Code
+Display
+419492006 Additional dosage instructions
+311501008 Half to one hour before food
+311504000 With or after food
+417929005 Times
+417980006 Contains aspirin
+417995008 Dissolve or mix with water before taking
+418071006 Warning. Causes drowsiness which may continue the next day. If affected do not
+drive or operate machinery. Avoid alcoholic drink
+418194009 Contains an aspirin-like medicine
+418281004 Do not take anything containing aspirin while taking this medicine
+418443006 Do not take more than .. in 24 hours or ….. in any one week
+418521000 Avoid exposure of skin to direct sunlight or sun lamps
+418577003 Take at regular intervals. Complete the prescribed course unless otherwise
+directed
+418637003 Do not take with any other paracetamol products
+418639000 Warning. May cause drowsiness
+418693002 Swallowed whole, not chewed
+418849000 Warning. Follow the printed instructions you have been given with this medicine
+418850000 Contains aspirin and paracetamol. Do not take with any other paracetamol
+products
+418914006 Warning. May cause drowsiness. If affected do not drive or operate machinery.
+Definition
+BETTER HEALTH PROGRAMME SEA 127
+--- Page 127 ---
+Code
+Display
+Avoid alcoholic drink
+418954008 Warning. May cause drowsiness. If affected do not drive or operate machinery
+418991002 Sucked or chewed
+419111009 Allow to dissolve under the tongue. Do not transfer from this container. Keep
+tightly closed. Discard eight weeks after opening
+-19115000 Do not take milk, indigestion remedies, or medicines containing iron or zinc a
+he same time of day as this medicin
+419303009 With plenty of water
+419437002 Do not take more than 2 at any one time. Do not take more than 8 in 24 hours
+419439004 Caution flammable: keep away from fire or flames
+419444006 Do not stop taking this medicine except on your doctor's advice
+419473009 Each
+419529008 Dissolved under the tongue
+419822006 Warning. Avoid alcoholic drink
+419974005 This medicine may color the urine
+420003005 Do not take more than ... in 24 hours
+420082003
+Do not take indigestion remedies or medicines containing iron or zinc at the same
+time of day as this medicine
+420110001 Do not take indigestion remedies at the same time of day as this medicine
+420162004 To be spread thinly
+420652005 Until gone
+421484000 Then discontinue
+421769005 Follow directions
+421984009 Until finished
+422327006 Then stop
+428579001 Use with caution
+717154004 Take on an empty stomach
+Definition
+5.6 ValueSet: Vị trí cơ thể theo giải phẫu học (SNOMED CT)
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+http://moh.gov.vn/fhir/core/ValueSet/snomedCT-anatomical-body-structure
+1.0.0
+ValueSet-SnomedCT_Anatomical_Body_Structure
+ValueSet dành cho Vị trí cơ thể theo giải phẫu học (SNOMED CT)
+Draft
+ValueSet dành cho Vị trí cơ thể theo giải phẫu học (SNOMED CT)
+BETTER HEALTH PROGRAMME SEA 128
+--- Page 128 ---
+Publisher:
+Copyright:
+Cục Công nghệ thông tin - Bộ Y tế
+This value set includes content from: 1. SNOMED CT, which is copyright ©
+2002+ International Health Terminology Standards Development Organisation
+(IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer
+use of SNOMED CT is not covered by this agreement.
+* Nội dung:
+• Bao gồm các concept thuộc CodeSystem ht tp: // snomed. info/sct với thuộc tính:
+• Concept is-a 91723000 (Anatomical structure)
+* Danh sách concept:
+(Do số lượng concept lớn nên số lượng hiển thị tại đây chỉ với mục đích tham khảo)
+Code
+91723000
+106004
+107008
+108003
+110001
+111002
+116007
+124002
+149003
+155008
+167005
+202009
+205006
+206007
+221001
+227002
+233006
+235004
+246001
+247005
+251007
+256002
+263002
+266005
+Anatomical structure
+Posterior carpal region
+Fetal part of placenta
+Entire condylar emissary vein
+Visceral layer of Bowman's capsule
+Parathyroid gland
+Subcutaneous tissue of medial surface of index finger
+Coronoid process of mandible
+Central pair of microtubules, cilium or flagellum, not bacterial
+Deep circumflex artery of ilium
+Supraclavicular part of brachial plexus
+Anterior division of renal artery
+Entire left commissure of aortic valve
+Gluteus maximus muscle
+Articular surface, phalanges, of fourth metacarpal bone
+Canal of Hering
+Hepatocolic ligament
+Superior labial artery
+Lateral vestibular nucleus
+Mesotympanum
+Pectoral region
+Kupffer cell
+Thoracic nerve
+Right lower lobe of lung
+Definition
+BETTER HEALTH PROGRAMME SEA 129
+--- Page 129 ---
+Code
+272005
+273000
+283001
+284007
+289002
+301000
+311007
+315003
+318001
+344001
+345000
+5.7
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+Copyright:
+Display
+Superior articular process of lumbar vertebra
+Lateral myocardium
+Central axillary lymph node
+Entire flexor tendon and tendon sheath of fourth toe
+Metacarpophalangeal joint of index finger
+Fifth metatarsal bone
+Plantar surface of great toe
+Skin of umbilicus
+Cardiac impression of liver
+Ankle
+Atrioventricular bundle
+ValueSet: Các thông tin chẩn đoán lâm sàng (SNOMED CT)
+Definition
+http://moh.gov.vn/fhir/core/ValueSet/snomedCT-clinical-finding
+1.0.0
+ValueSet-SnomedCT_Clinical_Finding
+ValueSet dành cho Các thông tin thăm, khám lâm sàng (SNOMED CT)
+Draft as of 2020-12-31
+ValueSet dành cho Các thông tin thăm, khám lâm sàng (SNOMED CT)
+Cục Công nghệ thông tin - Bộ Y tế
+This value set includes content from: 1. SNOMED CT, which is copyright ©
+2002+ International Health Terminology Standards Development Organisation
+(IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer
+use of SNOMED CT is not covered by this agreement.
+* Nội dung:
+Bao gồm các concept thuộc CodeSystem http: / / snomed. info/sct với thuộc tính:
+Concept is-a 404684003 (Clinical finding (finding))
+* Danh sách concept:
+(Do số lượng concept lớn nên số lượng hiển thị tại đây chỉ với mục đích tham khảo)
+Code
+Display
+404684003
+Clinical finding
+109006
+Anxiety disorder of childhood OR adolescence
+122003
+Choroidal hemorrhage
+Definition
+BETTER HEALTH PROGRAMME SEA 130
+--- Page 130 ---
+Code
+127009
+129007
+134006
+140004
+144008
+150003
+151004
+162004
+165002
+168000
+171008
+172001
+175004
+177007
+179005
+181007
+183005
+184004
+188001
+192008
+193003
+195005
+198007
+199004
+208008
+216004
+219006
+222008
+223003
+228007
+241006
+242004
+253005
+Display
+Spontaneous abortion with laceration of cervix
+Homoiothermia
+Decreased hair growth
+Chronic pharyngitis
+Normal peripheral vision
+Abnormal bladder continence
+Gonococcal meningitis
+Severe manic bipolar I disorder without psychotic features
+Accident-prone
+Typhlolithiasis
+Injury of ascending right colon without open wound into abdominal cavity
+Endometritis following molar AND/OR ectopic pregnancy
+Supraorbital neuralgia
+Poisoning by sawfly larvae
+Apraxia of dressing
+Hemorrhagic bronchopneumonia
+Autoimmune pancytopenia
+Withdrawal arrhythmia
+Injury of intercostal artery
+Congenital syphilitic hepatomegaly
+Benign hypertensive renal disease
+Illegal abortion with endometritis
+Disease due to Filoviridae
+Decreased lactation
+Neurocutaneous melanosis sequence
+Delusion of persecution
+Alcohol user
+Acute epiglottitis with obstruction
+Tumor of body of uterus affecting pregnancy
+Lucio phenomenon
+Epilepsia partialis continua
+Noninfectious jejunitis
+Sycosis
+Definition
+BETTER HEALTH PROGRAMME SEA 131
+--- Page 131 ---
+5.8
+* Tổng quan:
+ValueSet: Vaccine Code
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+http://moh.gov.vn/fhir/core/ValueSet/vaccine-code
+1.0.0
+ValueSet-Vaccine_Administered_Code
+ValueSet dành cho Vaccine Code
+Active as of 2020-12-30
+This identifies the vaccine substance administered - CVX codes.
+Cục Công nghệ thông tin - Bộ Y tế
+* Nội dung:
+• Bao gồm các concept được định nghĩa thuộc CodeSystem http: //snomed. info/sct với thuộc
+tính:
+• Concept is-a 787859002 (Vaccine product)
+Bao gồm tất cả các concept được định nghĩa thuộc CodeSystem http://www.whocc.no/atc
+Bao gồm các concept được định định nghĩa thuộc CodeSystem http://h17 .org/fhir/sid/cvx
+* Danh sách concept:
+(Do số lượng concept lớn nên số lượng hiển thị tại đây chỉ với mục đích tham khảo)
+Code System
+Display
+01
+http://h17.org/fhir/sid/cvx diphtheria, tetanus toxoids and pertussis vaccine
+02
+http://h17.org/fhir/sid/cvx
+trivalent poliovirus vaccine, live, oral
+03
+http://h17.org/fhir/sid/cvx
+measles, mumps and rubella virus vaccine
+04
+http://h17.org/fhir/sid/cvx
+measles and rubella virus vaccine
+05
+http://h17.org/fhir/sid/cvx
+measles virus vaccine
+06
+http://h17.org/fhir/sid/cvx rubella virus vaccine
+07
+http://hl7.org/fhir/sid/cvx mumps virus vaccine
+08
+http://hl7.org/fhir/sid/cvx hepatitis B vaccine, pediatric or
+pediatric/adolescent dosage
+09
+http://h17.org/fhir/sid/cvx tetanus and diphtheria toxoids, adsorbed,
+Definition
+DTP
+OPV
+MMR
+M/R
+measles
+rubella
+mumps
+Iep B, adolescent
+or pediatric
+Td (adult)
+preservative free, for adult use (2 Lf of tetanus
+toxoid and 2 Lf of diphtheria toxoid)
+10
+http://h17.org/fhir/sid/cvx/ poliovirus vaccine, inactivated
+100 http://hl7.org/fhir/sid/cvx pneumococcal conjugate vaccine, 7 valent
+101 http://h17.org/fhir/sid/cvx typhoid Vi capsular polysaccharide vaccine
+102
+http://hl7.org/fhir/sid/cvx DTP- Haemophilus influenzae type b conjugate
+and hepatitis b vaccine
+IPV
+pneumococcal
+conjugate
+typhoid, ViCPs
+DTP-Hib-Hep B
+BETTER HEALTH PROGRAMME SEA 132
+--- Page 132 ---
+Code System
+Display
+103 http://h17.org/fhir/sid/cvx meningococcal C conjugate vaccine
+104 http://h17.org/fhir/sid/cvx hepatitis A and hepatitis B vaccine
+105 http://h17.org/fhir/sid/cvx vaccinia (smallpox) vaccine, diluted
+106
+http://h17.org/fhir/sid/cvx diphtheria, tetanus toxoids and acellular pertussis
+vaccine, 5 pertussis antigens
+107
+http://hl7.org/fhir/sid/cvx diphtheria, tetanus toxoids and acellular pertussis
+vaccine, unspecified formulation
+108
+http://hl7.org/fhir/sid/cvx meningococcal ACWY vaccine, unspecified
+formulation
+109
+http://hl7.org/fhir/sid/cvx|pneumococcal vaccine, unspecified formulation
+11
+110
+111
+http://h17.org/fhir/sid/cvx pertussis vaccine
+http://h17.org/fhir/sid/cvx
+DTaP-hepatitis B and poliovirus vaccine
+http://h17.org/fhir/sid/cvx influenza virus vaccine, live, attenuated, for
+intranasal use
+112
+http://h17.org/fhir/sid/cvx tetanus toxoid, unspecified formulation
+113
+http://hl7.org/fhir/sid/cvx tetanus and diphtheria toxoids, adsorbed,
+preservative free, for adult use (5 Lf of tetanus
+toxoid and 2 Lf of diphtheria toxoid)
+Definition
+meningococcal C
+conjugate
+Hep A-Hep B
+vaccinia (smallpox)
+diluted
+DTaP, 5 pertussis
+antigenso
+DTaP, NOS
+meningococcal,
+NOS
+pneumococcal,
+NOS
+pertussis
+DTaP-Hep B-IPV
+influenza, live,
+intranasal
+tetanus toxoid,
+NOS
+Td (adult)
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+5.9 ValueSet: Thông tin địa danh hành chính
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-administrative-address
+1.0.0
+ValueSet-VN_Core_Administrative_Address
+ValueSet dành cho Thông tin địa danh hành chính
+Active as of 2020-12-30
+ValueSet dành cho Thông tin địa danh hành chính - Theo ban hành Danh mục Dân
+tộc của Tổng cục thống kê
+Cục Công nghệ thông tin - Bộ Y tế
+* Nội dung:
+Bao gồm tất cả các concept được định nghĩa tại CodeSystem
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-administrative-address
+BETTER HEALTH PROGRAMME SEA 133
+--- Page 133 ---
+5.10 ValueSet: Mã bệnh tật
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+Copyright:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-condition-code
+1.0.0
+ValueSet-VN_Core_Condition_Code
+ValueSet dành cho Mã bệnh tật
+Active as of 2020-12-30
+This describes the problem. Diagnosis/Problem List is broadly defined as a series
+of brief statements that catalog a patient's medical, nursing, dental, social,
+preventative and psychiatric events and issues that are relevant to that patient's
+healthcare (e.g., signs, symptoms, and defined conditions). ICD-10 is appropriate
+for Diagnosis information.
+Cục Công nghệ thông tin - Bộ Y tế
+This value set includes content from:
+1.
+SNOMED CT, which is copyright © 2002+ International Health
+Terminology Standards Development Organisation (IHTSDO), and
+distributed by agreement between IHTSDO and HL7. Implementer use of
+SNOMED CT is not covered by this agreement.
+2. ICD-10 are copyrighted by the World Health Organization (WHO) which
+owns and publishes the classification. See
+https://www.who.int/classifications/icd/en.
+* Nội dung:
+tính:
+Bao gồm các concept được định nghĩa thuộc CodeSystem http:/ /snomed. info/sct với thuộc
+Concept is-a 404684003 (Clinical finding (finding))
+Concept is-a 243796009 (Context-dependent categories)
+Concept is-a 272379006 (Events)
+Bao gồm tất cả các concept được định nghĩa tại CodeSystem http://h17 .org/fhir/sid/icd-10
+5.11 ValueSet: Diagnostic Report Code
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-diagnosticreport-code
+Publisher:
+Copyright:
+1.0.0
+ValueSet-VN_Core_Diagnosticreport_Code
+ValueSet for Diagnostic Report Code
+Draft as of 2020-12-30
+This value set currently contains all of LOINC. The codes selected should represent
+discrete and narrative diagnostic observations and reports
+Cục Công nghệ thông tin - Bộ Y tế
+This material contains content from LOINC. LOINC is copyright © 1995-2020,
+Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and
+BETTER HEALTH PROGRAMME SEA 134
+--- Page 134 ---
+Codes (LOINC) Committee and is available at no cost under the license at
+http://loinc.org/license. LOINC® is a registered United States trademark of
+Regenstrief Institute, Inc
+* Nội dung:
+• Bao gồm các concept được định nghĩa tại CodeSystem ht tp://loinc.org
+5.12 ValueSet: Thông tin trình độ học vấn
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-education-level
+1.0.0
+ValueSet-VN_Core_Education_Level
+ValueSet dành cho Thông tin trình độ học vấn
+Active as of 2020-12-30
+ValueSet dành cho Thông tin trình độ học vân - Theo ban hành Danh mục Trình độ
+học vân của Tông cục thông kê
+Cục Công nghệ thông tin - Bộ Y tế
+* Nội dung:
+Bao gồm các concept được định nghĩa tại CodeSystem
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-education-level
+5.13 ValueSet: Thông tin tôn giáo
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-ethic
+Publisher:
+1.0.0
+ValueSet-VN_Core_Ethic
+ValueSet dành cho Thông tin tôn giáo
+Active as of 2020-12-30
+ValueSet dành cho Thông tin tôn giáo - Theo ban hành Danh mục Tôn giáo của
+Tổng cục thống kê
+Cục Công nghệ thông tin - Bộ Y tế
+* Nội dung:
+Bao gồm các concept được định nghĩa tại CodeSytem
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-ethic
+BETTER HEALTH PROGRAMME SEA 135
+--- Page 135 ---
+5.14 ValueSet: Thông tin nghề nghiệp
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-occupation
+1.0.0
+ValueSet-VN_Core_Occupation
+ValueSet dành cho Thông tin nghề nghiệp
+Active as of 2020-12-30
+ValueSet dành cho Thông tin nghề nghiệp
+Cục Công nghệ thông tin - Bộ Y tế
+* Nội dung:
+Bao gồm các concept được định nghĩa tại CodeSytem
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-occupation
+Bao gồm các concept được định nghĩa tại CodeSystem
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-occupation-4069
+Bao gồm các concept được định nghĩa tại CodeSytem http:// snomed. info/sct có các thuộc tính
+sau:
+concept is-a 14679004 (Occupation)
+• concept = 261665006 (Unknown)
+5.15 ValueSet: Thông tin dân tộc
+* Tổng quan:
+Defining URL:
+Version:
+Name:
+Title:
+Status:
+Definition:
+http://moh.gov.vn/fhir/core/ValueSet/vn-core-race
+Publisher:
+1.0.0
+ValueSet-VN_Core_Race
+ValueSet dành cho Thông tin dân tộc
+Active as of 2020-12-30
+ValueSet dành cho Thông tin dân tộc - Theo ban hành Danh mục Dân tộc của Tổng
+cục thống kê
+Cục Công nghệ thông tin - Bộ Y tế
+* Nội dung:
+•
+Bao gồm các concept được định nghĩa tại CodeSystem
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-race
+5.16 ValueSet: Thông tin dịch vụ kỹ thuật
+* Tổng quan:
+Defining URL:
+http://moh.gov.vn/fhir/core/ValueSet/vn-procedure-code
+BETTER HEALTH PROGRAMME SEA 136
+--- Page 136 ---
+Version:
+Name:
+Title:
+Status:
+Definition:
+Publisher:
+Copyright:
+1.0.0
+ValueSet-VN_Core_Procedure_Code
+ValueSet dành cho Mã dịch vụ kỹ thuật
+Draft as of 2020-12-31
+ValueSet dành cho Mã dịch vụ kỹ thuật
+Cục Công nghệ thông tin - Bộ Y tế
+This value set includes content from: 1. Procedure codes - managed and publiced by
+Vietnam MOH. 2. CPT-4 - American Medical Association's Current Procedure
+Terminology 4 (CPT-4) codes. 3. CPT-5. 4. SNOMED CT, which is copyright ©
+2002+ International Health Terminology Standards Development Organisation
+(IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use
+of SNOMED CT is not covered by this agreement.
+* Nội dung:
+• Bao gồm các concept được định nghĩa thuộc CodeSystem
+http://moh.gov.vn/fhir/core/CodeSystem/vn-core-procedureCode
+• Bao gồm các concept được định nghĩa thuộc CodeSystem http:/ /www.ama-assn.org/go/cpt
+• Bao gồm các concept được định nghĩa thuộc CodeSystem
+http://terminology.h17.org/CodeSystem/C5
+• Bao gồm các concept được định nghĩa thuộc CodeSystem http:/ / snomed. info/sct có các thuộc
+• Concept is-a 71388002 (Procedure)
+6 Danh sách các NamingSystem
+6.1 NamingSystem dành cho số CMTND của người bệnh
+Tổng quan:
+Defining URL
+Version
+Name
+Status
+Definition
+Publisher
+http://moh.gov.vn/fhir/core/NamingSystem/sid-citizen-id
+1.0.0
+SID-Citizen-Id
+Active
+NamingSystem dành cho số CMTND của người bệnh.
+Cục Công nghệ thông tin - Bộ Y tế
+* Các Identifier liên quan:
+Value
+Type
+URI
+http://moh.gov.vn/fhir/core/sid/citizen_id
+Preferred
+true
+BETTER HEALTH PROGRAMME SEA 137
+--- Page 137 ---
+6.2
+Tổng quan:
+Defining URL
+Version
+Name
+Status
+Definition
+Publisher
+NamingSystem dành cho số bảo hiểm y tế của người bệnh
+http://moh.gov.vn/fhir/core/NamingSystem/insurance_number
+1.0.0
+SID-Insurance_Number
+draft
+NamingSystem dành cho số bảo hiểm y tế của người bệnh.
+Cộc Công nghệ thông tin - Bộ Y tế
+* Các Identifier liên quan:
+Type
+URI
+Value
+http://moh.gov.vn/fhir/core/sid/insurance_number
+Preferred
+true
+6.3
+Tổng quan:
+Defining URL
+Version
+Name
+Status
+Definition
+Publisher
+NamingSystem dành cho thẻ căn cước công dân của người bệnh
+http://moh.gov.vn/fhir/core/NamingSystem/national-id
+1.0.0
+SID-National-Id
+draft
+NamingSystem dành cho thẻ căn cước công dân của người bệnh.
+Cục Công nghệ thông tin - Bộ Y tế
+* Các Identifier liên quan:
+Type
+URI
+Value
+http://moh.gov.vn/fhir/core/sid/national_id
+Preferred
+true
+6.4
+Tổng quan:
+Defining URL
+Version
+Name
+Status
+Definition
+NamingSystem dành cho số hộ chiếu của người bệnh
+http://moh.gov.vn/fhir/core/NamingSystem/passport-number-id
+1.0.0
+SID-Passport_Number
+draft
+NamingSystem dành cho số hộ chiếu của người bệnh.
+BETTER HEALTH PROGRAMME SEA 138
+--- Page 138 ---
+Publisher
+Cục Công nghệ thông tin - Bộ Y tế
+* Các Identifier liên quan:
+Type
+Value
+URI
+http://moh.gov.vn/fhir/core/sid/passport_number
+6.5
+Tổng quan:
+NamingSystem dành cho bằng lái xe
+Defining URL
+Version
+Name
+Status
+Definition
+Publisher
+http://moh.gov.vn/fhir/core/NamingSystem/driver-license-number
+1.0.0
+SID-Driver-License-Number
+draft
+NamingSystem dành cho bằng lái xe.
+Cục Công nghệ thông tin - Bộ Y tế
+* Các Identifier liên quan:
+Type
+Value
+URI
+http://moh.gov.vn/fhir/core/sid/driver-license-number
+Preferred
+true
+Preferred
+true
+6.6
+NamingSystem dành cho mã số bệnh nhân (dùng cho các cơ sở khám,
+chữa bệnh)
+* Tổng quan:
+Defining URL
+Version
+Name
+Status
+Definition
+Publisher
+http://moh.gov.vn/fhir/core/NamingSystem/patient-internal-id
+1.0.0
+SID-Patient-Internal-Id
+draft
+NamingSystem dành cho mã số bệnh nhân của người bệnh (dùng trong CSKCB)
+Cục Công nghệ thông tin - Bộ Y tế
+* Các Identifier liên quan:
+Type
+Value
+URI
+http://moh.gov.vn/fhir/core/sid/patient-internal-id
+Preferred
+true
+BETTER HEALTH PROGRAMME SEA 139
+--- Page 139 ---
+6.7
+NamingSystem dành cho mã cơ sở khám, chữa bệnh (theo ban hành
+của Bộ Y tế)
+* Tổng quan:
+Defining URL http://moh.gov.vn/fhir/core/NamingSystem/provider-code
+Version
+Name
+Status
+Definition
+Publisher
+1.0.0
+SID-Provider-Code
+draft
+NamingSystem dành cho mã cơ sở khám, chữa bệnh theo ban hành của Bộ Y tế.
+Cục Công nghệ thông tin - Bộ Y tế
+* Các Identifier liên quan:
+Type
+Value
+URI
+http://moh.gov.vn/fhir/core/sid/provider-medical-license-number
+Preferred
+true
+6.8
+* Tổng quan:
+Defining URL
+Version
+Name
+Status
+Definition
+Publisher
+NamingSystem dành cho mã số kinh doanh của cơ sở khám, chữa bệnh
+http://moh.gov.vn/fhir/core/NamingSystem/provider-license-number
+1.0.0
+SID-Provider-License-Number
+draft
+NamingSystem dành cho số đăng ký kinh doanh của cơ sở khám, chữa bệnh.
+Cục Công nghệ thông tin - Bộ Y tế
+* Các Identifier liên quan:
+Type
+URI
+Value
+http://moh.gov.vn/fhir/core/sid/provider-license-number
+Preferred
+true
+6.9
+* Tổng quan:
+NamingSystem dành cho số giấy phép hoạt động khám, chữa bệnh
+Defining
+URL
+Version
+Name
+Status
+http://moh.gov.vn/fhir/core/NamingSystem/provider-medical-license-number
+1.0.0
+draft
+SID-Provider-Medical-License-Number
+BETTER HEALTH PROGRAMME SEA 140
+--- Page 140 ---
+Definition
+NamingSystem dành cho số giấy phép hoạt động khám, chữa bệnh của cơ sở khám, chữa
+bệnh.
+Publisher
+Cục Công nghệ thông tin - Bộ Y tế
+* Các Identifier liên quan:
+Type Value
+URI http://moh.gov.vn/fhir/core/sid/provider-medical-license-number
+Preferred
+true
+BETTER HEALTH PROGRAMME SEA 141

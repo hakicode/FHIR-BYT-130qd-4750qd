@@ -1,4 +1,5 @@
 #!/bin/bash
+# chmod +x run_ocr.sh
 
 if [ -z "$1" ]; then
   echo "Usage: $0 <path_to_pdf>"
